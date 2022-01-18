@@ -1,0 +1,17 @@
+tap "homebrew/cask"
+
+brew "fzf"
+brew "cmake"
+brew "htop"
+brew "fzf"
+brew "tmux"
+brew "tree"
+brew "vim"
+brew "youtube-dl"
+brew "hugo"
+brew "python"
+brew "thefuck"
+brew "ffmpeg"
+brew "rbenv"
+
+cask "alfred"
