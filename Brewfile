@@ -1,4 +1,5 @@
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 
 brew "fzf"
 brew "cmake"
@@ -15,3 +16,4 @@ brew "ffmpeg"
 brew "rbenv"
 
 cask "alfred"
+cask "font-fira-code"
