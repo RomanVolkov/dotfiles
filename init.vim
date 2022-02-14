@@ -28,11 +28,11 @@ call plug#end()
 
 source $HOME/.config/nvim/themes/onedark.vim
 
-set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
-augroup RestoreCursorShapeOnExit
-    autocmd!
-    autocmd VimLeave * set guicursor=a:ver20-blinkwait400-blinkoff400-blinkon400
-augroup END
+"set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+"augroup RestoreCursorShapeOnExit
+"    autocmd!
+"    autocmd VimLeave * set guicursor=a:ver20-blinkwait400-blinkoff400-blinkon400
+"augroup END
 
 nnoremap <C-O> :NERDTreeFocus<CR>
 let NERDTreeQuitOnOpen=1

@@ -79,18 +79,10 @@ cursor:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Beam
+    #shape: Beam
+    shape: Block
 
     blinking: On
-
-  # Vi mode cursor style
-  #
-  # If the vi mode cursor style is `None` or not specified, it will fall back to
-  # the style of the active value of the normal cursor.
-  #
-  # See `cursor.style` for available options.
-  vi_mode_style: Beam
-  unfocused_hollow: true
 
 live_config_reload: true
 
