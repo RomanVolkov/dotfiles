@@ -16,3 +16,4 @@ brew "rbenv"
 
 cask "alfred"
 cask "font-fira-code"
+cask "numi"

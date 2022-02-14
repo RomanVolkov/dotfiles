@@ -3,8 +3,8 @@ env:
 
 window:
   dimensions:
-    columns: 180
-    lines: 50
+    columns: 200
+    lines: 60
   padding:
     x: 10
     y: 10
@@ -89,8 +89,9 @@ live_config_reload: true
 shell:
   program: /bin/zsh
   args:
-    - --login
-
+    - -l
+    - -c
+    - "tmux attach || tmux"
 
 mouse:
   double_click: { threshold: 300 }

@@ -18,12 +18,16 @@ set termencoding=utf-8 "Кодировка терминала
 set novisualbell "Не мигать 
 set updatetime=300
 set nohlsearch
+set rtp+=/opt/homebrew/opt/fzf
 
 syntax on "Включить подсветку синтаксиса
 
 call plug#begin('~/.config/nvim/autoload/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 source $HOME/.config/nvim/themes/onedark.vim
