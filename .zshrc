@@ -1,4 +1,5 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
 
 export ZSH="/Users/romanvolkov/.oh-my-zsh"
 
@@ -32,5 +33,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 eval "$(rbenv init - zsh)"
