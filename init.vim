@@ -46,6 +46,7 @@ Plug 'keith/xcconfig.vim'
 Plug 'vijaymarupudi/nvim-fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 source $HOME/.config/nvim/themes/onedark.vim
