@@ -43,10 +43,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'keith/xcconfig.vim'
-Plug 'vijaymarupudi/nvim-fzf'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 source $HOME/.config/nvim/themes/onedark.vim
@@ -57,7 +56,7 @@ source $HOME/.config/nvim/themes/onedark.vim
 "augroup END
 
 nnoremap <C-O> :NERDTreeFocus<CR>
-nnoremap <C-T> :Files<CR>
+nnoremap <C-T> :Telescope find_files<CR>
 
 let NERDTreeQuitOnOpen=1
 " Start NERDTree when Vim starts with a directory argument.

@@ -13,6 +13,7 @@ brew "python"
 brew "thefuck"
 brew "ffmpeg"
 brew "rbenv"
+brew "ack"
 
 cask "alfred"
 cask "font-fira-code"
