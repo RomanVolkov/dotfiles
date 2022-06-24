@@ -18,6 +18,8 @@ docker
 docker-compose
 docker-machine
 tmux
+macos
+sudo
 )
 
 source $ZSH/oh-my-zsh.sh
