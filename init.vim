@@ -27,7 +27,7 @@ set ai "Auto indent
 set si "Smart indent
 " Finding files - Search down into subfolders
 set path+=**
-
+set so=999
 
 au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.mdx set filetype=markdown
