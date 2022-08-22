@@ -20,6 +20,7 @@ docker-machine
 tmux
 macos
 sudo
+swiftpm # swift package completion-tool generate-zsh-script > ~/.oh-my-zsh/completions/_swift
 )
 
 source $ZSH/oh-my-zsh.sh
