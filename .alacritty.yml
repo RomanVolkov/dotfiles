@@ -14,7 +14,7 @@ window:
   dynamic_title: true
 
 scrolling:
-  history: 10000
+  history: 30000
   multiplier: 3
 
 font:
