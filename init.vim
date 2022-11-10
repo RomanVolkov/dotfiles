@@ -39,7 +39,7 @@ syntax on "Включить подсветку синтаксиса
 call plug#begin('~/.config/nvim/autoload/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'jmcantrell/vim-virtualenv'
+Plug 'cjrh/vim-conda'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'keith/xcconfig.vim'
 Plug 'kyazdani42/nvim-web-devicons'
