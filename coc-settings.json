@@ -1,0 +1,20 @@
+{
+    "pyright.enable": true,
+    "tsserver.enable": true,
+    "languageserver": {
+        "python": {
+            "command": "pylsp",
+            "filetypes": ["python"]
+        },
+        "go": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "trace.server": "verbose",
+            "filetypes": ["go"]
+         },
+         "swift": {
+             "command": "sourcekit-lsp",
+            "filetypes": ["swift"]
+         }
+    }
+}

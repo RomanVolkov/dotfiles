@@ -24,6 +24,7 @@ ln -s -f ~/.dotfiles/init.vim ~/.config/nvim/init.vim
 ln -s -f ~/.dotfiles/.zshrc ~/.zshrc
 ln -s -f ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.dotfiles/.alacritty.yml ~/.alacritty.yml
+ln -s -f ~/.dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json
 
 ## inits
 rbenv init

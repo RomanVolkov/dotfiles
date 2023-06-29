@@ -1,5 +1,6 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.docker/bin:$PATH"
 
 export ZSH="/Users/romanvolkov/.oh-my-zsh"
 
@@ -24,7 +25,6 @@ swiftpm # swift package completion-tool generate-zsh-script > ~/.oh-my-zsh/compl
 )
 
 source $ZSH/oh-my-zsh.sh
-eval $(thefuck --alias)
 
 export EDITOR='nvim'
 alias v=nvim
@@ -38,19 +38,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 eval "$(rbenv init - zsh)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/romanvolkov/.miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/romanvolkov/.miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/romanvolkov/.miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/romanvolkov/.miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
