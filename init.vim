@@ -33,6 +33,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.mdx set filetype=markdown
 au BufNewFile,BufRead *.swift set filetype=swift
+au BufNewFile,BufRead *.go set filetype=go
 
 syntax on
 
@@ -54,7 +55,6 @@ call plug#end()
 " show buffers at the top of nvim"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-
 
 source $HOME/.config/nvim/themes/onedark.vim
 nnoremap <C-T> :Telescope find_files<CR>
@@ -93,6 +93,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -112,7 +113,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
-:autocmd BufWritePost python Format
+:autocmd BufWritePost,FileWritePost *.py :call CocAction('format')
 
 " Open init.vim to edit
-command EditVimConfig :e /Users/romanvolkov/.dotfiles/init.vim
+command! EditVimConfig :e /Users/romanvolkov/.dotfiles/init.vim

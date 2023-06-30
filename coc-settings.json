@@ -6,15 +6,14 @@
             "command": "pylsp",
             "filetypes": ["python"]
         },
-        "go": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "trace.server": "verbose",
-            "filetypes": ["go"]
-         },
          "swift": {
              "command": "sourcekit-lsp",
             "filetypes": ["swift"]
-         }
+         },
+           "clangd": {
+    "command": "clangd",
+    "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+    "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+  }
     }
 }
