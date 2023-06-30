@@ -27,6 +27,8 @@ set si "Smart indent
 " Finding files - Search down into subfolders
 set path+=**
 set so=999
+set signcolumn=yes
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.mdx set filetype=markdown
@@ -56,7 +58,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 source $HOME/.config/nvim/themes/onedark.vim
 nnoremap <C-T> :Telescope find_files<CR>
-
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
@@ -92,6 +93,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -107,12 +110,9 @@ endfunction
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
 :autocmd BufWritePost python Format
 
-set signcolumn=yes
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" Open init.vim to edit
+command EditVimConfig :e /Users/romanvolkov/.dotfiles/init.vim
