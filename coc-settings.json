@@ -4,16 +4,30 @@
     "languageserver": {
         "python": {
             "command": "pylsp",
-            "filetypes": ["python"]
+            "filetypes": [
+                "python"
+            ]
         },
-         "swift": {
-             "command": "sourcekit-lsp",
-            "filetypes": ["swift"]
-         },
-           "clangd": {
-    "command": "clangd",
-    "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-    "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-  }
-    }
+        "swift": {
+            "command": "sourcekit-lsp",
+            "filetypes": [
+                "swift"
+            ]
+        },
+        "clangd": {
+            "command": "clangd",
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json"
+            ],
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ]
+        }
+    },
 }

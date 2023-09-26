@@ -1,7 +1,16 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
+export PATH="$HOME/.miniforge3/condabin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
 
+# export GOROOT="/opt/homebrew/bin/go"
+# export PATH=$PATH:$GOROOT/bin
+
+# Experiments with Swift WASM
+# export PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH"
+# export PATH="/Library/Developer/Toolchains/swift-wasm-5.7.3-RELEASE.xctoolchain/usr/bin:$PATH"
+ 
 export ZSH="/Users/romanvolkov/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
@@ -36,6 +45,24 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-eval "$(rbenv init - zsh)"
+TERM=xterm-256color
+
+# Wasmer
+export WASMER_DIR="$HOME/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$("$HOME/.miniforge3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/.miniforge3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/.miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 

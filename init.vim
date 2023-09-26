@@ -50,13 +50,26 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'ray-x/go.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" comment with 'gc'
+Plug 'numToStr/Comment.nvim'
+Plug 'kmontocam/nvim-conda'
+Plug 'm4xshen/autoclose.nvim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'leoluz/nvim-dap-go'
 call plug#end()
+
+let mapleader = ' '
+
+lua require("Comment").setup()
+lua require("autoclose").setup()
+lua require('dap-go').setup()
+
+source $HOME/.config/nvim/themes/onedark.vim
 
 " show buffers at the top of nvim"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-source $HOME/.config/nvim/themes/onedark.vim
 nnoremap <C-T> :Telescope find_files<CR>
 
 inoremap <silent><expr> <TAB>
@@ -69,6 +82,7 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 
 function! CheckBackspace() abort
   let col = col('.') - 1
@@ -94,11 +108,12 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-
 " Use K to show documentation in preview window
 nnoremap <silent> K :call ShowDocumentation()<CR>
+
+nnoremap <leader>bw :bw<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -107,6 +122,9 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
+
+" going into Explore mode
+nnoremap <S-T> :Ex<CR>
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
