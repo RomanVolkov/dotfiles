@@ -93,3 +93,62 @@ vim.g['airline#extensions#tabline#buffer_nr_show'] = 1
 
 
 vim.keymap.set('n', '<C-T>', '::Telescope find_files<CR>', {noremap = true})
+vim.keymap.set('n', '<silent><expr> <TAB>', 'coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()', {inoremap = true})
+vim.keymap.set('n', '<expr><S-TAB>', 'coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"', {inoremap = true})
+
+
+-- Make <CR> to accept selected completion item or notify coc.nvim to format
+-- <C-g>u breaks current undo, please make your own choice
+vim.keymap.set('n', '<silent><expr> <CR>', 'coc#pum#visible() ? coc#pum#confirm() "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"', {inoremap = true})
+
+vim.cmd[[
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+]]
+
+vim.keymap.set('n', '<silent><expr> <c-space>', 'coc#refresh()', {inoremap = true})
+
+-- Use `[g` and `]g` to navigate diagnostics
+-- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+vim.keymap.set('n', '<silent>[g', 'Plug>(coc-diagnostic-prev)', {})
+vim.keymap.set('n', '<silent>]g', 'Plug>(coc-diagnostic-next)', {})
+
+-- GoTo code navigation
+vim.keymap.set('n', '<silent> gd', '<Plug>(coc-definition)', {})
+vim.keymap.set('n', '<silent> gy', '<Plug>(coc-type-definition)', {})
+vim.keymap.set('n', '<silent> gi', '<Plug>(coc-implementation)', {})
+vim.keymap.set('n', '<silent> gr', '<Plug>(coc-references)', {})
+
+
+-- Use K to show documentation in preview window
+vim.keymap.set('n', '<silent> K', ':call ShowDocumentation()<CR>', {inoremap = true})
+
+vim.keymap.set('n', '<leader>bw', ':bw<CR>', {inoremap = true})
+vim.keymap.set('n', '<leader>bn', ':bn<CR>', {inoremap = true})
+vim.keymap.set('n', '<leader>bp', ':bp<CR>', {inoremap = true})
+
+vim.cmd[[
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+]]
+
+
+-- going into Explore mode
+vim.keymap.set('n', '<S-T>', ':Ex<CR>', {inoremap = true})
+
+-- Highlight the symbol and its references when holding the cursor
+vim.cmd('autocmd CursorHold * silent call CocActionAsync("highlight")')
+
+-- Add `:Format` command to format current buffer
+vim.cmd('command! -nargs=0 Format :call CocActionAsync("format")')
+vim.cmd(':autocmd BufWritePost,FileWritePost *.py :call CocAction("format"))
+
+-- Open init.vim to edit
+vim.cmd('command! EditVimConfig :e /Users/romanvolkov/.dotfiles/init.vim')
