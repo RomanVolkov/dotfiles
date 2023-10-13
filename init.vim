@@ -55,6 +55,7 @@ Plug 'numToStr/Comment.nvim'
 Plug 'kmontocam/nvim-conda'
 Plug 'm4xshen/autoclose.nvim'
 Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 Plug 'leoluz/nvim-dap-go'
 call plug#end()
 
@@ -63,6 +64,8 @@ let mapleader = ' '
 lua require("Comment").setup()
 lua require("autoclose").setup()
 lua require('dap-go').setup()
+lua require('dapui').setup()
+lua require('go_debug').setup()
 
 source $HOME/.config/nvim/themes/onedark.vim
 

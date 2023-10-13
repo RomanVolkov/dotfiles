@@ -26,6 +26,7 @@ ln -s -f ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.dotfiles/.alacritty.yml ~/.alacritty.yml
 ln -s -f ~/.dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s -f ~/.dotfiles/.condarc ~/.condarc
-
+mkdir ~/.config/nvim/lua
+ln -s -f ~/.dotfiles/go_debug.lua ~/.config/nvim/lua/go_debug.lua
 ## inits
 rbenv init
