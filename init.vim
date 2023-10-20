@@ -40,7 +40,6 @@ syntax on
 call plug#begin('~/.config/nvim/autoload/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'cjrh/vim-conda'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
@@ -54,6 +53,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'numToStr/Comment.nvim'
 Plug 'kmontocam/nvim-conda'
 Plug 'm4xshen/autoclose.nvim'
+" DAP
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'leoluz/nvim-dap-go'
@@ -65,7 +65,6 @@ lua require("Comment").setup()
 lua require("autoclose").setup()
 lua require('dap-go').setup()
 lua require('dapui').setup()
-lua require('go_debug').setup()
 
 source $HOME/.config/nvim/themes/onedark.vim
 
