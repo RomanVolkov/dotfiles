@@ -6,6 +6,9 @@
 ## Oh my ZSH
 ## sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 ## Brew
 brew bundle
 
@@ -27,6 +30,7 @@ ln -s -f ~/.dotfiles/.alacritty.yml ~/.alacritty.yml
 ln -s -f ~/.dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s -f ~/.dotfiles/.condarc ~/.condarc
 mkdir ~/.config/nvim/lua
-ln -s -f ~/.dotfiles/go_debug.lua ~/.config/nvim/lua/go_debug.lua
+ln -s -f ~/.dotfiles/pycodestyle ~/.config
+ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 ## inits
 rbenv init

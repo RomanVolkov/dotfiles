@@ -134,6 +134,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
 :autocmd BufWritePost,FileWritePost *.py :call CocAction('format')
+:autocmd BufWritePost,FileWritePost *.go :call CocAction('format')
 
 " Open init.vim to edit
 command! EditVimConfig :e /Users/romanvolkov/.dotfiles/init.vim
