@@ -71,6 +71,7 @@ source $HOME/.config/nvim/themes/onedark.vim
 " show buffers at the top of nvim"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='minimalist'
 
 nnoremap <C-T> :Telescope find_files<CR>
 
