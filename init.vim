@@ -52,7 +52,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " comment with 'gc'
 Plug 'numToStr/Comment.nvim'
 Plug 'kmontocam/nvim-conda'
-Plug 'm4xshen/autoclose.nvim'
+Plug 'windwp/nvim-autopairs'
 " DAP
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
@@ -60,11 +60,12 @@ Plug 'leoluz/nvim-dap-go'
 call plug#end()
 
 let mapleader = ' '
+nnoremap <Space> <NOP>
 
 lua require("Comment").setup()
-lua require("autoclose").setup()
 lua require('dap-go').setup()
 lua require('dapui').setup()
+lua require('nvim-autopairs').setup()
 
 source $HOME/.config/nvim/themes/onedark.vim
 

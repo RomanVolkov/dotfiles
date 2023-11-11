@@ -20,7 +20,7 @@ scrolling:
 font:
   normal:
     family: "MesloLGS NF"
-  size: 15
+  size: 14.5
 
 #font:
 #  normal:
@@ -32,7 +32,7 @@ font:
 #  italic:
 #    family: Fira Code
 #    style: Italic
-#  size: 14
+#  size: 14.5
 
 
 colors:
@@ -102,3 +102,7 @@ mouse:
   triple_click: { threshold: 300 }
 
   hide_when_typing: true
+
+
+key_bindings:
+  - { key: F10, action: ToggleFullscreen }
