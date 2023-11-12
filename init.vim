@@ -119,6 +119,9 @@ nnoremap <leader>bw :bw<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
 
+nnoremap <silent> <C-Right> :bn<CR>
+nnoremap <silent> <C-Left> :bp<CR>
+
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
