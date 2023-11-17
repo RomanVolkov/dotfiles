@@ -43,7 +43,6 @@ swiftpm # swift package completion-tool generate-zsh-script > ~/.oh-my-zsh/compl
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
-alias v=nvim
 alias vim=nvim
 alias gcheckout='git checkout $(git branch | fzf)'
 

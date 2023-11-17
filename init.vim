@@ -1,3 +1,7 @@
+" :Telescope keymaps 
+" Example: :verbose nmap <leader>
+
+
 set tabstop=4 
 set laststatus=2
 set shiftwidth=4
@@ -47,7 +51,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'ray-x/go.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " comment with 'gc'
 Plug 'numToStr/Comment.nvim'
@@ -57,15 +61,17 @@ Plug 'windwp/nvim-autopairs'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'leoluz/nvim-dap-go'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'theHamsta/nvim-dap-virtual-text'
 call plug#end()
 
 let mapleader = ' '
 nnoremap <Space> <NOP>
 
 lua require("Comment").setup()
-lua require('dap-go').setup()
-lua require('dapui').setup()
 lua require('nvim-autopairs').setup()
+" separate file .lua configuration
+lua require('nvim_debugging')
 
 source $HOME/.config/nvim/themes/onedark.vim
 
@@ -100,8 +106,8 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+"" Use `[g` and `]g` to navigate diagnostics
+"" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
@@ -143,3 +149,5 @@ command! -nargs=0 Format :call CocActionAsync('format')
 
 " Open init.vim to edit
 command! EditVimConfig :e /Users/romanvolkov/.dotfiles/init.vim
+
+" Debugging

@@ -32,5 +32,9 @@ ln -s -f ~/.dotfiles/.condarc ~/.condarc
 mkdir ~/.config/nvim/lua
 ln -s -f ~/.dotfiles/pycodestyle ~/.config
 ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
+ln -s -f ~/.dotfiles/nvim_debugging.lua ~/.config/nvim/lua/nvim_debugging.lua
 ## inits
 rbenv init
+
+## go debugger
+go install github.com/go-delve/delve/cmd/dlv@latest

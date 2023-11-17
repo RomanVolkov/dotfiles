@@ -21,6 +21,7 @@ brew "imagemagick"
 brew "xcodes"
 brew "cocoapods"
 brew "yt-dlp"
+brew "delve"
 
 cask "alfred"
 cask "font-fira-code"
