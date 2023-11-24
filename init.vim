@@ -40,6 +40,7 @@ au BufNewFile,BufRead *.swift set filetype=swift
 au BufNewFile,BufRead *.go set filetype=go
 
 syntax on
+set termguicolors
 
 call plug#begin('~/.config/nvim/autoload/plugged')
 Plug 'joshdick/onedark.vim'
@@ -63,6 +64,10 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'leoluz/nvim-dap-go'
 Plug 'mfussenegger/nvim-dap-python'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'antosha417/nvim-lsp-file-operations'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
 call plug#end()
 
 let mapleader = ' '
@@ -72,6 +77,7 @@ lua require("Comment").setup()
 lua require('nvim-autopairs').setup()
 " separate file .lua configuration
 lua require('nvim_debugging')
+lua require('nvim_lspconfig')
 
 source $HOME/.config/nvim/themes/onedark.vim
 
