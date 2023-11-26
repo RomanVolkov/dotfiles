@@ -1,5 +1,6 @@
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
+tap "jesseduffield/lazygit/lazygit"
 
 brew "fzf"
 brew "cmake"
@@ -22,6 +23,7 @@ brew "xcodes"
 brew "cocoapods"
 brew "yt-dlp"
 brew "delve"
+brew "lazygit"
 
 cask "alfred"
 cask "font-fira-code"
