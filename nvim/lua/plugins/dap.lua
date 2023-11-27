@@ -3,6 +3,7 @@ return {
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",
+      "mfussenegger/nvim-dap-python",
       -- stylua: ignore
       opts = {},
       config = function(_, opts)
@@ -110,18 +111,8 @@ return {
         { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
       )
     end
-  end,
 
-  {
-    "mfussenegger/nvim-dap-python",
-  -- stylua: ignore
-  keys = {
-    { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
-    { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
-  },
-    config = function()
-      local path = require("mason-registry").get_package("debugpy"):get_install_path()
-      require("dap-python").setup(path .. "/venv/bin/python")
-    end,
-  },
+    local path = "/Users/romanvolkov/.virtualenvs/debugpy/"
+    require("dap-python").setup(path .. "bin/python")
+  end,
 }
