@@ -47,3 +47,6 @@ vim.o.sidescrolloff = 5
 vim.cmd("syntax on")
 -- Enable true color in the terminal
 vim.o.termguicolors = true
+
+vim.o.timeoutlen = 500
+vim.o.ttimeoutlen = 50

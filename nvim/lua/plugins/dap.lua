@@ -47,7 +47,7 @@ return {
 
   keys = {
     {
-      "<F9>",
+      "<F7>",
       function()
         require("dap").toggle_breakpoint()
       end,
