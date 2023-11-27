@@ -23,17 +23,14 @@ cp themes/onedark.vim ~/.config/nvim/themes
 source ~/.zshrc
 
 ## symlinks
-ln -s -f ~/.dotfiles/init.vim ~/.config/nvim/init.vim
 ln -s -f ~/.dotfiles/.zshrc ~/.zshrc
 ln -s -f ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.dotfiles/.alacritty.yml ~/.alacritty.yml
 ln -s -f ~/.dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s -f ~/.dotfiles/.condarc ~/.condarc
-mkdir ~/.config/nvim/lua
 ln -s -f ~/.dotfiles/pycodestyle ~/.config
 ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
-ln -s -f ~/.dotfiles/nvim_debugging.lua ~/.config/nvim/lua/nvim_debugging.lua
-ln -s -f ~/.dotfiles/nvim_lspconfig.lua ~/.config/nvim/lua/nvim_lspconfig.lua
+ln -s ~/.dotfiles/nvim ~/.config/nvim
 ## inits
 rbenv init
 

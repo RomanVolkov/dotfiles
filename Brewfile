@@ -24,6 +24,7 @@ brew "cocoapods"
 brew "yt-dlp"
 brew "delve"
 brew "lazygit"
+brew "ripgrep"
 
 cask "alfred"
 cask "font-fira-code"
