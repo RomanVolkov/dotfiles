@@ -37,7 +37,14 @@ return {
     },
     -- LSP Server Settings
     servers = {
-      pyright = {},
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            ignore = { "W391", "E501" },
+            maxLineLength = 200,
+          },
+        },
+      },
       gopls = {},
       lua_ls = {
         ---@type LazyKeysSpec[]
