@@ -31,6 +31,7 @@ ln -s -f ~/.dotfiles/.condarc ~/.condarc
 ln -s -f ~/.dotfiles/pycodestyle ~/.config
 ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/.dotfiles/nvim ~/.config/nvim
+ln -s -f ~/.dotfiles/pycodestyle ~/.config/pycodestyle
 ## inits
 rbenv init
 

@@ -1,18 +1,14 @@
 {
-    "pyright.enable": true,
-    "tsserver.enable": true,
-    "languageserver": {
-        "python": {
-            "command": "pylsp",
-            "filetypes": [
-                "python"
-            ]
-        },
-        "swift": {
-            "command": "sourcekit-lsp",
-            "filetypes": [
-                "swift"
-            ]
-        }
+  "pyright.enable": true,
+  "tsserver.enable": true,
+  "languageserver": {
+    "python": {
+      "command": "pylsp",
+      "filetypes": ["python"]
     },
+    "swift": {
+      "command": "sourcekit-lsp",
+      "filetypes": ["swift"]
+    }
+  }
 }
