@@ -44,6 +44,7 @@ return {
       servers = {
         pylsp = {},
         gopls = {},
+        sourcekit = {},
         lua_ls = {
           ---@type LazyKeysSpec[]
           settings = {
@@ -71,6 +72,19 @@ return {
             },
           },
         },
+      }),
+
+      require("lspconfig").sourcekit.setup({
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        cmd = {
+          "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+        },
+        root_dir = function(filename, _)
+          return require("lspconfig.util").root_pattern("buildServer.json")(filename)
+            or require("lspconfig.util").root_pattern("*.xcodeproj", "*.xcworkspace")(filename)
+            or require("lspconfig.util").find_git_ancestor(filename)
+            or require("lspconfig.util").root_pattern("Package.swift")(filename)
+        end,
       }),
     },
   },
