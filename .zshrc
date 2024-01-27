@@ -27,7 +27,6 @@ plugins=(git
 brew
 gem
 zsh-autosuggestions
-history-substring-search
 history
 iterm2
 pip
@@ -38,6 +37,7 @@ tmux
 macos
 sudo
 swiftpm # swift package completion-tool generate-zsh-script > ~/.oh-my-zsh/completions/_swift
+per-directory-history
 )
 
 source $ZSH/oh-my-zsh.sh
