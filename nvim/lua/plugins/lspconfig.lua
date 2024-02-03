@@ -5,6 +5,10 @@ return {
     opts = {},
   },
   {
+    "gfanto/fzf-lsp.nvim",
+    opts = {},
+  },
+  {
     "neovim/nvim-lspconfig",
     keys = {
       { "[g", vim.diagnostic.goto_prev },
@@ -82,7 +86,8 @@ return {
         root_dir = function(filename, _)
           return require("lspconfig.util").root_pattern("buildServer.json")(filename)
             or require("lspconfig.util").root_pattern("*.xcodeproj", "*.xcworkspace")(filename)
-            or require("lspconfig.util").find_git_ancestor(filename)
+            -- seems it breaks telescope root dir
+            --or require("lspconfig.util").find_git_ancestor(filename)
             or require("lspconfig.util").root_pattern("Package.swift")(filename)
         end,
       }),

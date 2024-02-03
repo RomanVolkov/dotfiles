@@ -44,7 +44,7 @@ tmux
 macos
 sudo
 swiftpm # swift package completion-tool generate-zsh-script > ~/.oh-my-zsh/completions/_swift
-per-directory-history
+per-directory-history # CTRL + G to toggle history buckets
 )
 
 source $ZSH/oh-my-zsh.sh

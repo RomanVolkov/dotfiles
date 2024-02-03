@@ -44,6 +44,9 @@ return {
         ensure_installed = { "neocmake", "clangd", "gopls", "pylsp", "ruby_ls", "tsserver" },
       },
     },
+    {
+      "wojciech-kulik/xcodebuild.nvim",
+    },
   },
 
   keys = {
@@ -114,5 +117,41 @@ return {
 
     local path = "/Users/romanvolkov/.virtualenvs/debugpy/"
     require("dap-python").setup(path .. "bin/python")
+
+    -- swift
+    local dap = require("dap")
+    local xcodebuild = require("xcodebuild.dap")
+
+    dap.configurations.swift = {
+      {
+        name = "iOS App Debugger",
+        type = "codelldb",
+        request = "launch",
+        -- what to use for spm?
+        program = xcodebuild.get_program_path,
+        --        pid = xcodebuild.wait_for_pid,
+        ----        program = function()
+        ----          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        ----        end,
+        --        program = "/Users/romanvolkov/dev/tmp/swift_spm_test/.build/debug/swift_spm_test",
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        waitFor = true,
+      },
+    }
+
+    dap.adapters.codelldb = {
+      type = "server",
+      port = "13000",
+      executable = {
+        command = os.getenv("HOME") .. "/.codelldb-aarch64-darwin.vsix/extension/adapter/codelldb",
+        args = {
+          "--port",
+          "13000",
+          "--liblldb",
+          "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+        },
+      },
+    }
   end,
 }
