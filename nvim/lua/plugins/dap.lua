@@ -129,11 +129,6 @@ return {
         request = "launch",
         -- what to use for spm?
         program = xcodebuild.get_program_path,
-        --        pid = xcodebuild.wait_for_pid,
-        ----        program = function()
-        ----          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        ----        end,
-        --        program = "/Users/romanvolkov/dev/tmp/swift_spm_test/.build/debug/swift_spm_test",
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         waitFor = true,

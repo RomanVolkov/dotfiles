@@ -52,6 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestions
 alias vim=nvim
+alias ggg=lazygit
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -67,3 +68,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+
