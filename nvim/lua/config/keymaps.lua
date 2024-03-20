@@ -16,4 +16,4 @@ vim.api.nvim_set_keymap("n", "<S-T>", ":Ex<CR>", { noremap = true, silent = true
 vim.keymap.del({ "i" }, "<Esc>")
 
 -- Always use find in files
-vim.api.nvim_set_keymap("n", "<leader><space>", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader><space>", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
