@@ -49,6 +49,7 @@ return {
         pylsp = {},
         gopls = {},
         sourcekit = {},
+        tsserver = {},
         lua_ls = {
           ---@type LazyKeysSpec[]
           settings = {

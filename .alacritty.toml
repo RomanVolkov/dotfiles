@@ -1,4 +1,5 @@
-import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-mocha.toml"]
+# import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-mocha.toml"]
+import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-latte.toml"]
 live_config_reload = true
 
 [cursor.style]
@@ -12,7 +13,11 @@ TERM = "xterm-256color"
 size = 15
 
 [font.normal]
-family = "FiraCode Nerd Font"
+#family = "FiraCode Nerd Font Mono"
+#style = "Medium"
+# family = "JetBrainsMono Nerd Font"
+# family = "MesloLGS NF"
+family = "FiraMono Nerd Font"
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
