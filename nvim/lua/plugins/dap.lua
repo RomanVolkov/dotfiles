@@ -101,6 +101,13 @@ return {
       desc = "Terminate",
     },
     --    { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
+    {
+      "<F4>",
+      function()
+        require("dapui").eval(nil, { enter = true })
+      end,
+      desc = "Eval",
+    },
   },
 
   config = function()
