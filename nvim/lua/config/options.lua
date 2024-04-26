@@ -11,7 +11,7 @@ vim.o.autoindent = true
 
 -- Display options
 vim.o.number = true
-vim.o.relativenumber = false
+vim.o.relativenumber = true
 vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.termguicolors = true

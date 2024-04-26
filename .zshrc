@@ -13,6 +13,7 @@ export PATH="/usr/local/go/bin:$PATH"
 export EDITOR='nvim'
 export PATH="$PATH:$HOME/.rvm/bin"
 export ZSH="/Users/romanvolkov/.oh-my-zsh"
+export PATH="/opt/homebrew/Cellar/ruby/3.3.0/bin:$PATH"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"
