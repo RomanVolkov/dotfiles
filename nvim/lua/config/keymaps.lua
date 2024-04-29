@@ -17,3 +17,7 @@ vim.keymap.del({ "i" }, "<Esc>")
 
 -- Always use find in files
 -- vim.api.nvim_set_keymap("n", "<leader><space>", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
+
+-- Set macro record for <Leader>q instead of q
+vim.api.nvim_set_keymap("n", "<Leader>q", "q", { noremap = true })
+vim.api.nvim_set_keymap("n", "q", "<Nop>", { noremap = true })
