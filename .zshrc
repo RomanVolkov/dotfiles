@@ -9,6 +9,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$HOME/.miniforge3/condabin:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin/:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export EDITOR='nvim'
 export PATH="$PATH:$HOME/.rvm/bin"

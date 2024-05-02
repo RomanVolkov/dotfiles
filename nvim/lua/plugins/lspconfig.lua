@@ -82,7 +82,7 @@ return {
       require("lspconfig").sourcekit.setup({
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
         cmd = {
-          "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+          "/Applications/Xcode-15.3.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
         },
         root_dir = function(filename, _)
           return require("lspconfig.util").root_pattern("buildServer.json")(filename)
