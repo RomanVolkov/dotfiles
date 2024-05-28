@@ -5,10 +5,10 @@ return {
 
     priority = 1000,
     opts = {
-      flavour = "frappe",
+      flavour = "mocha",
       background = { -- :h background
         light = "latte",
-        dark = "frappe",
+        dark = "mocha",
       },
       compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
     },

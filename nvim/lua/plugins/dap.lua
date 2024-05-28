@@ -85,7 +85,7 @@ return {
     --    { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
     --    { "<leader>ds", function() require("dap").session() end, desc = "Session" },
     {
-      "<F6>",
+      "<F8>",
       function()
         require("dap").terminate()
       end,

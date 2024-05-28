@@ -47,7 +47,13 @@ return {
       -- LSP Server Settings
       servers = {
         pylsp = {},
-        gopls = {},
+        gopls = {
+          ui = {
+            completion = {
+              usePlaceholders = false,
+            },
+          },
+        },
         sourcekit = {},
         tsserver = {},
         lua_ls = {

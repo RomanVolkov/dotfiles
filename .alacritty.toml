@@ -1,5 +1,5 @@
-# import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-mocha.toml"]
-import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-latte.toml"]
+import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-mocha.toml"]
+ # import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-latte.toml"]
 live_config_reload = true
 
 [cursor.style]
