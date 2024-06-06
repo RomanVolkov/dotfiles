@@ -19,7 +19,7 @@ vim.o.termguicolors = true
 -- Editing options
 vim.o.backspace = "indent,eol,start"
 vim.o.encoding = "utf-8"
-vim.o.termencoding = "utf-8"
+-- vim.o.termencoding = "utf-8"
 
 -- Backup and swap options
 vim.o.backup = false
