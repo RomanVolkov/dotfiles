@@ -126,7 +126,8 @@ return {
         type = "codelldb",
         request = "launch",
         -- what to use for spm?
-        program = xcodebuild.get_program_path,
+        program = ".build/debug/image_processing",
+        --program = xcodebuild.get_program_path,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         waitFor = true,
@@ -142,7 +143,7 @@ return {
           "--port",
           "13000",
           "--liblldb",
-          "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+          "/Applications/Xcode-15.4.0.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
         },
       },
     }
