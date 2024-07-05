@@ -126,8 +126,8 @@ return {
         type = "codelldb",
         request = "launch",
         -- what to use for spm?
-        program = ".build/debug/image_processing",
-        --program = xcodebuild.get_program_path,
+        --program = ".build/debug/image_processing",
+        program = xcodebuild.get_program_path,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         waitFor = true,

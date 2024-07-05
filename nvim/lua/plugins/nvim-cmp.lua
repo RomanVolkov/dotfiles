@@ -11,7 +11,7 @@ return {
     "saadparwaiz1/cmp_luasnip",
   },
   opts = function()
-    vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+    --vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
     local defaults = require("cmp.config.default")()
     return {
@@ -41,10 +41,10 @@ return {
         end,
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "path" },
-        { name = "luasnip" },
-        { name = "cmp-nvim-lsp-signature-help" },
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "luasnip", priority = 750 },
+        { name = "path", priority = 500 },
+        { name = "cmp-nvim-lsp-signature-help", priority = 250 },
       }),
       formatting = {
         format = function(_, item)
@@ -55,11 +55,11 @@ return {
           return item
         end,
       },
-      experimental = {
-        ghost_text = {
-          hl_group = "CmpGhostText",
-        },
-      },
+      --      experimental = {
+      --        ghost_text = {
+      --          hl_group = "CmpGhostText",
+      --        },
+      --      },
       sorting = defaults.sorting,
     }
   end,
