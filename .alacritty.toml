@@ -15,9 +15,10 @@ size = 16
 [font.normal]
 #family = "FiraCode Nerd Font Mono"
 #style = "Medium"
- family = "FiraMono Nerd Font Propo"
 # family = "MesloLGS NF"
 #family = "FiraMono Nerd Font"
+# family = "FiraMono Nerd Font Propo"
+family = "MesloLGM Nerd Font Propo"
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
@@ -37,7 +38,7 @@ program = "/bin/zsh"
 [window]
 decorations = "buttonless"
 dynamic_title = true
-opacity = 1
+opacity = 1.0
 startup_mode = "Windowed"
 
 [window.dimensions]
