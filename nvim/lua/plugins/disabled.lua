@@ -1,11 +1,11 @@
 return {
   {
-    "folke/which-key.nvim",
+    "mini.pairs",
     enabled = false,
     opts = {},
   },
   {
-    "lukas-reineke/headlines.nvim",
+    "folke/which-key.nvim",
     enabled = false,
     opts = {},
   },

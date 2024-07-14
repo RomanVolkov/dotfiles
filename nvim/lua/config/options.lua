@@ -40,7 +40,7 @@ vim.o.shell = "zsh"
 vim.o.showmode = false
 vim.o.showcmd = false
 vim.o.shortmess = vim.o.shortmess .. "c"
-vim.o.scrolloff = 999
+vim.o.scrolloff = 10
 vim.o.sidescrolloff = 5
 
 vim.cmd("syntax on")

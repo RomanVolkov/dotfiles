@@ -15,6 +15,10 @@ return {
     local cmp = require("cmp")
     local defaults = require("cmp.config.default")()
     return {
+      enabled = function()
+        -- disable completion if the cursor is `Comment` syntax group.
+        return not cmp.config.context.in_syntax_group("Comment") or vim.bo.ft ~= "markdown"
+      end,
       completion = {
         completeopt = "menu,menuone,noinsert",
       },
