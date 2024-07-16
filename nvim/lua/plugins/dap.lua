@@ -2,21 +2,36 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     {
-      "rcarriga/nvim-dap-ui",
       "mfussenegger/nvim-dap-python",
+    },
+    {
+      "nvim-neotest/nvim-nio",
+    },
+    {
+      "leoluz/nvim-dap-go",
+      opts = {},
+      config = function(_, _)
+        require("dap-go").setup()
+      end,
+    },
+    {
+      "rcarriga/nvim-dap-ui",
       -- stylua: ignore
       opts = {},
       config = function(_, opts)
         local dap = require("dap")
         local dapui = require("dapui")
         dapui.setup(opts)
-        dap.listeners.after.event_initialized["dapui_config"] = function()
+        dap.listeners.before.attach.dapui_config = function()
           dapui.open({})
         end
-        dap.listeners.before.event_terminated["dapui_config"] = function()
+        dap.listeners.before.launch.dapui_config = function()
+          dapui.open({})
+        end
+        dap.listeners.before.event_terminated.dapui_config = function()
           dapui.close({})
         end
-        dap.listeners.before.event_exited["dapui_config"] = function()
+        dap.listeners.before.event_exited.dapui_config = function()
           dapui.close({})
         end
       end,
