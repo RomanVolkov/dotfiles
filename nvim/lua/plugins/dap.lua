@@ -16,7 +16,6 @@ return {
     },
     {
       "rcarriga/nvim-dap-ui",
-      -- stylua: ignore
       opts = {},
       config = function(_, opts)
         local dap = require("dap")
