@@ -9,4 +9,9 @@ return {
     enabled = false,
     opts = {},
   },
+  {
+    "folke/neoconf.nvim",
+    enabled = false,
+    opts = {},
+  },
 }
