@@ -12,9 +12,6 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 ## Brew
 brew bundle
 
-mkdir ~/.config/nvim/themes
-cp themes/onedark.vim ~/.config/nvim/themes
-
 source ~/.zshrc
 
 ## symlinks
