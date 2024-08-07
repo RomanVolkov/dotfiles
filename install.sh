@@ -32,6 +32,7 @@ ln -s -f ~/.dotfiles/pycodestyle ~/.config
 ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s -f ~/.dotfiles/pycodestyle ~/.config/pycodestyle
+ln -s -f ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ## inits
 rbenv init
 
