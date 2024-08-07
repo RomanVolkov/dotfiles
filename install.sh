@@ -12,11 +12,6 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 ## Brew
 brew bundle
 
-##Vim
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-/usr/local/bin/pip install neovim
-/usr/local/bin/pip install --upgrade neovim
-
 mkdir ~/.config/nvim/themes
 cp themes/onedark.vim ~/.config/nvim/themes
 
@@ -33,6 +28,7 @@ ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s -f ~/.dotfiles/pycodestyle ~/.config/pycodestyle
 ln -s -f ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
+ln -s -f ~/.dotfiles/current-theme.conf ~/.config/kitty/current-theme.conf
 ## inits
 rbenv init
 
