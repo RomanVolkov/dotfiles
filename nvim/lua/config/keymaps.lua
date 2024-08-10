@@ -22,3 +22,8 @@ vim.keymap.del({ "i" }, "<Esc>")
 vim.api.nvim_set_keymap("n", "Q", "q", { noremap = true, silent = true })
 -- Disable the q key in normal mode
 vim.api.nvim_set_keymap("n", "q", "<Nop>", { noremap = true, silent = true })
+
+--telescope additional
+vim.keymap.set("n", "<Leader>sn", function()
+  require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+end, { desc = "[S]earch [N]eovim files" })
