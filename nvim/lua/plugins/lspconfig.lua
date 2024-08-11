@@ -45,6 +45,7 @@ return {
       gopls = {},
       sourcekit = {},
       tsserver = {},
+      clangd = {},
       lua_ls = {
         settings = {
           Lua = {
