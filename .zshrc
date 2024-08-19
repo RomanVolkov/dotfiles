@@ -45,7 +45,6 @@ docker-machine
 tmux
 macos
 sudo
-swiftpm # swift package completion-tool generate-zsh-script > ~/.oh-my-zsh/completions/_swift
 per-directory-history # CTRL + G to toggle history buckets
 )
 
@@ -55,6 +54,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestions
 alias vim=nvim
 alias ggg=lazygit
+alias ssh='TERM=xterm-256color ssh'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

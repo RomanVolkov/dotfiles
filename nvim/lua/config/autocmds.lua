@@ -10,10 +10,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- autoupdate
-local function augroup(name)
-  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
-end
-
+-- local function augroup(name)
+--   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+-- end
 -- disable auto update of plugins
 --vim.api.nvim_create_autocmd("VimEnter", {
 --  group = augroup("autoupdate"),
