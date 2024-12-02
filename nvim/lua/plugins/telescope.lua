@@ -9,6 +9,7 @@ return {
       { "<leader>oo", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search Symbols" },
       { "<leader>sw", "<cmd>Telescope diagnostics<cr>", desc = "[S]earch Diagnostics/[W]arnings" },
       { "<leader>se", vim.diagnostic.setloclist, desc = "[S]earch Diagnostics/[E]rrors" },
+      { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "[S]earch Buffers" },
     }
   end,
 }

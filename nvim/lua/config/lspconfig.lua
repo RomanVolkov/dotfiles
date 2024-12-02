@@ -17,8 +17,12 @@ lspconfig.gopls.setup({
       analyses = {
         unusedparams = true,
       },
+      -- buildFlags = { "-tags=component" },
     },
   },
+  -- init_options = {
+  --   buildFlags = { "-tags=tests" },
+  -- },
 })
 
 lspconfig.pylsp.setup({

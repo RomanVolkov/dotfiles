@@ -42,7 +42,6 @@ return {
     -- LSP Server Settings
     servers = {
       pylsp = {},
-      gopls = {},
       sourcekit = {},
       tsserver = {},
       clangd = {},

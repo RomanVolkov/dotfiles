@@ -14,7 +14,7 @@ export PATH="/usr/local/go/bin:$PATH"
 export EDITOR='nvim'
 export PATH="$PATH:$HOME/.rvm/bin"
 export ZSH="/Users/romanvolkov/.oh-my-zsh"
-export PATH="/opt/homebrew/Cellar/ruby/3.3.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"
@@ -41,7 +41,6 @@ iterm2
 pip
 docker
 docker-compose
-docker-machine
 tmux
 macos
 sudo
@@ -55,6 +54,7 @@ bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestio
 alias vim=nvim
 alias ggg=lazygit
 alias ssh='TERM=xterm-256color ssh'
+alias k=kubectl
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
