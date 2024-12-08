@@ -80,7 +80,13 @@ return {
     },
     --    { "<leader>dj", function() require("dap").down() end, desc = "Down" },
     --    { "<leader>dk", function() require("dap").up() end, desc = "Up" },
-    --    { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last" },
+    {
+      "<leader>dl",
+      function()
+        require("dap").run_last()
+      end,
+      desc = "Run Last",
+    },
     {
       "<F12>",
       function()

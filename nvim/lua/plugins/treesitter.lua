@@ -2,6 +2,14 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
+      disable = function(lang, buf)
+        -- disable big files
+        local max_filesize = 100 * 1024
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+          return true
+        end
+      end,
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {

@@ -5,16 +5,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export EDITOR='nvim'
+export ZSH="/Users/romanvolkov/.oh-my-zsh"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export GOPATH=$HOME/go
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$HOME/.miniforge3/condabin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin/:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
-export EDITOR='nvim'
 export PATH="$PATH:$HOME/.rvm/bin"
-export ZSH="/Users/romanvolkov/.oh-my-zsh"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin/"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"

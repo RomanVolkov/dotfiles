@@ -1,7 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 -- Disable space key in normal mode
 vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
 
@@ -23,7 +19,10 @@ vim.api.nvim_set_keymap("n", "Q", "q", { noremap = true, silent = true })
 -- Disable the q key in normal mode
 vim.api.nvim_set_keymap("n", "q", "<Nop>", { noremap = true, silent = true })
 
---telescope additional
+-- Telescope additional
 vim.keymap.set("n", "<Leader>sn", function()
   require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "[S]earch [N]eovim files" })
+
+-- Disable weird Shift-j
+vim.api.nvim_set_keymap("n", "<S-j>", "", {})
