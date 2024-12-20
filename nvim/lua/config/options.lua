@@ -49,3 +49,5 @@ vim.o.termguicolors = true
 
 vim.o.timeoutlen = 500
 vim.o.ttimeoutlen = 50
+
+vim.g.snacks_animate = false

@@ -11,7 +11,6 @@ return {
   event = "LazyFile",
   dependencies = {
     --{ "folke/neodev.nvim", opts = {} },
-    "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     {
       "gfanto/fzf-lsp.nvim",

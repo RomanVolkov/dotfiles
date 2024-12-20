@@ -12,17 +12,40 @@ lspconfig.gopls.setup({
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
     gopls = {
-      completeUnimported = true,
-      usePlaceholders = false,
-      analyses = {
-        unusedparams = true,
+      gofumpt = true,
+      codelenses = {
+        gc_details = false,
+        generate = true,
+        regenerate_cgo = true,
+        run_govulncheck = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        vendor = true,
       },
-      -- buildFlags = { "-tags=component" },
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+      analyses = {
+        fieldalignment = true,
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
+      },
+      usePlaceholders = false,
+      completeUnimported = true,
+      staticcheck = true,
+      directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+      -- semanticTokens = true,
     },
   },
-  -- init_options = {
-  --   buildFlags = { "-tags=tests" },
-  -- },
 })
 
 lspconfig.pylsp.setup({
