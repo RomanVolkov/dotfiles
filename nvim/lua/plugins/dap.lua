@@ -163,7 +163,7 @@ return {
           "--port",
           "13000",
           "--liblldb",
-          "/Applications/Xcode-15.4.0.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+          "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
         },
       },
     }

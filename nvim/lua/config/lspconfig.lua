@@ -5,7 +5,12 @@ local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
 
 lspconfig.gopls.setup({
-  on_attach = on_attach,
+  on_attach = function()
+    on_attach()
+    vim.api.nvim_set_keymap("n", "<leader><leader>", "<Nop>", { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("n", "<Space><Space>", "<Nop>", { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("n", "<leader><Space>", "<Nop>", { noremap = true, silent = true })
+  end,
   capabilities = capabilities,
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
