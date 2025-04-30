@@ -6,6 +6,7 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
     "nvim-neotest/neotest-go",
+    "mmllr/neotest-swift-testing",
   },
   opts = {},
   config = function()

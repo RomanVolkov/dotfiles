@@ -4,6 +4,8 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+ZSH_THEME="powerlevel10k/powerlevel10k"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export EDITOR='nvim'
 export ZSH="/Users/romanvolkov/.oh-my-zsh"
@@ -22,17 +24,6 @@ export PATH="$PATH:$GOPATH/bin/"
 export WASMER_DIR="$HOME/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# export GOROOT="/opt/homebrew/bin/go"
-# export PATH=$PATH:$GOROOT/bin
-
-# Experiments with Swift WASM
-# export PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH"
-# export PATH="/Library/Developer/Toolchains/swift-wasm-5.7.3-RELEASE.xctoolchain/usr/bin:$PATH"
- 
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(git
 brew
@@ -54,9 +45,11 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestions
 alias vim=nvim
+alias v=nvim
 alias ggg=lazygit
 alias ssh='TERM=xterm-256color ssh'
 alias k=kubectl
+alias e='exit'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -83,3 +76,8 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/romanvolkov/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

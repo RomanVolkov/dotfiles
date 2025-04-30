@@ -140,17 +140,25 @@ return {
     local dap = require("dap")
     local xcodebuild = require("xcodebuild.dap")
 
+    if not dap.adapters.lldb then
+      local xcode_path = vim.fn.trim(vim.fn.system("xcode-select -p"))
+      dap.adapters.lldb = {
+        type = "executable",
+        command = xcode_path .. "/usr/bin/lldb-dap",
+        name = "lldb",
+      }
+    end
+
     dap.configurations.swift = {
       {
-        name = "iOS App Debugger",
-        type = "codelldb",
+        name = "Launch file",
+        type = "lldb",
         request = "launch",
-        -- what to use for spm?
-        --program = ".build/debug/image_processing",
-        program = xcodebuild.get_program_path,
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
-        waitFor = true,
       },
     }
 
@@ -158,7 +166,7 @@ return {
       type = "server",
       port = "13000",
       executable = {
-        command = os.getenv("HOME") .. "/.codelldb-aarch64-darwin.vsix/extension/adapter/codelldb",
+        command = os.getenv("HOME") .. "/.codelldb-darwin-arm64/extension/adapter/codelldb",
         args = {
           "--port",
           "13000",

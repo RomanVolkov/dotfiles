@@ -5,11 +5,7 @@ return {
   -- or if using mini.icons/mini.nvim
   -- dependencies = { "echasnovski/mini.icons" },
   opts = {},
-  keymaps = {
-    keys = function()
-      return {
-        {},
-      }
-    end,
-  },
+  keys = function()
+    return {}
+  end,
 }
