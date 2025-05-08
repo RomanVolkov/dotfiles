@@ -8,9 +8,9 @@ return {
       integrations = { blink_cmp = true },
       flavour = "mocha",
       background = { -- :h background
-        light = "latte",
         dark = "mocha",
       },
+      transparent_background = true,
       compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
     },
   },
