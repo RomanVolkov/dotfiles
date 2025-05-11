@@ -81,3 +81,9 @@ fpath=(/Users/romanvolkov/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/romanvolkov/.google-cloud-sdk/path.zsh.inc' ]; then . '/Users/romanvolkov/.google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc'; fi
