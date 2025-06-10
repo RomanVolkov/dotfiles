@@ -19,6 +19,7 @@ export PATH="$HOME/.local/share/nvim/mason/bin/:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$GOPATH/bin/"
+export PATH="$PATH:$HOME/dev/personal/scripts"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"
@@ -89,3 +90,4 @@ if [ -f '/Users/romanvolkov/.google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ro
 if [ -f '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(zoxide init zsh)"
+

@@ -15,6 +15,7 @@ return {
         require("neotest-go")({
           recursive_run = true,
         }),
+        require("neotest-swift-testing"),
       },
     })
   end,
