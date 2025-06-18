@@ -20,11 +20,15 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$GOPATH/bin/"
 export PATH="$PATH:$HOME/dev/personal/scripts"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/Users/romanvolkov/.local/bin:$PATH"
+export PATH="/Users/romanvolkov/nvim-macos-arm64/bin:$PATH"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
+source ~/.env
 
 plugins=(git
 brew
@@ -45,6 +49,9 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestions
+bindkey '^K' up-line-or-history 
+bindkey '^j' down-line-or-history 
+
 alias vim=nvim
 alias v=nvim
 alias ggg=lazygit
