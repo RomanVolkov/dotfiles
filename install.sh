@@ -26,6 +26,8 @@ ln -s -f ~/.dotfiles/pycodestyle ~/.config/pycodestyle
 ln -s -f ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -s -f ~/.dotfiles/current-theme.conf ~/.config/kitty/current-theme.conf
 ln -s -f ~/.dotfiles/.aerospace.toml ~/.aerospace.toml
+ln -s -f ~/.dotfiles/.aider.conf.yml ~/.aider.conf.yml
+
 ## inits
 rbenv init
 
