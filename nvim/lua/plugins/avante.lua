@@ -1,6 +1,6 @@
 --https://github.com/yetone/avante.nvim
 return {
-  enabled = false,
+  enabled = true,
   "yetone/avante.nvim",
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
@@ -16,7 +16,7 @@ return {
           -- timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
           temperature = 0.75,
           max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-          --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+          reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
         },
       },
     },
@@ -31,7 +31,7 @@ return {
     --- The below dependencies are optional,
     "echasnovski/mini.pick", -- for file_selector provider mini.pick
     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    -- "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "stevearc/dressing.nvim", -- for input provider dressing
     "folke/snacks.nvim", -- for input provider snacks
@@ -58,7 +58,7 @@ return {
       -- Make sure to set this up properly if you have lazy=true
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
-        file_types = { "markdown", "Avante" },
+        file_types = { "Avante" },
       },
       ft = { "markdown", "Avante" },
     },

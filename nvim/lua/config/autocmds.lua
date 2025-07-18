@@ -28,3 +28,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 --     vim.lsp.start()
 --   end,
 -- })
+
+-- Set up an autocommand to check for file changes when the cursor is idle
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    vim.cmd("checktime")
+  end,
+})
+
+-- Optionally, modify the 'updatetime' to make the CursorHold event trigger more frequently
+vim.opt.updatetime = 2000 -- 2000 milliseconds or 2 seconds
+
+--add another comment to check if it works
+--
+--try again
