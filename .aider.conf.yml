@@ -1,6 +1,6 @@
 dark-mode: true
-subtree-only: true
-auto-commits: true
+subtree-only: false
+auto-commits: false
 pretty: true
 
 
