@@ -2,7 +2,9 @@ dark-mode: true
 subtree-only: false
 auto-commits: false
 pretty: true
-
+watch-files: true
+user-input-color: "#e0ab00"
+assistant-output-color: "#fcfcfc"
 
 # Note: You can only put OpenAI and Anthropic API keys in the YAML
 # config file. Keys for all APIs can be stored in a .env file
@@ -165,7 +167,7 @@ pretty: true
 #stream: true
 
 ## Set the color for user input (default: #00cc00)
-#user-input-color: "#00cc00"
+user-input-color: "#E0AB00"
 
 ## Set the color for tool output (default: None)
 #tool-output-color: "xxx"
@@ -177,7 +179,7 @@ pretty: true
 #tool-warning-color: "#FFA500"
 
 ## Set the color for assistant output (default: #0088ff)
-#assistant-output-color: "#0088ff"
+assistant-output-color: "#FCFCFC"
 
 ## Set the color for the completion menu (default: terminal's default text color)
 #completion-menu-color: "xxx"
@@ -252,7 +254,7 @@ pretty: true
 #skip-sanity-check-repo: false
 
 ## Enable/disable watching files for ai coding comments (default: False)
-#watch-files: false
+watch-files: true
 
 ########################
 # Fixing and committing:
