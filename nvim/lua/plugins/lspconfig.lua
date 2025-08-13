@@ -5,8 +5,8 @@ return {
     { "]g", vim.diagnostic.goto_next },
     { "gd", vim.lsp.buf.definition },
     { "ge", vim.lsp.buf.rename },
-    -- { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Search LSP Implementations" },
-    -- { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Search LSP References" },
+    { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Search LSP Implementations" },
+    { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Search LSP References" },
   },
   event = "LazyFile",
   dependencies = {

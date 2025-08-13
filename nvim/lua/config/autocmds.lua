@@ -9,6 +9,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+--https://github.com/nvim-telescope/telescope.nvim/blob/b4da76be54691e854d3e0e02c36b0245f945c2c7/plugin/telescope.lua#L19
+vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
+
 -- autoupdate
 -- local function augroup(name)
 --   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })

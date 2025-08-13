@@ -86,10 +86,6 @@ outer.right =      8
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-# You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-alt-enter = "exec-and-forget osascript -e 'tell application \"kitty\" to activate' -e 'tell application \"kitty\" to do script \"\"'"
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
@@ -121,6 +117,11 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-0 = 'workspace 0'
+alt-p = 'workspace 10'
+alt-s = 'workspace s'
+alt-t = 'workspace t'
+alt-d = 'workspace d'
+alt-y = 'workspace y'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -133,6 +134,10 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 0'
+alt-shift-p = 'move-node-to-workspace 10'
+alt-shift-s = 'move-node-to-workspace s'
+alt-shift-t = 'move-node-to-workspace t'
+alt-shift-d = 'move-node-to-workspace d'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -166,4 +171,31 @@ shift-down = ['volume set 0', 'mode main']
 [[on-window-detected]]
     if.app-id = 'net.kovidgoyal.kitty'
     check-further-callbacks = true
-    run = ['layout floating', 'move-node-to-workspace 1']  # The callback itself
+    run = ['move-node-to-workspace 1']
+[[on-window-detected]]
+    if.app-id = 'com.linearity.vn'
+    check-further-callbacks = true
+    run = ['move-node-to-workspace 10']
+[[on-window-detected]]
+    if.app-id = 'com.spotify.client'
+    check-further-callbacks = true
+    run = ['move-node-to-workspace s']
+[[on-window-detected]]
+    if.app-id = 'ru.keepcoder.Telegram'
+    check-further-callbacks = true
+    run = ['move-node-to-workspace t']
+[[on-window-detected]]
+    if.app-id = 'com.hnc.Discord'
+    check-further-callbacks = true
+    run = ['move-node-to-workspace d']
+# YouTube
+[[on-window-detected]]
+    if.app-id = 'com.apple.Safari.WebApp.83B3FAED-472C-4164-B9AE-93BDC3ABBB26'
+    check-further-callbacks = true
+    run = ['move-node-to-workspace y']
+
+
+[workspace-to-monitor-force-assignment]
+    y = 'secondary'
+    p = 'secondary'
+

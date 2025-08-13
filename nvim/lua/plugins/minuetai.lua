@@ -26,4 +26,5 @@ return {
       },
     })
   end,
+  provider = "openai",
 }

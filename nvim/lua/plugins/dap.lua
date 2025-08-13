@@ -11,7 +11,18 @@ return {
       "leoluz/nvim-dap-go",
       opts = {},
       config = function(_, _)
-        require("dap-go").setup()
+        require("dap-go").setup({
+          dap_configurations = {
+            {
+              type = "go",
+              name = "Attach remote",
+              mode = "remote",
+              request = "attach",
+              host = "127.0.0.1",
+              port = "38697",
+            },
+          },
+        })
       end,
     },
     {

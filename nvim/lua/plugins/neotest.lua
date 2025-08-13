@@ -5,17 +5,15 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "nvim-neotest/neotest-go",
     "mmllr/neotest-swift-testing",
+    { "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
   },
   opts = {},
   config = function()
+    local neotest_golang_opts = {} -- Specify custom configuration
     require("neotest").setup({
       adapters = {
-        require("neotest-go")({
-          recursive_run = true,
-        }),
-        require("neotest-swift-testing"),
+        require("neotest-golang")(neotest_golang_opts), -- Registration
       },
     })
   end,
