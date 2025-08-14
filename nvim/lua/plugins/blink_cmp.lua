@@ -16,13 +16,6 @@ return {
       keymap = {
         ["<CR>"] = {
           function(cmp)
-            cmp.accept()
-          end,
-        },
-        -- Manually invoke minuet completion.
-        -- ["<A-y>"] = require("minuet").make_blink_map(),
-        ["<Tab>"] = {
-          function(cmp)
             if cmp.snippet_active() then
               return cmp.accept()
             else
@@ -30,6 +23,20 @@ return {
             end
           end,
           "snippet_forward",
+          "fallback",
+        },
+        -- Manually invoke minuet completion.
+        -- ["<A-y>"] = require("minuet").make_blink_map(),
+        ["<Tab>"] = {
+          function(cmp)
+            return cmp.select_next()
+          end,
+          "fallback",
+        },
+        ["<S-Tab>"] = {
+          function(cmp)
+            return cmp.select_prev()
+          end,
           "fallback",
         },
       },

@@ -1,0 +1,51 @@
+general.import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-mocha.toml"]
+ # import = ["/Users/romanvolkov/.dotfiles/catppuccin/catppuccin-latte.toml"]
+general.live_config_reload = true
+
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 17
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+#style = "Medium"
+# family = "MesloLGS NF"
+#family = "FiraMono Nerd Font"
+# family = "FiraMono Nerd Font Propo"
+# family = "MesloLGM Nerd Font Propo"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F10"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 30000
+multiplier = 3
+
+[terminal.shell]
+# args = ["-l", "-c", "tmux attach || tmux"]
+args = ["-l", "-c", "tmux"]
+program = "/bin/zsh"
+
+[window]
+decorations = "buttonless"
+dynamic_title = true
+opacity = 1.0
+startup_mode = "Windowed"
+
+[window.dimensions]
+columns = 200
+lines = 60
+
+[window.padding]
+x = 10
+y = 10

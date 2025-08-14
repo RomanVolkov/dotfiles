@@ -119,6 +119,7 @@ return {
       "<F8>",
       function()
         require("dap").terminate()
+        require("dapui").close()
       end,
       desc = "Terminate",
     },
