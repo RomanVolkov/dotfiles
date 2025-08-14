@@ -14,6 +14,11 @@ return {
   config = function()
     require("blink-cmp").setup({
       keymap = {
+        ["<CR>"] = {
+          function(cmp)
+            cmp.accept()
+          end,
+        },
         -- Manually invoke minuet completion.
         -- ["<A-y>"] = require("minuet").make_blink_map(),
         ["<Tab>"] = {

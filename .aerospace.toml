@@ -196,6 +196,7 @@ shift-down = ['volume set 0', 'mode main']
 
 
 [workspace-to-monitor-force-assignment]
+    10 = 'secondary'
     y = 'secondary'
     p = 'secondary'
 
