@@ -70,7 +70,7 @@ lspconfig.sourcekit.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = {
-    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+    "/Applications/Xcode-26.0.1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
   },
   filetypes = { "swift" },
   root_dir = function(filename, _)

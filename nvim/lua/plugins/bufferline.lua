@@ -1,13 +1,22 @@
 return {
   "akinsho/bufferline.nvim",
+  -- temp fix until https://github.com/LazyVim/LazyVim/pull/6354 is merged
+  init = function()
+    local bufline = require("catppuccin.groups.integrations.bufferline")
+    function bufline.get()
+      return bufline.get_theme()
+    end
+  end,
   event = "VeryLazy",
   opts = {
     options = {
-      -- stylua: ignore
-      close_command = function(n) Snacks.bufdelete(n) end,
+      close_command = function(n)
+        Snacks.bufdelete(n)
+      end,
       buffer_close_icon = "",
-      -- stylua: ignore
-      right_mouse_command = function(n) Snacks.bufdelete(n) end,
+      right_mouse_command = function(n)
+        Snacks.bufdelete(n)
+      end,
       diagnostics = "nvim_lsp",
       always_show_bufferline = true,
       diagnostics_indicator = function(_, _, diag)

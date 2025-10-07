@@ -22,7 +22,7 @@ export PATH="$PATH:$GOPATH/bin/"
 export PATH="$PATH:$HOME/dev/personal/scripts"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/romanvolkov/.local/bin:$PATH"
-export PATH="/Users/romanvolkov/nvim-macos-arm64/bin:$PATH"
+# export PATH="/Users/romanvolkov/nvim-macos-arm64/bin:$PATH"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"
@@ -30,7 +30,7 @@ export WASMER_DIR="$HOME/.wasmer"
 
 source ~/.env
 
-plugins=(git
+plugins=(
 brew
 gem
 zsh-autosuggestions
@@ -54,7 +54,7 @@ bindkey '^j' down-line-or-history
 
 alias vim=nvim
 alias v=nvim
-alias ggg=lazygit
+alias g=lazygit
 alias ssh='TERM=xterm-256color ssh'
 alias k=kubectl
 alias e='exit'

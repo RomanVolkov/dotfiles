@@ -5,7 +5,7 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "mmllr/neotest-swift-testing",
+    -- "mmllr/neotest-swift-testing",
     { "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
   },
   opts = {},

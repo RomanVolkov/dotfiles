@@ -122,6 +122,7 @@ alt-s = 'workspace s'
 alt-t = 'workspace t'
 alt-d = 'workspace d'
 alt-y = 'workspace y'
+alt-m = 'workspace m'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -137,7 +138,9 @@ alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-p = 'move-node-to-workspace 10'
 alt-shift-s = 'move-node-to-workspace s'
 alt-shift-t = 'move-node-to-workspace t'
+alt-shift-m = 'move-node-to-workspace m'
 alt-shift-d = 'move-node-to-workspace d'
+alt-shift-y = 'move-node-to-workspace y'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -171,7 +174,7 @@ shift-down = ['volume set 0', 'mode main']
 [[on-window-detected]]
     if.app-id = 'net.kovidgoyal.kitty'
     check-further-callbacks = true
-    run = ['move-node-to-workspace 1']
+    run = ['move-node-to-workspace t']
 [[on-window-detected]]
     if.app-id = 'com.linearity.vn'
     check-further-callbacks = true
@@ -183,7 +186,7 @@ shift-down = ['volume set 0', 'mode main']
 [[on-window-detected]]
     if.app-id = 'ru.keepcoder.Telegram'
     check-further-callbacks = true
-    run = ['move-node-to-workspace t']
+    run = ['move-node-to-workspace m']
 [[on-window-detected]]
     if.app-id = 'com.hnc.Discord'
     check-further-callbacks = true

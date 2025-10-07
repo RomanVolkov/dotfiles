@@ -33,7 +33,7 @@ multiplier = 3
 
 [terminal.shell]
 # args = ["-l", "-c", "tmux attach || tmux"]
-args = ["-l", "-c", "tmux"]
+# args = ["-l", "-c", "tmux"]
 program = "/bin/zsh"
 
 [window]
