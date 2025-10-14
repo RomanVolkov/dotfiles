@@ -19,7 +19,6 @@ ln -s -f ~/.dotfiles/.zshrc ~/.zshrc
 ln -s -f ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s -f ~/.dotfiles/.condarc ~/.condarc
-ln -s -f ~/.dotfiles/pycodestyle ~/.config
 ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s -f ~/.dotfiles/pycodestyle ~/.config/pycodestyle
