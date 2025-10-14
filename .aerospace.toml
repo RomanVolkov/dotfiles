@@ -123,6 +123,7 @@ alt-t = 'workspace t'
 alt-d = 'workspace d'
 alt-y = 'workspace y'
 alt-m = 'workspace m'
+alt-z = 'workspace z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -141,6 +142,7 @@ alt-shift-t = 'move-node-to-workspace t'
 alt-shift-m = 'move-node-to-workspace m'
 alt-shift-d = 'move-node-to-workspace d'
 alt-shift-y = 'move-node-to-workspace y'
+alt-shift-z = 'move-node-to-workspace z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -196,7 +198,10 @@ shift-down = ['volume set 0', 'mode main']
     if.app-id = 'com.apple.Safari.WebApp.83B3FAED-472C-4164-B9AE-93BDC3ABBB26'
     check-further-callbacks = true
     run = ['move-node-to-workspace y']
-
+[[on-window-detected]]
+    if.app-id = 'us.zoom.xos'
+    check-further-callbacks = true
+    run = ['move-node-to-workspace z']
 
 [workspace-to-monitor-force-assignment]
     10 = 'secondary'

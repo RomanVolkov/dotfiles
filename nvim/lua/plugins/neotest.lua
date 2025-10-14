@@ -4,6 +4,7 @@ return {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
+    "marilari88/neotest-vitest",
     "nvim-treesitter/nvim-treesitter",
     -- "mmllr/neotest-swift-testing",
     { "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
@@ -14,6 +15,7 @@ return {
     require("neotest").setup({
       adapters = {
         require("neotest-golang")(neotest_golang_opts), -- Registration
+        require("neotest-vitest"),
       },
     })
   end,
