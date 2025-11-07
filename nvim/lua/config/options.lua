@@ -54,3 +54,5 @@ vim.g.snacks_animate = false
 
 vim.opt.spell = true
 vim.opt.spelllang = { "ru", "en" }
+
+-- vim.cmd("set listchars+=tab: \\")

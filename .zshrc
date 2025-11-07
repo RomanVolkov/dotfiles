@@ -43,6 +43,7 @@ tmux
 macos
 sudo
 per-directory-history # CTRL + G to toggle history buckets
+poetry
 )
 
 source $ZSH/oh-my-zsh.sh
