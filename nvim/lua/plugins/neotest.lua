@@ -8,6 +8,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     -- "mmllr/neotest-swift-testing",
     { "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
+    "nvim-neotest/neotest-jest",
   },
   opts = {},
   config = function()
