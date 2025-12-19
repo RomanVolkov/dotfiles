@@ -20,6 +20,11 @@ vim.api.nvim_set_keymap("n", "<leader><leader>", "<Nop>", { noremap = true, sile
 vim.api.nvim_set_keymap("n", "<Space><Space>", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><Space>", "<Nop>", { noremap = true, silent = true })
 
+-- vim.keymap.set("n", "<C-Space>", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-@>", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<Nul>", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-0>", "<Nop>", { noremap = true, silent = true })
+--
 -- Telescope additional
 vim.keymap.set("n", "<Leader>sn", function()
   require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
