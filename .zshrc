@@ -59,6 +59,7 @@ alias g=lazygit
 alias ssh='TERM=xterm-256color ssh'
 alias k=kubectl
 alias e='exit'
+alias c='clear'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
