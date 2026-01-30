@@ -32,3 +32,24 @@ end, { desc = "[S]earch [N]eovim files" })
 
 -- Disable weird Shift-j
 vim.api.nvim_set_keymap("n", "<S-j>", "", {})
+
+vim.keymap.set("n", "<leader>gu", function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.fn.col(".")
+
+  for start_idx, text, url in line:gmatch("()(%b[])%((.-)%)") do
+    local end_idx = start_idx + #text + #url + 2 -- +2 for "()"
+    if col >= start_idx and col <= end_idx then
+      vim.fn.system({ "open", url })
+      return
+    end
+  end
+
+  -- fallback: raw URL under cursor
+  local fallback = vim.fn.expand("<cWORD>")
+  if fallback:match("^https?://") then
+    vim.fn.system({ "open", fallback })
+  else
+    vim.notify("No URL found under cursor", vim.log.levels.INFO)
+  end
+end, { desc = "Open Markdown URL under cursor" })

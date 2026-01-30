@@ -1,3 +1,10 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/Users/romanvolkov/.oh-my-zsh/custom/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -22,7 +29,10 @@ export PATH="$PATH:$GOPATH/bin/"
 export PATH="$PATH:$HOME/dev/personal/scripts"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/romanvolkov/.local/bin:$PATH"
+export PATH="/Users/romanvolkov/.cargo/bin:$PATH"
 # export PATH="/Users/romanvolkov/nvim-macos-arm64/bin:$PATH"
+
+. "$HOME/.cargo/env"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"
