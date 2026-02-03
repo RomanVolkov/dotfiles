@@ -40,6 +40,8 @@ return {
     },
     -- LSP Server Settings
     servers = {
+      roslyn = {},
+      -- omnisharp = {},
       pylsp = {},
       sourcekit = {},
       tsserver = {},

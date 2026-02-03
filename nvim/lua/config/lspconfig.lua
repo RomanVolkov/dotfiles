@@ -81,3 +81,24 @@ lspconfig.sourcekit.setup({
       or util.root_pattern("Package.swift")(filename)
   end,
 })
+
+-- local pid = vim.fn.getpid()
+-- local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/OmniSharp"
+-- lspconfig.omnisharp.setup({
+--   cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+-- })
+--
+lspconfig.roslyn.setup({
+  on_attach = function()
+    print("This will run when the server attaches!")
+  end,
+  settings = {
+    ["csharp|inlay_hints"] = {
+      csharp_enable_inlay_hints_for_implicit_object_creation = true,
+      csharp_enable_inlay_hints_for_implicit_variable_types = true,
+    },
+    ["csharp|code_lens"] = {
+      dotnet_enable_references_code_lens = true,
+    },
+  },
+})

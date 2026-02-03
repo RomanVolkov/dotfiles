@@ -30,6 +30,7 @@ export PATH="$PATH:$HOME/dev/personal/scripts"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Users/romanvolkov/.local/bin:$PATH"
 export PATH="/Users/romanvolkov/.cargo/bin:$PATH"
+export PATH="/usr/local/bin/omnisharp-roslyn:$PATH"
 # export PATH="/Users/romanvolkov/nvim-macos-arm64/bin:$PATH"
 
 . "$HOME/.cargo/env"
