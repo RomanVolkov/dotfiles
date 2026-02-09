@@ -26,30 +26,58 @@ vim.api.nvim_set_keymap("n", "<leader><Space>", "<Nop>", { noremap = true, silen
 -- vim.keymap.set("n", "<C-0>", "<Nop>", { noremap = true, silent = true })
 --
 -- Telescope additional
-vim.keymap.set("n", "<Leader>sn", function()
-  require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "[S]earch [N]eovim files" })
-
--- Disable weird Shift-j
-vim.api.nvim_set_keymap("n", "<S-j>", "", {})
-
 vim.keymap.set("n", "<leader>gu", function()
   local line = vim.api.nvim_get_current_line()
   local col = vim.fn.col(".")
+  local buf_dir = vim.fn.expand("%:p:h")
 
-  for start_idx, text, url in line:gmatch("()(%b[])%((.-)%)") do
-    local end_idx = start_idx + #text + #url + 2 -- +2 for "()"
+  -- aggressively clean junk around paths / urls
+  local function clean(target)
+    target = target:gsub("^%s+", ""):gsub("%s+$", "")
+    target = target:gsub("^[%\"%'%(%[%{]+", "")
+    target = target:gsub("[%\"%'%,%)%]%}]+$", "")
+    return target
+  end
+
+  local function open_target(target)
+    target = clean(target)
+
+    -- URLs and file://
+    if target:match("^https?://") or target:match("^file://") then
+      vim.fn.system({ "open", target })
+      return true
+    end
+
+    -- local file path (absolute or relative)
+    local path = target
+    if not path:match("^/") then
+      path = buf_dir .. "/" .. path
+    end
+    path = vim.fn.fnamemodify(path, ":p")
+
+    if vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1 then
+      vim.fn.system({ "open", path })
+      return true
+    end
+
+    return false
+  end
+
+  -- Markdown-style [text](target)
+  for start_idx, text, target in line:gmatch("()(%b[])%((.-)%)") do
+    local end_idx = start_idx + #text + #target + 2
     if col >= start_idx and col <= end_idx then
-      vim.fn.system({ "open", url })
-      return
+      if open_target(target) then
+        return
+      end
     end
   end
 
-  -- fallback: raw URL under cursor
+  -- Fallback: whatever is under cursor (quoted, comma-terminated, etc.)
   local fallback = vim.fn.expand("<cWORD>")
-  if fallback:match("^https?://") then
-    vim.fn.system({ "open", fallback })
-  else
-    vim.notify("No URL found under cursor", vim.log.levels.INFO)
+  if open_target(fallback) then
+    return
   end
-end, { desc = "Open Markdown URL under cursor" })
+
+  vim.notify("No URL or local file found under cursor", vim.log.levels.INFO)
+end, { desc = "Open URL or local file under cursor (macOS)" })
