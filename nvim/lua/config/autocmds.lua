@@ -9,13 +9,49 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
---https://github.com/nvim-telescope/telescope.nvim/blob/b4da76be54691e854d3e0e02c36b0245f945c2c7/plugin/telescope.lua#L19
-vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "none" })
-vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
+----https://github.com/nvim-telescope/telescope.nvim/blob/b4da76be54691e854d3e0e02c36b0245f945c2c7/plugin/telescope.lua#L19
+--vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+--vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "none" })
+--vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
+--vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "none" })
+--vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+--vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
+
+local function telescope_transparent()
+  local groups = {
+    "TelescopeNormal",
+    "TelescopePromptNormal",
+    "TelescopeResultsNormal",
+    "TelescopePreviewNormal",
+
+    "TelescopeBorder",
+    "TelescopePromptBorder",
+    "TelescopeResultsBorder",
+    "TelescopePreviewBorder",
+
+    "TelescopeTitle",
+    "TelescopePromptTitle",
+    "TelescopeResultsTitle",
+    "TelescopePreviewTitle",
+  }
+
+  for _, group in ipairs(groups) do
+    vim.api.nvim_set_hl(0, group, { bg = "none" })
+  end
+end
+
+-- Re-apply after any colorscheme change (this is the important part)
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = telescope_transparent,
+})
+
+-- And apply once on startup as well
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = telescope_transparent,
+})
+
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 
 -- autoupdate
 -- local function augroup(name)

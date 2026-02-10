@@ -34,8 +34,16 @@ vim.keymap.set("n", "<leader>gu", function()
   -- aggressively clean junk around paths / urls
   local function clean(target)
     target = target:gsub("^%s+", ""):gsub("%s+$", "")
+
+    -- strip common comment prefixes
+    target = target:gsub("^%-%-+", "")
+    target = target:gsub("^//+", "")
+    target = target:gsub("^#+", "")
+
+    -- strip surrounding junk
     target = target:gsub("^[%\"%'%(%[%{]+", "")
     target = target:gsub("[%\"%'%,%)%]%}]+$", "")
+
     return target
   end
 
