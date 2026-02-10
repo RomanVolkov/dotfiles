@@ -10,5 +10,10 @@ return {
       "<cmd>OverseerRun<cr>",
       desc = "Run task (Overseer)",
     },
+    {
+      "<leader>ro",
+      "<cmd>OverseerToggle<cr>",
+      desc = "Toggle Overseer",
+    },
   },
 }
