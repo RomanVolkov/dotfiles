@@ -13,7 +13,7 @@ return {
   },
   keys = function()
     return {
-      { "<leader>GG", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+      { "<leader>LG", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     }
   end,
 }
