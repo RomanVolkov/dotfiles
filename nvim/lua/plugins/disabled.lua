@@ -14,4 +14,15 @@ return {
     enabled = false,
     opts = {},
   },
+
+  {
+    "folke/flash.nvim",
+
+    enabled = false,
+    opts = {},
+  },
+  {
+    "milanglacier/minuet-ai.nvim",
+    enabled = false,
+  },
 }

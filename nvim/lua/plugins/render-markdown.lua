@@ -7,6 +7,6 @@ return {
       enabled = false,
       width = "block",
     },
-    ft = { "markdown", "Avante" },
+    ft = { "markdown" },
   },
 }
