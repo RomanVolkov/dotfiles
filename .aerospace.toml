@@ -118,9 +118,9 @@ alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-0 = 'workspace 0'
 alt-p = 'workspace 10'
-alt-s = 'workspace s'
+# alt-s = 'workspace s'
 alt-t = 'workspace t'
-alt-d = 'workspace d'
+# alt-d = 'workspace d'
 alt-y = 'workspace y'
 alt-m = 'workspace m'
 alt-z = 'workspace z'
@@ -139,10 +139,10 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-p = 'move-node-to-workspace 10'
-alt-shift-s = 'move-node-to-workspace s'
+# alt-shift-s = 'move-node-to-workspace s'
 alt-shift-t = 'move-node-to-workspace t'
 alt-shift-m = 'move-node-to-workspace m'
-alt-shift-d = 'move-node-to-workspace d'
+# alt-shift-d = 'move-node-to-workspace d'
 alt-shift-y = 'move-node-to-workspace y'
 alt-shift-z = 'move-node-to-workspace z'
 alt-shift-r = 'move-node-to-workspace r'
@@ -185,18 +185,18 @@ shift-down = ['volume set 0', 'mode main']
     if.app-id = 'com.linearity.vn'
     check-further-callbacks = true
     run = ['move-node-to-workspace 10']
-[[on-window-detected]]
-    if.app-id = 'com.spotify.client'
-    check-further-callbacks = true
-    run = ['move-node-to-workspace s']
+# [[on-window-detected]]
+#     if.app-id = 'com.spotify.client'
+#     check-further-callbacks = true
+#     run = ['move-node-to-workspace s']
 [[on-window-detected]]
     if.app-id = 'ru.keepcoder.Telegram'
     check-further-callbacks = true
     run = ['move-node-to-workspace m']
-[[on-window-detected]]
-    if.app-id = 'com.hnc.Discord'
-    check-further-callbacks = true
-    run = ['move-node-to-workspace d']
+# [[on-window-detected]]
+#     if.app-id = 'com.hnc.Discord'
+#     check-further-callbacks = true
+#     run = ['move-node-to-workspace d']
 # YouTube
 [[on-window-detected]]
     if.app-id = 'com.apple.Safari.WebApp.83B3FAED-472C-4164-B9AE-93BDC3ABBB26'

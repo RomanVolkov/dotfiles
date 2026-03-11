@@ -1,5 +1,27 @@
 return {
   "nvim-telescope/telescope.nvim",
+  opts = {
+    defaults = {
+      layout_strategy = "vertical", -- change horizontal -> vertical
+      layout_config = {
+        vertical = {
+          prompt_position = "top",
+          preview_height = 0.4, -- preview takes 40% at bottom
+          results_height = 0.6,
+        },
+        width = 0.87,
+        height = 0.90,
+        preview_cutoff = 40,
+      },
+      sorting_strategy = "ascending",
+      mappings = {
+        i = {
+          ["<C-k"] = "move_selection_previous",
+          ["<C-j>"] = "move_selection_next",
+        },
+      },
+    },
+  },
   keys = function()
     return {
       { "<leader><S-f>", "<cmd>Telescope find_files<cr>", desc = "Search Files" },
