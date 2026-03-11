@@ -57,7 +57,7 @@ return {
       opts = {
         automatic_installation = true,
         handlers = {},
-        ensure_installed = { "neocmake", "clangd", "gopls", "pylsp", "ruby_ls", "tsserver" },
+        ensure_installed = { "neocmake", "clangd", "gopls", "pylsp", "ruby_ls", "tsserver", "codelldb" },
       },
     },
     {
@@ -174,16 +174,44 @@ return {
       },
     }
 
+    -- dap.adapters.codelldb = {
+    --   type = "server",
+    --   port = "13000",
+    --   executable = {
+    --     command = os.getenv("HOME") .. "/.codelldb-darwin-arm64/extension/adapter/codelldb",
+    --     args = {
+    --       "--port",
+    --       "13000",
+    --       "--liblldb",
+    --       "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+    --     },
+    --   },
+    -- }
+    -- Rust / CodeLLDB
     dap.adapters.codelldb = {
       type = "server",
-      port = "13000",
+      port = "${port}",
       executable = {
-        command = os.getenv("HOME") .. "/.codelldb-darwin-arm64/extension/adapter/codelldb",
-        args = {
-          "--port",
-          "13000",
-          "--liblldb",
-          "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+        command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+        args = { "--port", "${port}" },
+      },
+    }
+
+    dap.configurations.rust = {
+      {
+        name = "Launch Tauri App (Rust)",
+        type = "codelldb",
+        request = "launch",
+        -- Point to your compiled Tauri binary
+        program = function()
+          return vim.fn.getcwd() .. "/src-tauri/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- assumes binary = project name
+        end,
+        cwd = "${workspaceFolder}/src-tauri",
+        stopOnEntry = false,
+        args = {},
+        -- Tauri needs this env to find WebView assets in dev
+        env = {
+          WEBKIT_DISABLE_COMPOSITING_MODE = "1",
         },
       },
     }
