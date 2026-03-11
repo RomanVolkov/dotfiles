@@ -83,6 +83,10 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 -- Optionally, modify the 'updatetime' to make the CursorHold event trigger more frequently
 vim.opt.updatetime = 2000 -- 2000 milliseconds or 2 seconds
 
---add another comment to check if it works
---
---try again
+-- close netrw with q (leader + T)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
+  callback = function()
+    vim.keymap.set("n", "q", ":bd<CR>", { buffer = true, silent = true })
+  end,
+})
