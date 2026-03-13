@@ -53,7 +53,7 @@ docker-compose
 tmux
 macos
 sudo
-per-directory-history # CTRL + G to toggle history buckets
+# per-directory-history # CTRL + G to toggle history buckets
 poetry
 )
 
@@ -110,4 +110,9 @@ if [ -f '/Users/romanvolkov/.google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ro
 if [ -f '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(zoxide init zsh)"
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/romanvolkov/.lmstudio/bin"
+# End of LM Studio CLI section
 

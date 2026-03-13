@@ -174,28 +174,28 @@ return {
       },
     }
 
-    -- dap.adapters.codelldb = {
-    --   type = "server",
-    --   port = "13000",
-    --   executable = {
-    --     command = os.getenv("HOME") .. "/.codelldb-darwin-arm64/extension/adapter/codelldb",
-    --     args = {
-    --       "--port",
-    --       "13000",
-    --       "--liblldb",
-    --       "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
-    --     },
-    --   },
-    -- }
-    -- Rust / CodeLLDB
     dap.adapters.codelldb = {
       type = "server",
-      port = "${port}",
+      port = "13000",
       executable = {
-        command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
-        args = { "--port", "${port}" },
+        command = os.getenv("HOME") .. "/.codelldb-darwin-arm64/extension/adapter/codelldb",
+        args = {
+          "--port",
+          "13000",
+          "--liblldb",
+          "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+        },
       },
     }
+    -- Rust / CodeLLDB
+    -- dap.adapters.codelldb = {
+    --   type = "server",
+    --   port = "${port}",
+    --   executable = {
+    --     command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+    --     args = { "--port", "${port}" },
+    --   },
+    -- }
 
     dap.configurations.rust = {
       {
