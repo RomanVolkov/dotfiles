@@ -65,8 +65,8 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestions
-bindkey '^K' up-line-or-history 
-bindkey '^j' down-line-or-history 
+# bindkey '^K' up-line-or-history 
+# bindkey '^j' down-line-or-history 
 
 alias vim=nvim
 alias v=nvim
