@@ -55,6 +55,10 @@ macos
 sudo
 # per-directory-history # CTRL + G to toggle history buckets
 poetry
+# https://github.com/jeffreytse/zsh-vi-mode
+## git clone https://github.com/jeffreytse/zsh-vi-mode \
+  # $ZSH_CUSTOM/plugins/zsh-vi-mode
+zsh-vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
