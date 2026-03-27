@@ -33,13 +33,15 @@ return {
     inlay_hints = {
       enabled = false,
     },
-    capabilities = {},
     format = {
       formatting_options = nil,
       timeout_ms = nil,
     },
     -- LSP Server Settings
     servers = {
+      ["*"] = {
+        capabilities = {},
+      },
       roslyn = {},
       -- omnisharp = {},
       pylsp = {},
