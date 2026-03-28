@@ -32,3 +32,5 @@ rbenv init
 
 ## go debugger
 go install github.com/go-delve/delve/cmd/dlv@latest
+
+defaults write net.kovidgoyal.kitty ApplePressAndHoldEnabled -bool false
