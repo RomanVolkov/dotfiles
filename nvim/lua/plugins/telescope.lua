@@ -16,7 +16,7 @@ return {
       sorting_strategy = "ascending",
       mappings = {
         i = {
-          ["<C-k"] = "move_selection_previous",
+          ["<C-k>"] = "move_selection_previous",
           ["<C-j>"] = "move_selection_next",
         },
       },
