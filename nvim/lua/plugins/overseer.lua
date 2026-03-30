@@ -6,12 +6,14 @@ return {
 
   keys = {
     {
-      "<leader>rt",
+      -- "<leader>rt",
+      "<F10>",
       "<cmd>OverseerRun<cr>",
       desc = "Run task (Overseer)",
     },
     {
-      "<leader>ro",
+      -- "<leader>ro",
+      "<F11>",
       "<cmd>OverseerToggle<cr>",
       desc = "Toggle Overseer",
     },
