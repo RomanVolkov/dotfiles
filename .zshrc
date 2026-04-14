@@ -63,6 +63,7 @@ zsh-vi-mode
 
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestions
 # bindkey '^K' up-line-or-history 
