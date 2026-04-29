@@ -1,8 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   keys = {
-    { "[g", vim.diagnostic.goto_prev },
-    { "]g", vim.diagnostic.goto_next },
     { "gd", vim.lsp.buf.definition },
     { "ge", vim.lsp.buf.rename },
     { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Search LSP Implementations" },

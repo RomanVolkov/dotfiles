@@ -92,3 +92,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", ":bd<CR>", { buffer = true, silent = true })
   end,
 })
+
+vim.cmd("let g:netrw_banner = 0")
+vim.cmd("let g:netrw_liststyle = 1")
+vim.cmd("let g:netrw_winsize = 25")
