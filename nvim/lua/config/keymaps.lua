@@ -7,7 +7,8 @@ vim.api.nvim_set_keymap("n", "<C-m>", ":bn<CR>", { noremap = true, silent = true
 vim.api.nvim_set_keymap("n", "<C-n>", ":bp<CR>", { noremap = true, silent = true })
 
 -- Explore mode
-vim.api.nvim_set_keymap("n", "<C-T>", ":Ex<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-T>", ":Ex<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>e", ":Ex<CR>", { noremap = true, silent = true })
 
 vim.keymap.del({ "i" }, "<Esc>")
 
