@@ -121,3 +121,4 @@ eval "$(zoxide init zsh)"
 export PATH="$PATH:/Users/romanvolkov/.lmstudio/bin"
 # End of LM Studio CLI section
 
+export BAT_THEME="Catppuccin Mocha"
