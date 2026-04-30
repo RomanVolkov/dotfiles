@@ -181,7 +181,7 @@ shift-down = ['volume set 0', 'mode main']
 [[on-window-detected]]
     if.app-id = 'net.kovidgoyal.kitty'
     check-further-callbacks = true
-    run = ['move-node-to-workspace t']
+    run = ['move-node-to-workspace 1']
 [[on-window-detected]]
     if.app-id = 'com.linearity.vn'
     check-further-callbacks = true
