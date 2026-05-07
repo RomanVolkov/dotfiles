@@ -36,7 +36,10 @@ opt.mouse = "a"
 opt.pumblend = 10
 opt.pumheight = 10
 opt.ruler = false
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+-- Note: NO "buffers" — sessions then save only the buffers visible in
+-- windows/tabs, not every loaded-but-hidden buffer. Prevents files you
+-- briefly opened and moved on from re-appearing on session restore.
+opt.sessionoptions = { "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true
 opt.shiftwidth = 2
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
