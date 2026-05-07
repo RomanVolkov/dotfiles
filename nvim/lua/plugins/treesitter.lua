@@ -92,13 +92,14 @@ return {
 
           pcall(vim.treesitter.start, ev.buf)
 
-          -- defer indent + folds so we run after vim's builtin ftplugins
+          -- defer folds so we run after vim's builtin ftplugins.
+          -- indentexpr is intentionally NOT overridden: nvim-treesitter's
+          -- frozen master-branch indent queries over-indent Lua (and other
+          -- languages); vim's builtin GetLuaIndent et al. behave better.
           vim.schedule(function()
             if not vim.api.nvim_buf_is_valid(ev.buf) then
               return
             end
-            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
             local win = vim.api.nvim_get_current_win()
             if vim.api.nvim_win_get_buf(win) == ev.buf then
               vim.wo[win][0].foldmethod = "expr"
