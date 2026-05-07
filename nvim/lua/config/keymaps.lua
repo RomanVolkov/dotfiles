@@ -196,7 +196,12 @@ map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Lua scratch
-map({ "n", "x" }, "<localleader>r", function() Snacks.debug.run() end, { desc = "Run Lua", ft = "lua" })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function(ev)
+    vim.keymap.set({ "n", "x" }, "<localleader>r", function() Snacks.debug.run() end, { buffer = ev.buf, desc = "Run Lua" })
+  end,
+})
 
 -- ===== User keymaps below =====
 
