@@ -87,6 +87,8 @@ return {
     { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Search Diagnostics" },
     -- Diagnostics list
     { "<leader>xe", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
+    -- Help / discovery
+    { "<leader>?", function() Snacks.picker.keymaps() end, desc = "Search Keymaps" },
   },
   config = function(_, opts)
     local notify = vim.notify

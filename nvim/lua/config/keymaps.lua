@@ -1,4 +1,50 @@
--- ===== Defaults inherited from LazyVim, now explicit =====
+-- ============================================================================
+-- Keymap mental model
+-- ============================================================================
+-- Three layers, no exceptions:
+--
+-- 1) DIRECT KEYS (no leader) — muscle memory, things you do constantly
+--    <C-h/j/k/l>          panes / tmux (vim-tmux-navigator)
+--    <C-Up/Down/L/R>      resize pane
+--    gd / gr / gi / gD / gy   LSP go-to (definition / refs / impl / decl / type)
+--    K / gK / <C-k>(i)        hover / signature
+--    ]d [d  ]e [e  ]w [w      next/prev diagnostic / error / warning
+--    ]q [q                    next/prev quickfix or Trouble item
+--    ]t [t                    next/prev todo
+--    n N                      search nav
+--    <F5/F7/F2-4/F8/F12>      DAP (continue / breakpoint / step* / terminate / step-out)
+--    <F10/F11>                Overseer run / toggle
+--    -  _                     Yazi at file / cwd
+--
+-- 2) <leader>{NOUN}{VERB} — first letter is what you operate on
+--    f*  Files            ff find · fg grep · fN new · fe/fE yazi
+--    b*  Buffers          bb alt · bd close · bo close-others · bn next · bp prev · bf find
+--    s*  Search / symbols ss doc-symbols · sS workspace-symbols · sd diagnostics · sr replace (grug-far when present)
+--    w*  Windows          w- split-below · w| split-right · wd close · wo only
+--    g*  Git              gg/gG lazygit (root/cwd) · gl/gL/gb/gf log family · gB/gY browse · gu open URL
+--    c*  Code             cf format · cF format-injected · ca action · cr rename · cc/cC codelens · cD diag-float
+--    x*  Lists / Trouble  xq/xl vim quickfix/loclist · xQ/xL Trouble qf/loc · xx/xX Trouble diag · xe→loclist · xt/xT todo
+--    q*  Quit / Sessions  qq quit · qs/qS/ql/qd persistence
+--    d*  Debug            dl run-last · dps profiler scratch (DAP itself is on F-keys)
+--    L                    :Lazy
+--    n / un               notification history / dismiss
+--    .  / S               scratch / select scratch
+--    K(leader+...)        — none; gone
+--    Xcodebuild → x*      xa actions · xb build · xr run · xs logs · xu test · xc test-class · xd device · xp test-plan
+--
+-- 3) FUNCTION KEYS — sticky modal flows (debug, run task)
+--    F2..F12 + F10/F11 listed above.
+--
+-- Lowercase / uppercase convention under <leader>x*: lowercase = vim native
+-- (xq, xl), uppercase = Trouble enhanced (xQ, xL, xx, xX).
+--
+-- Discovery / "what was that key again?":
+--   <leader>?            fuzzy-search all keymaps (Snacks.picker.keymaps)
+--   press <leader> & wait  which-key popup (300 ms delay) shows next options
+--   :verbose nmap <key>  show *where* a key was defined (file:line)
+--   :nmap <leader>b      list all keymaps starting with <leader>b
+-- ============================================================================
+
 local map = vim.keymap.set
 
 -- better up/down
