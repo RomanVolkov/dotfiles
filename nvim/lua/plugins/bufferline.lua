@@ -32,6 +32,22 @@ return {
   },
   config = function(_, opts)
     require("bufferline").setup(opts)
+
+    -- Make bufferline transparent: strip bg from every BufferLine* group
+    -- after bufferline has applied its own highlights, and re-apply on
+    -- colorscheme change.
+    local function transparent()
+      for _, name in ipairs(vim.fn.getcompletion("BufferLine", "highlight")) do
+        local hl = vim.api.nvim_get_hl(0, { name = name })
+        hl.bg = "NONE"
+        vim.api.nvim_set_hl(0, name, hl)
+      end
+    end
+    transparent()
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = vim.schedule_wrap(transparent),
+    })
+
     -- Fix bufferline when restoring a session
     vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
       callback = function()
