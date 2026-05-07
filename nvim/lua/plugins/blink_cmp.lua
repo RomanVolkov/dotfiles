@@ -1,7 +1,6 @@
 return {
   "saghen/blink.cmp",
-  -- Pin the version; bump after checking https://github.com/Saghen/blink.cmp/releases.
-  version = "1.4.1",
+  version = "*",
   dependencies = {
     "moyiz/blink-emoji.nvim",
     "Kaiser-Yang/blink-cmp-dictionary",
