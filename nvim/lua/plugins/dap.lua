@@ -65,64 +65,17 @@ return {
     },
   },
 
+  -- stylua: ignore
   keys = {
-    {
-      "<F7>",
-      function()
-        require("dap").toggle_breakpoint()
-      end,
-      desc = "Breakpoint",
-    },
-    {
-      "<F5>",
-      function()
-        require("dap").continue()
-      end,
-      desc = "Continue",
-    },
-    {
-      "<F3>",
-      function()
-        require("dap").step_into()
-      end,
-      desc = "Step Into",
-    },
-    {
-      "<leader>dl",
-      function()
-        require("dap").run_last()
-      end,
-      desc = "Run Last",
-    },
-    {
-      "<F12>",
-      function()
-        require("dap").step_out()
-      end,
-      desc = "Step Out",
-    },
-    {
-      "<F2>",
-      function()
-        require("dap").step_over()
-      end,
-      desc = "Step Over",
-    },
-    {
-      "<F8>",
-      function()
-        require("dap").terminate()
-        require("dapui").close()
-      end,
-      desc = "Terminate",
-    },
-    {
-      "<F4>",
-      function()
-        require("dapui").eval(nil, { enter = true })
-      end,
-      desc = "Eval",
-    },
+    { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "DAP: Toggle Breakpoint" },
+    { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Condition: ")) end, desc = "DAP: Conditional Breakpoint" },
+    { "<leader>dc", function() require("dap").continue() end, desc = "DAP: Continue / Start" },
+    { "<leader>di", function() require("dap").step_into() end, desc = "DAP: Step Into" },
+    { "<leader>dn", function() require("dap").step_over() end, desc = "DAP: Step Over (Next)" },
+    { "<leader>du", function() require("dap").step_out() end, desc = "DAP: Step Out (Up)" },
+    { "<leader>dl", function() require("dap").run_last() end, desc = "DAP: Run Last" },
+    { "<leader>dt", function() require("dap").terminate(); require("dapui").close() end, desc = "DAP: Terminate" },
+    { "<leader>de", function() require("dapui").eval(nil, { enter = true }) end, desc = "DAP: Eval" },
   },
 
   config = function()

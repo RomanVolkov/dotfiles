@@ -12,8 +12,6 @@
 --    ]q [q                    next/prev quickfix or Trouble item
 --    ]t [t                    next/prev todo
 --    n N                      search nav
---    <F5/F7/F2-4/F8/F12>      DAP (continue / breakpoint / step* / terminate / step-out)
---    <F10/F11>                Overseer run / toggle
 --    -  _                     Yazi at file / cwd
 --
 -- 2) <leader>{NOUN}{VERB} — first letter is what you operate on
@@ -25,16 +23,13 @@
 --    c*  Code             cf format · cF format-injected · ca action · cr rename · cc/cC codelens · cD diag-float
 --    x*  Lists / Trouble  xq/xl vim quickfix/loclist · xQ/xL Trouble qf/loc · xx/xX Trouble diag · xe→loclist · xt/xT todo
 --    q*  Quit / Sessions  qq quit · qs/qS/ql/qd persistence
---    d*  Debug            dl run-last · dps profiler scratch (DAP itself is on F-keys)
+--    d*  Debug (DAP)      db breakpoint · dB cond-bp · dc continue · di step-into · dn step-over · du step-out · de eval · dt terminate · dl run-last · dps profiler-scratch
+--    r*  Run (Overseer)   rr run-task · rt toggle-tasks-float
 --    u*  UI                uc pick-colorscheme · ut toggle-transparency
 --    L                    :Lazy
 --    n / un               notification history / dismiss
 --    .  / S               scratch / select scratch
---    K(leader+...)        — none; gone
 --    Xcodebuild → x*      xa actions · xb build · xr run · xs logs · xu test · xc test-class · xd device · xp test-plan
---
--- 3) FUNCTION KEYS — sticky modal flows (debug, run task)
---    F2..F12 + F10/F11 listed above.
 --
 -- Lowercase / uppercase convention under <leader>x*: lowercase = vim native
 -- (xq, xl), uppercase = Trouble enhanced (xQ, xL, xx, xX).
