@@ -9,6 +9,10 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 -- options must load before plugins so leader keys etc. take effect on plugin keymaps
 require("config.options")
 
+-- restore persisted transparency state before plugins/colorscheme load,
+-- so the ColorScheme autocmd applies the right state on first paint.
+require("util.transparency").init()
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },

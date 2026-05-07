@@ -39,20 +39,8 @@ return {
         vim.cmd([[messages clear]])
       end
       require("noice").setup(opts)
-
-      -- Strip bg from every Noice* highlight group so cmdline / popup /
-      -- mini message floats blend into the buffer behind them.
-      local function transparent()
-        for _, name in ipairs(vim.fn.getcompletion("Noice", "highlight")) do
-          local hl = vim.api.nvim_get_hl(0, { name = name })
-          hl.bg = "NONE"
-          vim.api.nvim_set_hl(0, name, hl)
-        end
-      end
-      transparent()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = vim.schedule_wrap(transparent),
-      })
+      -- Transparency for Noice* highlights is owned by util.transparency
+      -- (toggleable with <leader>ut, applied on ColorScheme).
     end,
   },
 

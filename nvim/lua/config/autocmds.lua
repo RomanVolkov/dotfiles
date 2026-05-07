@@ -125,9 +125,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- Transparent background. Default ON; toggle with <leader>ut. Re-applies
--- on every colorscheme change so it survives <leader>uc switches.
-vim.g.transparent_bg = true
+-- Transparent background. State is loaded from disk by util.transparency.init()
+-- in config/lazy.lua. Toggle with <leader>ut. Re-applies on every ColorScheme
+-- so it survives <leader>uc theme switches.
 local transparency = require("util.transparency")
 transparency.apply()
 vim.api.nvim_create_autocmd("ColorScheme", {
