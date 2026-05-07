@@ -177,8 +177,6 @@ map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Gi
 map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
 map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = root.git() }) end, { desc = "Git Log (Root Dir)" })
 
--- Quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- Inspect
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })

@@ -13,6 +13,27 @@ require("config.options")
 -- so the ColorScheme autocmd applies the right state on first paint.
 require("util.transparency").init()
 
+-- Auto-restore the last session for cwd if nvim was launched with no args.
+-- Registered here (not in config/autocmds.lua) because that file loads on
+-- User VeryLazy which fires from inside VimEnter — too late for a VimEnter
+-- handler. Persistence.load() is a no-op when no session exists, so the
+-- fallback is just the empty buffer.
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = vim.api.nvim_create_augroup("user_auto_restore_session", { clear = true }),
+  nested = true,
+  callback = function()
+    if vim.fn.argc(-1) ~= 0 then
+      return
+    end
+    -- Defer one tick so plugins (persistence) finish setup before load.
+    vim.schedule(function()
+      pcall(function()
+        require("persistence").load()
+      end)
+    end)
+  end,
+})
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },

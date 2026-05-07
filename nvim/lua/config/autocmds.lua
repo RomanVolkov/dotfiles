@@ -125,19 +125,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- Auto-restore the last session for cwd if nvim was launched with no args.
--- Falls back to an empty buffer when no session file exists.
-vim.api.nvim_create_autocmd("VimEnter", {
-  group = augroup("auto_restore_session"),
-  nested = true,
-  callback = function()
-    if vim.fn.argc(-1) == 0 and vim.fn.line2byte(vim.fn.line("$")) == -1 then
-      pcall(function()
-        require("persistence").load()
-      end)
-    end
-  end,
-})
+-- (Auto-restore session on VimEnter is registered earlier, in
+-- config/lazy.lua, because this file loads on User VeryLazy which fires
+-- *inside* VimEnter — too late for an own VimEnter autocmd.)
 
 -- Transparent background. State is loaded from disk by util.transparency.init()
 -- in config/lazy.lua. Toggle with <leader>ut. Re-applies on every ColorScheme
