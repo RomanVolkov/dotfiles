@@ -17,6 +17,7 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },
+    picker = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = false },
@@ -71,6 +72,11 @@ return {
     require("snacks").setup(opts)
     if package.loaded["noice"] or pcall(require, "noice") then
       vim.notify = notify
+    end
+    -- route vim.ui.select through snacks.picker so plugins like overseer
+    -- get a proper fuzzy picker instead of vim's default list prompt.
+    vim.ui.select = function(items, select_opts, on_choice)
+      return Snacks.picker.select(items, select_opts, on_choice)
     end
   end,
 }
