@@ -89,6 +89,8 @@ return {
     { "<leader>xe", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
     -- Help / discovery
     { "<leader>?", function() Snacks.picker.keymaps() end, desc = "Search Keymaps" },
+    -- UI
+    { "<leader>uc", function() Snacks.picker.colorschemes() end, desc = "Pick Colorscheme" },
   },
   config = function(_, opts)
     local notify = vim.notify

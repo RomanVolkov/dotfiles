@@ -26,6 +26,7 @@
 --    x*  Lists / Trouble  xq/xl vim quickfix/loclist · xQ/xL Trouble qf/loc · xx/xX Trouble diag · xe→loclist · xt/xT todo
 --    q*  Quit / Sessions  qq quit · qs/qS/ql/qd persistence
 --    d*  Debug            dl run-last · dps profiler scratch (DAP itself is on F-keys)
+--    u*  UI                uc pick-colorscheme
 --    L                    :Lazy
 --    n / un               notification history / dismiss
 --    .  / S               scratch / select scratch
