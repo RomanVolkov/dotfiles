@@ -23,12 +23,12 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
--- Buffers (<S-h>/<S-l> and [b/]b are also set by bufferline.lua)
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+-- Buffers (all under <leader>b*)
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Alternate Buffer" })
 map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
 map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete Other Buffers" })
-map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
 
 -- Clear search on <esc>
 map({ "i", "n", "s" }, "<esc>", function()
@@ -120,35 +120,6 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- stylua: ignore start
 
--- Toggles (Snacks-backed)
-Snacks.toggle({
-  name = "Auto Format (Global)",
-  get = function() return vim.g.autoformat == nil or vim.g.autoformat end,
-  set = function(state) vim.g.autoformat = state end,
-}):map("<leader>uf")
-Snacks.toggle({
-  name = "Auto Format (Buffer)",
-  get = function() return vim.b.autoformat == nil or vim.b.autoformat end,
-  set = function(state) vim.b.autoformat = state end,
-}):map("<leader>uF")
-Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
-Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
-Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
-Snacks.toggle.diagnostics():map("<leader>ud")
-Snacks.toggle.line_number():map("<leader>ul")
-Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" }):map("<leader>uc")
-Snacks.toggle.treesitter():map("<leader>uT")
-Snacks.toggle.dim():map("<leader>uD")
-Snacks.toggle.animate():map("<leader>ua")
-Snacks.toggle.indent():map("<leader>ug")
-Snacks.toggle.scroll():map("<leader>uS")
-Snacks.toggle.profiler():map("<leader>dpp")
-Snacks.toggle.profiler_highlights():map("<leader>dph")
-
-if vim.lsp.inlay_hint then
-  Snacks.toggle.inlay_hints():map("<leader>uh")
-end
-
 -- Lazygit
 local root = require("util.root")
 if vim.fn.executable("lazygit") == 1 then
@@ -160,10 +131,6 @@ map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log
 map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Git Blame Line" })
 map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
 map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = root.git() }) end, { desc = "Git Log (Root Dir)" })
-map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse (open)" })
-map({ "n", "x" }, "<leader>gY", function()
-  Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
-end, { desc = "Git Browse (copy)" })
 
 -- Quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -171,28 +138,6 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- Inspect
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
-
--- Floating terminal
-map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = root.project() }) end, { desc = "Terminal (Root Dir)" })
-
--- Windows
-map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-Snacks.toggle.zoom():map("<leader>uZ")
-Snacks.toggle.zen():map("<leader>uz")
-
--- Close current buffer
-map("n", "<leader>w", function() Snacks.bufdelete() end, { desc = "Close Buffer" })
-
--- Tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Lua scratch
 vim.api.nvim_create_autocmd("FileType", {
@@ -207,17 +152,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Disable space key in normal mode
 vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
 
--- Buffer management
-vim.api.nvim_set_keymap("n", "<C-w>", ":bw<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-m>", ":bn<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-n>", ":bp<CR>", { noremap = true, silent = true })
-
 vim.keymap.del({ "i" }, "<Esc>")
-
--- Map Q to q in normal mode
-vim.api.nvim_set_keymap("n", "Q", "q", { noremap = true, silent = true })
--- Disable the q key in normal mode
-vim.api.nvim_set_keymap("n", "q", "<Nop>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<leader><leader>", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Space><Space>", "<Nop>", { noremap = true, silent = true })
