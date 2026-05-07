@@ -1,0 +1,49 @@
+# [[browsers]]
+# shortcut = "s"
+# name = "Safari"
+# apps = ["Discord"]
+# domains = [
+#     "amazon.de",
+#     "youtube.com",
+#     "youtu.be",
+# ]
+
+[[browsers]]
+name = "Zen"
+shortcut = "z"
+default = true
+apps = ["Slack", "Zulip" ]
+domains = [
+    "aws.amazon.com",
+    "console.cloud.google.com",
+    "meet.google.com",
+    "awsapps.com",
+    "gitlab.com",
+    "inita.atlassian.net",
+    "constructor.org",
+    "constructor.tech",
+    "constr.dev",
+]
+
+[[browsers]]
+shortcut = "m"
+name = "Min"
+hidden = true
+domains = ["localhost"]
+
+[[browsers]]
+name = "Microsoft Teams"
+hidden = true
+domains = ["teams.microsoft.com"]
+
+[[browsers]]
+name = "zoom.us"
+hidden = true
+domains = ["zoom.us", "zoom.com"]
+
+useOnlyRunningBrowsers = false
+stripTrackingAttributes = true
+expandShortenURLs = true
+pinningSeconds = 30
+logLevel = "info"
+
