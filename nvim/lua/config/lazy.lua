@@ -42,7 +42,7 @@ require("lazy").setup({
     lazy = false,
     version = false,
   },
-  install = { colorscheme = { "catppuccin-mocha", "habamax" } },
+  install = { colorscheme = { "catppuccin-macchiato", "habamax" } },
   checker = { enabled = true },
   performance = {
     rtp = {
@@ -67,4 +67,4 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- colorscheme (was set via LazyVim opts)
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("catppuccin-macchiato")

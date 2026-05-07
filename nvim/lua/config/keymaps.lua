@@ -25,7 +25,7 @@
 --    q*  Quit / Sessions  qq quit · qs/qS/ql/qd persistence
 --    d*  Debug (DAP)      db breakpoint · dB cond-bp · dc continue · di step-into · dn step-over · du step-out · de eval · dt terminate · dl run-last · dps profiler-scratch
 --    r*  Run (Overseer)   rr run-task · rt toggle-tasks-float
---    u*  UI                uc pick-colorscheme · ut toggle-transparency
+--    u*  UI                ut toggle-transparency
 --    L                    :Lazy
 --    n / un               notification history / dismiss
 --    .  / S               scratch / select scratch

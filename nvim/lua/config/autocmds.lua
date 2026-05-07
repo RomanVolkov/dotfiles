@@ -129,29 +129,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- config/lazy.lua, because this file loads on User VeryLazy which fires
 -- *inside* VimEnter — too late for an own VimEnter autocmd.)
 
--- Transparent background. State is loaded from disk by util.transparency.init()
--- in config/lazy.lua. Toggle with <leader>ut. Re-applies on every ColorScheme
--- so it survives <leader>uc theme switches.
--- Some colorschemes (e.g. catppuccin) finalize integration highlights
--- asynchronously after their initial colorscheme command, so we apply both
--- immediately and after a short defer to win the race against late re-paints.
--- BufAdd/BufWinEnter additionally catch lazily-created BufferLineDevIcon*
--- groups (mini.icons creates them on first sight of each filetype).
-local transparency = require("util.transparency")
-transparency.apply()
-vim.api.nvim_create_autocmd("ColorScheme", {
-  group = augroup("transparency"),
-  callback = function()
-    vim.schedule(transparency.apply)
-    vim.defer_fn(transparency.apply, 50)
-  end,
-})
-vim.api.nvim_create_autocmd({ "BufAdd", "BufWinEnter" }, {
-  group = augroup("transparency_buf"),
-  callback = function()
-    vim.schedule(transparency.apply)
-  end,
-})
+-- Transparency state is loaded from disk by util.transparency.init() in
+-- config/lazy.lua and consumed natively by catppuccin's opts.
 
 -- Check for file changes when the cursor is idle.
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
