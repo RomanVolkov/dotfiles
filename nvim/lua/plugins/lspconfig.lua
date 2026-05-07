@@ -57,7 +57,13 @@ return {
           },
         },
       },
-      roslyn = {},
+      roslyn = {
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = { dynamicRegistration = false },
+          },
+        },
+      },
       pylsp = {},
       sourcekit = {},
       tsserver = {},

@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -68,6 +69,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "master",
     lazy = true,
   },
 
