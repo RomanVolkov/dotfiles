@@ -25,7 +25,6 @@
 --    q*  Quit / Sessions  qq quit · qs/qS/ql/qd persistence
 --    d*  Debug (DAP)      db breakpoint · dB cond-bp · dc continue · di step-into · dn step-over · du step-out · de eval · dt terminate · dl run-last · dps profiler-scratch
 --    r*  Run (Overseer)   rr run-task · rt toggle-tasks-float
---    u*  UI                ut toggle-transparency
 --    L                    :Lazy
 --    n / un               notification history / dismiss
 --    .  / S               scratch / select scratch
@@ -182,8 +181,6 @@ map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = root.git() }) en
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
 
--- Toggle transparent background (also re-applies on colorscheme change)
-map("n", "<leader>ut", function() require("util.transparency").toggle() end, { desc = "Toggle Transparent Background" })
 
 -- Lua scratch
 vim.api.nvim_create_autocmd("FileType", {

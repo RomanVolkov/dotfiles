@@ -9,10 +9,6 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 -- options must load before plugins so leader keys etc. take effect on plugin keymaps
 require("config.options")
 
--- restore persisted transparency state before plugins/colorscheme load,
--- so the ColorScheme autocmd applies the right state on first paint.
-require("util.transparency").init()
-
 -- Auto-restore the last session for cwd if nvim was launched with no args.
 -- Registered here (not in config/autocmds.lua) because that file loads on
 -- User VeryLazy which fires from inside VimEnter — too late for a VimEnter

@@ -129,8 +129,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- config/lazy.lua, because this file loads on User VeryLazy which fires
 -- *inside* VimEnter — too late for an own VimEnter autocmd.)
 
--- Transparency state is loaded from disk by util.transparency.init() in
--- config/lazy.lua and consumed natively by catppuccin's opts.
 
 -- Check for file changes when the cursor is idle.
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
