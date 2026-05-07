@@ -76,14 +76,17 @@ return {
     { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
     { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     { "<leader>dps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Buffer" },
-    -- Picker
-    { "<leader>sf", function() Snacks.picker.files() end, desc = "Find Files" },
-    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Live Grep" },
-    { "<leader>sb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader>sd", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
-    { "<leader>so", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
-    { "<leader>sw", function() Snacks.picker.diagnostics() end, desc = "Search Diagnostics" },
-    { "<leader>se", vim.diagnostic.setloclist, desc = "Diagnostics Loclist" },
+    -- Files
+    { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+    { "<leader>fg", function() Snacks.picker.grep() end, desc = "Find in Files (Grep)" },
+    -- Buffers
+    { "<leader>bf", function() Snacks.picker.buffers() end, desc = "Find Buffer" },
+    -- Search / symbols
+    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
+    { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
+    { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Search Diagnostics" },
+    -- Diagnostics list
+    { "<leader>xe", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
   },
   config = function(_, opts)
     local notify = vim.notify

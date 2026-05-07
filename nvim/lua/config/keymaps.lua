@@ -30,6 +30,12 @@ map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete
 map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
 
+-- Windows (all under <leader>w*; native <C-w> chords still work)
+map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<leader>wo", "<C-W>o", { desc = "Only Window (close others)", remap = true })
+
 -- Clear search on <esc>
 map({ "i", "n", "s" }, "<esc>", function()
   vim.cmd("noh")
@@ -59,9 +65,6 @@ map("i", ";", ";<c-g>u")
 -- Save
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
--- keywordprg
-map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
-
 -- Indent
 map("x", "<", "<gv")
 map("x", ">", ">gv")
@@ -71,10 +74,10 @@ map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- Lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- New file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<leader>fN", "<cmd>enew<cr>", { desc = "New File" })
 
 -- Location list
 map("n", "<leader>xl", function()
@@ -110,7 +113,7 @@ local diagnostic_goto = function(next, severity)
     })
   end
 end
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>cD", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
