@@ -10,12 +10,29 @@ return {
       "github:crashdummyy/mason-registry",
     },
     ensure_installed = {
-      "lua-language-server",
+      -- Formatters
       "stylua",
       "shfmt",
-      -- for some reason those have to be installed explicitly with MasonInstall
+      "csharpier",
+      "prettier",
+      "goimports",
+      "goimports-reviser",
+      -- Linters / extras
+      "trivy",
+      "ts-standard",
+      "gotests",
+      -- Rust helper
+      "bacon",
+      -- Debug adapters
+      "codelldb",
+      "delve",
+      "go-debug-adapter",
+      "js-debug-adapter",
+      -- LSPs that mason-lspconfig won't auto-install for us
       "roslyn",
       "netcoredbg",
+      -- Treesitter CLI for parser builds
+      "tree-sitter-cli",
     },
   },
   config = function(_, opts)

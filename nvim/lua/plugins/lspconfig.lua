@@ -1,4 +1,14 @@
 return {
+  {
+    -- Roslyn LSP wrapper. Lives next to nvim-lspconfig because it provides
+    -- the C# language server; the corresponding `roslyn` server entry below
+    -- carries the per-project settings.
+    "seblyng/roslyn.nvim",
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {},
+  },
+  {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
@@ -66,8 +76,11 @@ return {
       },
       pylsp = {},
       sourcekit = {},
-      tsserver = {},
+      ts_ls = {},
+      eslint = {},
       clangd = {},
+      gopls = {},
+      rust_analyzer = {},
       lua_ls = {
         settings = {
           Lua = {
@@ -161,4 +174,5 @@ return {
       })
     end
   end,
+  },
 }

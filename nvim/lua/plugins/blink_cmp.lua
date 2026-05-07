@@ -43,8 +43,14 @@ return {
         },
       },
       sources = {
-        -- Enable minuet for autocomplete
-        default = { "lsp", "path", "buffer", "snippets" },
+        -- Drop the buffer (plain-text) source whenever an LSP client is
+        -- attached, so suggestions come from the language server only.
+        default = function()
+          if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
+            return { "lsp", "path", "snippets" }
+          end
+          return { "path", "buffer", "snippets" }
+        end,
         -- default = { "lsp", "path", "buffer", "snippets", "minuet" },
         -- For manual completion only, remove 'minuet' from default
         -- providers = {

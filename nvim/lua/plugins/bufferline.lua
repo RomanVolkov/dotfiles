@@ -23,14 +23,6 @@ return {
           .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
       end,
-      offsets = {
-        {
-          filetype = "neo-tree",
-          text = "Neo-tree",
-          highlight = "Directory",
-          text_align = "left",
-        },
-      },
       ---@param opts bufferline.IconFetcherOpts
       get_element_icon = function(opts)
         local ft_icons = { octo = " ", gh = " ", ["markdown.gh"] = " " }
