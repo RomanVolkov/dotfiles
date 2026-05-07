@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 -- ===== User-specific autocmds below =====
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level(vim.lsp.log.levels.OFF)
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "python", "swift" },
