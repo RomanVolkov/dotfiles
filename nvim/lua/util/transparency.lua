@@ -57,8 +57,10 @@ local explicit_groups = {
 }
 
 -- Highlight-group prefixes whose bg gets cleared too — picks up every
--- BufferLine*, Noice*, etc. group the loaded plugins define.
-local group_prefixes = { "BufferLine", "Noice" }
+-- BufferLine*, Noice*, MiniIcons*, DevIcon* group the loaded plugins
+-- define. (DevIcon*/MiniIcons* are filetype icon highlights; without
+-- them bufferline tabs show colored patches under each tab's icon.)
+local group_prefixes = { "BufferLine", "Noice", "MiniIcons", "DevIcon" }
 
 local function clear_bg(name)
   local hl = vim.api.nvim_get_hl(0, { name = name })
