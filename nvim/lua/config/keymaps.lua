@@ -212,10 +212,6 @@ vim.api.nvim_set_keymap("n", "<C-w>", ":bw<CR>", { noremap = true, silent = true
 vim.api.nvim_set_keymap("n", "<C-m>", ":bn<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-n>", ":bp<CR>", { noremap = true, silent = true })
 
--- Explore mode
--- vim.api.nvim_set_keymap("n", "<C-T>", ":Ex<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<leader>e", ":Ex<CR>", { noremap = true, silent = true })
-
 vim.keymap.del({ "i" }, "<Esc>")
 
 -- Map Q to q in normal mode
@@ -227,11 +223,6 @@ vim.api.nvim_set_keymap("n", "<leader><leader>", "<Nop>", { noremap = true, sile
 vim.api.nvim_set_keymap("n", "<Space><Space>", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><Space>", "<Nop>", { noremap = true, silent = true })
 
--- vim.keymap.set("n", "<C-Space>", "<Nop>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<C-@>", "<Nop>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<Nul>", "<Nop>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<C-0>", "<Nop>", { noremap = true, silent = true })
---
 -- Open URL or local file under cursor (macOS)
 vim.keymap.set("n", "<leader>gu", function()
   local line = vim.api.nvim_get_current_line()

@@ -4,7 +4,6 @@ return {
   config = function()
     require("xcodebuild").setup({
       integrations = {
-        telescope_nvim = { enabled = false },
         snacks_nvim = { enabled = true },
       },
     })

@@ -15,7 +15,6 @@ return {
     "mason.nvim",
     { "mason-org/mason-lspconfig.nvim", config = function() end },
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "gfanto/fzf-lsp.nvim", opts = {} },
   },
   opts_extend = { "servers.*.keys" },
   keys = {
@@ -73,13 +72,71 @@ return {
             didChangeWatchedFiles = { dynamicRegistration = false },
           },
         },
+        settings = {
+          ["csharp|inlay_hints"] = {
+            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+          },
+          ["csharp|code_lens"] = {
+            dotnet_enable_references_code_lens = true,
+          },
+        },
       },
-      pylsp = {},
-      sourcekit = {},
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = { ignore = { "E501" }, maxLineLength = 200 },
+            },
+          },
+        },
+      },
+      sourcekit = {
+        cmd = {
+          "/Applications/Xcode-26.3.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+        },
+        filetypes = { "swift" },
+      },
       ts_ls = {},
       eslint = {},
       clangd = {},
-      gopls = {},
+      gopls = {
+        settings = {
+          gopls = {
+            gofumpt = true,
+            usePlaceholders = false,
+            completeUnimported = true,
+            staticcheck = true,
+            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+            codelenses = {
+              gc_details = false,
+              generate = true,
+              regenerate_cgo = true,
+              run_govulncheck = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
+            },
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            analyses = {
+              fieldalignment = true,
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true,
+            },
+          },
+        },
+      },
       rust_analyzer = {},
       lua_ls = {
         settings = {

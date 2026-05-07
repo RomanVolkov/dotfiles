@@ -73,7 +73,6 @@ vim.o.termguicolors = true
 -- Editing options
 vim.o.backspace = "indent,eol,start"
 vim.o.encoding = "utf-8"
--- vim.o.termencoding = "utf-8"
 
 -- Backup and swap options
 vim.o.backup = false
@@ -83,9 +82,6 @@ vim.o.swapfile = false
 vim.o.hlsearch = false
 vim.o.incsearch = true
 vim.o.smartcase = true
-
--- FZF integration
-vim.o.runtimepath = vim.o.runtimepath .. ",/opt/homebrew/opt/fzf"
 
 -- Shell integration
 vim.o.shell = "zsh"

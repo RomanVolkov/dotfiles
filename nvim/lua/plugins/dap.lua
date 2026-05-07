@@ -80,8 +80,6 @@ return {
       end,
       desc = "Continue",
     },
-    --    { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
-    --    { "<leader>dg", function() require("dap").goto_() end, desc = "Go to line (no execute)" },
     {
       "<F3>",
       function()
@@ -89,8 +87,6 @@ return {
       end,
       desc = "Step Into",
     },
-    --    { "<leader>dj", function() require("dap").down() end, desc = "Down" },
-    --    { "<leader>dk", function() require("dap").up() end, desc = "Up" },
     {
       "<leader>dl",
       function()
@@ -112,9 +108,6 @@ return {
       end,
       desc = "Step Over",
     },
-    --    { "<leader>dp", function() require("dap").pause() end, desc = "Pause" },
-    --    { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
-    --    { "<leader>ds", function() require("dap").session() end, desc = "Session" },
     {
       "<F8>",
       function()
@@ -123,7 +116,6 @@ return {
       end,
       desc = "Terminate",
     },
-    --    { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     {
       "<F4>",
       function()
@@ -193,16 +185,6 @@ return {
         },
       },
     }
-    -- Rust / CodeLLDB
-    -- dap.adapters.codelldb = {
-    --   type = "server",
-    --   port = "${port}",
-    --   executable = {
-    --     command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
-    --     args = { "--port", "${port}" },
-    --   },
-    -- }
-
     dap.configurations.rust = {
       {
         name = "Launch Tauri App (Rust)",

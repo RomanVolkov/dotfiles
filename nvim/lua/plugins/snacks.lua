@@ -56,7 +56,6 @@ return {
           { icon = "\u{f15b} ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = "\u{f002} ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = "\u{f1da} ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-          { icon = "\u{f013} ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
           { icon = "\u{f7d9} ", key = "s", desc = "Restore Session", section = "session" },
           { icon = "\u{f0cb2} ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = "\u{f011} ", key = "q", desc = "Quit", action = ":qa" },

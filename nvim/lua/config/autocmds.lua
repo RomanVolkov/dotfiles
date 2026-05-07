@@ -52,8 +52,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "checkhealth",
     "dap-float",
     "dbout",
-    "gitsigns-blame",
-    "grug-far",
     "help",
     "lspinfo",
     "neotest-output",
@@ -130,27 +128,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 
--- autoupdate
--- local function augroup(name)
---   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
--- end
--- disable auto update of plugins
---vim.api.nvim_create_autocmd("VimEnter", {
---  group = augroup("autoupdate"),
---  callback = function()
---    require("lazy").update({
---      show = false,
---    })
---  end,
---})
-
--- vim.api.nvim_create_autocmd("VimEnter", {
---   callback = function()
---     vim.lsp.start()
---   end,
--- })
-
--- Set up an autocommand to check for file changes when the cursor is idle
+-- Check for file changes when the cursor is idle.
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   callback = function()
     vim.cmd("checktime")
