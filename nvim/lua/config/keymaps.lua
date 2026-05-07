@@ -232,7 +232,7 @@ vim.api.nvim_set_keymap("n", "<leader><Space>", "<Nop>", { noremap = true, silen
 -- vim.keymap.set("n", "<Nul>", "<Nop>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "<C-0>", "<Nop>", { noremap = true, silent = true })
 --
--- Telescope additional
+-- Open URL or local file under cursor (macOS)
 vim.keymap.set("n", "<leader>gu", function()
   local line = vim.api.nvim_get_current_line()
   local col = vim.fn.col(".")
