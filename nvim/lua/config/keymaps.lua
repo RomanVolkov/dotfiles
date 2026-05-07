@@ -22,7 +22,7 @@
 --    g*  Git              gg/gG lazygit (root/cwd) · gl/gL/gb/gf log family · gB/gY browse · gu open URL
 --    c*  Code             cf format · cF format-injected · ca action · cr rename · cc/cC codelens · cD diag-float
 --    x*  Lists / Trouble  xq/xl vim quickfix/loclist · xQ/xL Trouble qf/loc · xx/xX Trouble diag · xe→loclist · xt/xT todo
---    q*  Quit / Sessions  qq quit · qs/qS/ql/qd persistence
+--    q*  Quit / Sessions  qq quit · qs restore · qS select · ql restore-last · qw save-now · qd stop-saving
 --    d*  Debug (DAP)      db breakpoint · dB cond-bp · dc continue · di step-into · dn step-over · du step-out · de eval · dt terminate · dl run-last · dps profiler-scratch
 --    r*  Run (Overseer)   rr run-task · rt toggle-tasks (bottom panel)
 --    L                    :Lazy
