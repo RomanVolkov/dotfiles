@@ -82,9 +82,9 @@ return {
     -- Buffers
     { "<leader>bf", function() Snacks.picker.buffers() end, desc = "Find Buffer" },
     -- Search / symbols
-    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
-    { "<leader>sw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
-    { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Search Diagnostics" },
+    { "<leader>sd", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
+    { "<leader>ss", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
+    { "<leader>sw", function() Snacks.picker.diagnostics() end, desc = "Search Diagnostics (Warnings/Errors)" },
     -- Diagnostics list
     { "<leader>xe", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
     -- Help / discovery

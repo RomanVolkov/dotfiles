@@ -19,7 +19,7 @@
 -- 2) <leader>{NOUN}{VERB} — first letter is what you operate on
 --    f*  Files            ff find · fg grep · fN new · fe/fE yazi
 --    b*  Buffers          bb alt · bd close · bo close-others · bn next · bp prev · bf find
---    s*  Search / symbols ss doc-symbols · sw workspace-symbols · sd diagnostics · sr replace (grug-far when present)
+--    s*  Search / symbols sd doc-symbols · ss workspace-symbols · sw diagnostics · sr replace (grug-far when present)
 --    w*  Windows          w- split-below · w| split-right · wd close · wo only
 --    g*  Git              gg/gG lazygit (root/cwd) · gl/gL/gb/gf log family · gB/gY browse · gu open URL
 --    c*  Code             cf format · cF format-injected · ca action · cr rename · cc/cC codelens · cD diag-float
