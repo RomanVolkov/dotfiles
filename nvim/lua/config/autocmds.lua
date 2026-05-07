@@ -128,11 +128,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- Transparent background. State is loaded from disk by util.transparency.init()
 -- in config/lazy.lua. Toggle with <leader>ut. Re-applies on every ColorScheme
 -- so it survives <leader>uc theme switches.
+-- Some colorschemes (e.g. catppuccin) finalize integration highlights
+-- asynchronously after their initial colorscheme command, so we apply both
+-- immediately and after a short defer to win the race against late re-paints.
 local transparency = require("util.transparency")
 transparency.apply()
 vim.api.nvim_create_autocmd("ColorScheme", {
   group = augroup("transparency"),
-  callback = vim.schedule_wrap(transparency.apply),
+  callback = function()
+    vim.schedule(transparency.apply)
+    vim.defer_fn(transparency.apply, 50)
+  end,
 })
 
 -- Check for file changes when the cursor is idle.
