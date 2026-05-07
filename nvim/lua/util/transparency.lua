@@ -41,6 +41,19 @@ local explicit_groups = {
   "WinSeparator",
   "StatusLine",
   "StatusLineNC",
+  -- Tabline (the row bufferline paints over — anything bufferline doesn't
+  -- explicitly fill falls through to these groups).
+  "TabLine",
+  "TabLineFill",
+  "TabLineSel",
+  -- Winbar (per-window bar at the top of a split).
+  "WinBar",
+  "WinBarNC",
+  -- Folded line bg.
+  "Folded",
+  "FoldColumn",
+  "CursorLineNr",
+  "LineNr",
 }
 
 -- Highlight-group prefixes whose bg gets cleared too — picks up every
