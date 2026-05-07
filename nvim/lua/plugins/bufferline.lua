@@ -13,7 +13,12 @@ return {
       diagnostics = "nvim_lsp",
       always_show_bufferline = true,
       diagnostics_indicator = function(_, _, diag)
-        local icons = LazyVim.config.icons.diagnostics
+        local icons = {
+          Error = " ",
+          Warn = " ",
+          Hint = " ",
+          Info = " ",
+        }
         local ret = (diag.error and icons.Error .. diag.error .. " " or "")
           .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
@@ -28,7 +33,8 @@ return {
       },
       ---@param opts bufferline.IconFetcherOpts
       get_element_icon = function(opts)
-        return LazyVim.config.icons.ft[opts.filetype]
+        local ft_icons = { octo = " ", gh = " ", ["markdown.gh"] = " " }
+        return ft_icons[opts.filetype]
       end,
     },
   },

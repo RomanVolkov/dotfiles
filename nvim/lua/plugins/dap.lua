@@ -134,10 +134,16 @@ return {
   },
 
   config = function()
-    local Config = require("lazyvim.config")
+    local dap_icons = {
+      Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
+      Breakpoint = " ",
+      BreakpointCondition = " ",
+      BreakpointRejected = { " ", "DiagnosticError" },
+      LogPoint = ".>",
+    }
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-    for name, sign in pairs(Config.icons.dap) do
+    for name, sign in pairs(dap_icons) do
       sign = type(sign) == "table" and sign or { sign }
       vim.fn.sign_define(
         "Dap" .. name,
