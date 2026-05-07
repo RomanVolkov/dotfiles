@@ -13,27 +13,41 @@ return {
       diagnostics = "nvim_lsp",
       always_show_bufferline = true,
       diagnostics_indicator = function(_, _, diag)
-        local icons = LazyVim.config.icons.diagnostics
+        local icons = {
+          Error = " ",
+          Warn = " ",
+          Hint = " ",
+          Info = " ",
+        }
         local ret = (diag.error and icons.Error .. diag.error .. " " or "")
           .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
       end,
-      offsets = {
-        {
-          filetype = "neo-tree",
-          text = "Neo-tree",
-          highlight = "Directory",
-          text_align = "left",
-        },
-      },
       ---@param opts bufferline.IconFetcherOpts
       get_element_icon = function(opts)
-        return LazyVim.config.icons.ft[opts.filetype]
+        local ft_icons = { octo = " ", gh = " ", ["markdown.gh"] = " " }
+        return ft_icons[opts.filetype]
       end,
     },
   },
   config = function(_, opts)
     require("bufferline").setup(opts)
+
+    -- Make bufferline transparent: strip bg from every BufferLine* group
+    -- after bufferline has applied its own highlights, and re-apply on
+    -- colorscheme change.
+    local function transparent()
+      for _, name in ipairs(vim.fn.getcompletion("BufferLine", "highlight")) do
+        local hl = vim.api.nvim_get_hl(0, { name = name })
+        hl.bg = "NONE"
+        vim.api.nvim_set_hl(0, name, hl)
+      end
+    end
+    transparent()
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = vim.schedule_wrap(transparent),
+    })
+
     -- Fix bufferline when restoring a session
     vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
       callback = function()
@@ -43,13 +57,4 @@ return {
       end,
     })
   end,
-  keys = {
-    {
-      "<C-w>",
-      function()
-        Snacks.bufdelete()
-      end,
-      desc = "Delete buffer without closing split",
-    },
-  },
 }

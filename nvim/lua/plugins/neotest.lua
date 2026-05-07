@@ -3,11 +3,9 @@ return {
   dependencies = {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
-    "antoinemadec/FixCursorHold.nvim",
     "marilari88/neotest-vitest",
     "nvim-treesitter/nvim-treesitter",
-    -- "mmllr/neotest-swift-testing",
-    { "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
+    { "fredrikaverpil/neotest-golang", version = "*" },
     "nvim-neotest/neotest-jest",
   },
   opts = {},

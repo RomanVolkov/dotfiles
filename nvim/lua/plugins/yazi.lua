@@ -2,18 +2,10 @@ return {
   "mikavilpas/yazi.nvim",
   event = "VeryLazy",
   keys = {
-    -- 👇 in this section, choose your own keymappings!
-    {
-      "-",
-      "<cmd>Yazi<cr>",
-      desc = "Open yazi at the current file",
-    },
-    {
-      -- Open in the current working directory
-      "_",
-      "<cmd>Yazi cwd<cr>",
-      desc = "Open the file manager in nvim's working directory",
-    },
+    { "-", "<cmd>Yazi<cr>", desc = "File Explorer (Yazi at file)" },
+    { "_", "<cmd>Yazi cwd<cr>", desc = "File Explorer (Yazi at cwd)" },
+    { "<leader>fe", "<cmd>Yazi<cr>", desc = "File Explorer (at file)" },
+    { "<leader>fE", "<cmd>Yazi cwd<cr>", desc = "File Explorer (at cwd)" },
   },
   opts = {
     -- if you want to open yazi instead of netrw, see below for more info
@@ -21,6 +13,6 @@ return {
     keymaps = {
       show_help = "<f1>",
     },
-    yazi_floating_window_border = "none",
+    yazi_floating_window_border = "rounded",
   },
 }

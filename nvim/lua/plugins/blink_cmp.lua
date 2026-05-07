@@ -1,18 +1,15 @@
--- https://cmp.saghen.dev/recipes.html
 return {
   "saghen/blink.cmp",
-  enabled = true,
-  -- In case there are breaking changes and you want to go back to the last
-  -- working release
-  -- https://github.com/Saghen/blink.cmp/releases
-  version = "1.4.1",
+  version = "*",
   dependencies = {
     "moyiz/blink-emoji.nvim",
     "Kaiser-Yang/blink-cmp-dictionary",
+    "L3MON4D3/LuaSnip",
   },
 
   config = function()
     require("blink-cmp").setup({
+      snippets = { preset = "luasnip" },
       keymap = {
         ["<CR>"] = {
           function(cmp)
@@ -25,8 +22,6 @@ return {
           "snippet_forward",
           "fallback",
         },
-        -- Manually invoke minuet completion.
-        -- ["<A-y>"] = require("minuet").make_blink_map(),
         ["<Tab>"] = {
           function(cmp)
             return cmp.select_next()
@@ -41,23 +36,15 @@ return {
         },
       },
       sources = {
-        -- Enable minuet for autocomplete
-        default = { "lsp", "path", "buffer", "snippets" },
-        -- default = { "lsp", "path", "buffer", "snippets", "minuet" },
-        -- For manual completion only, remove 'minuet' from default
-        -- providers = {
-        --   minuet = {
-        --     name = "minuet",
-        --     module = "minuet.blink",
-        --     async = true,
-        --     -- Should match minuet.config.request_timeout * 1000,
-        --     -- since minuet.config.request_timeout is in seconds
-        --     timeout_ms = 3000,
-        --     score_offset = 50, -- Gives minuet higher priority among suggestions
-        --   },
-        -- },
+        -- Drop the buffer (plain-text) source whenever an LSP client is
+        -- attached, so suggestions come from the language server only.
+        default = function()
+          if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
+            return { "lsp", "path", "snippets" }
+          end
+          return { "path", "buffer", "snippets" }
+        end,
       },
-      -- Recommended to avoid unnecessary request
       completion = {
         list = {
           selection = {
@@ -74,14 +61,12 @@ return {
                   local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
                   return kind_icon
                 end,
-                -- (optional) use highlights from mini.icons
                 highlight = function(ctx)
                   local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                   return hl
                 end,
               },
               kind = {
-                -- (optional) use highlights from mini.icons
                 highlight = function(ctx)
                   local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                   return hl
@@ -94,7 +79,6 @@ return {
       fuzzy = {
         sorts = {
           "exact",
-          -- defaults
           "score",
           "sort_text",
         },

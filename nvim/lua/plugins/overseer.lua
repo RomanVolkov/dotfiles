@@ -5,17 +5,7 @@ return {
   opts = {},
 
   keys = {
-    {
-      -- "<leader>rt",
-      "<F10>",
-      "<cmd>OverseerRun<cr>",
-      desc = "Run task (Overseer)",
-    },
-    {
-      -- "<leader>ro",
-      "<F11>",
-      "<cmd>OverseerToggle<cr>",
-      desc = "Toggle Overseer",
-    },
+    { "<F10>", "<cmd>OverseerRun<cr>", desc = "Run task (Overseer)" },
+    { "<F11>", "<cmd>OverseerToggle<cr>", desc = "Toggle Overseer" },
   },
 }

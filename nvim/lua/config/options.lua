@@ -1,6 +1,60 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- Leader keys (was set by LazyVim)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Autoformat toggle (read by conform.nvim format_on_save)
+vim.g.autoformat = true
+
+-- Defaults inherited from LazyVim, now explicit
+local opt = vim.opt
+
+opt.autowrite = true
+opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
+opt.completeopt = "menu,menuone,noselect"
+opt.conceallevel = 2
+opt.confirm = true
+opt.cursorline = true
+opt.expandtab = true
+opt.fillchars = {
+  foldopen = "\u{f47c}",
+  foldclose = "\u{f460}",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+opt.foldlevel = 99
+opt.formatoptions = "jcroqlnt"
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true
+opt.inccommand = "nosplit"
+opt.jumpoptions = "view"
+opt.laststatus = 3
+opt.list = true
+opt.mouse = "a"
+opt.pumblend = 10
+opt.pumheight = 10
+opt.ruler = false
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.shiftround = true
+opt.shiftwidth = 2
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
+opt.signcolumn = "yes"
+opt.smartindent = true
+opt.smoothscroll = true
+opt.splitbelow = true
+opt.splitkeep = "screen"
+opt.splitright = true
+opt.undofile = true
+opt.undolevels = 10000
+opt.virtualedit = "block"
+opt.wildmode = "longest:full,full"
+opt.winminwidth = 5
+
+vim.g.markdown_recommended_style = 0
+
+-- ===== User-specific overrides below =====
 
 -- Set tab options
 vim.o.tabstop = 4
@@ -19,7 +73,6 @@ vim.o.termguicolors = true
 -- Editing options
 vim.o.backspace = "indent,eol,start"
 vim.o.encoding = "utf-8"
--- vim.o.termencoding = "utf-8"
 
 -- Backup and swap options
 vim.o.backup = false
@@ -29,9 +82,6 @@ vim.o.swapfile = false
 vim.o.hlsearch = false
 vim.o.incsearch = true
 vim.o.smartcase = true
-
--- FZF integration
-vim.o.runtimepath = vim.o.runtimepath .. ",/opt/homebrew/opt/fzf"
 
 -- Shell integration
 vim.o.shell = "zsh"
