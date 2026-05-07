@@ -11,8 +11,8 @@ return {
   keys = {
     { "gd", vim.lsp.buf.definition },
     { "ge", vim.lsp.buf.rename },
-    { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Search LSP Implementations" },
-    { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Search LSP References" },
+    { "gi", function() Snacks.picker.lsp_implementations() end, desc = "LSP Implementations" },
+    { "gr", function() Snacks.picker.lsp_references() end, desc = "LSP References" },
   },
   ---@class PluginLspOpts
   opts = {

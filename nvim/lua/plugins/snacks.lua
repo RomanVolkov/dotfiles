@@ -17,7 +17,18 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      layout = { preset = "vertical" },
+      win = {
+        input = {
+          keys = {
+            ["<C-j>"] = { "list_down", mode = { "i", "n" } },
+            ["<C-k>"] = { "list_up", mode = { "i", "n" } },
+          },
+        },
+      },
+    },
     scope = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = false },
@@ -66,6 +77,14 @@ return {
     { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
     { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     { "<leader>dps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Buffer" },
+    -- Picker
+    { "<leader>sf", function() Snacks.picker.files() end, desc = "Find Files" },
+    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Live Grep" },
+    { "<leader>sb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>sd", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
+    { "<leader>so", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
+    { "<leader>sw", function() Snacks.picker.diagnostics() end, desc = "Search Diagnostics" },
+    { "<leader>se", vim.diagnostic.setloclist, desc = "Diagnostics Loclist" },
   },
   config = function(_, opts)
     local notify = vim.notify
