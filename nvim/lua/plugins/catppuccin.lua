@@ -7,7 +7,11 @@ return {
     flavour = "macchiato",
     background = { dark = "macchiato" },
     transparent_background = true,
-    integrations = { blink_cmp = true },
+    float = { transparent = true, solid = false },
+    integrations = {
+      blink_cmp = true,
+      snacks = true,
+    },
     compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
   },
 }
