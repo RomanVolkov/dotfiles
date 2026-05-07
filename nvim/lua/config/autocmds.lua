@@ -135,6 +135,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- Some colorschemes (e.g. catppuccin) finalize integration highlights
 -- asynchronously after their initial colorscheme command, so we apply both
 -- immediately and after a short defer to win the race against late re-paints.
+-- BufAdd/BufWinEnter additionally catch lazily-created BufferLineDevIcon*
+-- groups (mini.icons creates them on first sight of each filetype).
 local transparency = require("util.transparency")
 transparency.apply()
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -142,6 +144,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     vim.schedule(transparency.apply)
     vim.defer_fn(transparency.apply, 50)
+  end,
+})
+vim.api.nvim_create_autocmd({ "BufAdd", "BufWinEnter" }, {
+  group = augroup("transparency_buf"),
+  callback = function()
+    vim.schedule(transparency.apply)
   end,
 })
 
