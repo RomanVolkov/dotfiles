@@ -26,10 +26,4 @@ ln -s ~/.dotfiles/yazi ~/.config/yazi
 ln -s ~/.dotfiles/opencode ~/.config/opencode
 ln -s ~/.dotfiles/eligere ~/.config/eligere
 
-## inits
-rbenv init
-
-## go debugger
-go install github.com/go-delve/delve/cmd/dlv@latest
-
 defaults write net.kovidgoyal.kitty ApplePressAndHoldEnabled -bool false
