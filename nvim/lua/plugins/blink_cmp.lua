@@ -9,10 +9,12 @@ return {
   dependencies = {
     "moyiz/blink-emoji.nvim",
     "Kaiser-Yang/blink-cmp-dictionary",
+    "L3MON4D3/LuaSnip",
   },
 
   config = function()
     require("blink-cmp").setup({
+      snippets = { preset = "luasnip" },
       keymap = {
         ["<CR>"] = {
           function(cmp)
