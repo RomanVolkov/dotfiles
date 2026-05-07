@@ -21,7 +21,6 @@ export GOPATH=$HOME/go
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
-export PATH="$HOME/.miniforge3/condabin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin/:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -85,21 +84,6 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/.miniforge3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/.miniforge3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/.miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/.miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
