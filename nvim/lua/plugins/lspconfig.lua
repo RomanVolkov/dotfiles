@@ -97,7 +97,7 @@ return {
         },
         filetypes = { "swift" },
       },
-      ts_ls = {},
+      ts_ls = {enabled = false},
       eslint = {},
       clangd = {},
       gopls = {

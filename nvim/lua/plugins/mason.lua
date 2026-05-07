@@ -19,7 +19,6 @@ return {
       "goimports-reviser",
       -- Linters / extras
       "trivy",
-      "ts-standard",
       "gotests",
       -- Rust helper
       "bacon",
