@@ -154,15 +154,16 @@ if vim.lsp.inlay_hint then
 end
 
 -- Lazygit
+local root = require("util.root")
 if vim.fn.executable("lazygit") == 1 then
-  map("n", "<leader>gg", function() Snacks.lazygit({ cwd = vim.fn.getcwd() }) end, { desc = "Lazygit (cwd)" })
-  map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit" })
+  map("n", "<leader>gg", function() Snacks.lazygit({ cwd = root.git() }) end, { desc = "Lazygit (Root Dir)" })
+  map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
 end
 
 map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log (cwd)" })
 map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Git Blame Line" })
 map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
-map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = vim.fn.getcwd() }) end, { desc = "Git Log" })
+map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = root.git() }) end, { desc = "Git Log (Root Dir)" })
 map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse (open)" })
 map({ "n", "x" }, "<leader>gY", function()
   Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
@@ -175,9 +176,9 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
 
--- Floating terminal (uses cwd; LazyVim originally used root detection)
+-- Floating terminal
 map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = vim.fn.getcwd() }) end, { desc = "Terminal (cwd)" })
+map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = root.project() }) end, { desc = "Terminal (Root Dir)" })
 
 -- Windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
