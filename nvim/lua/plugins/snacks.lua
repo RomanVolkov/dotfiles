@@ -83,7 +83,7 @@ return {
     { "<leader>bf", function() Snacks.picker.buffers() end, desc = "Find Buffer" },
     -- Search / symbols
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
-    { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
+    { "<leader>sw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
     { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Search Diagnostics" },
     -- Diagnostics list
     { "<leader>xe", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
