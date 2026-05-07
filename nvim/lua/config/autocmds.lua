@@ -125,8 +125,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+-- Transparent background. Default ON; toggle with <leader>ut. Re-applies
+-- on every colorscheme change so it survives <leader>uc switches.
+vim.g.transparent_bg = true
+local transparency = require("util.transparency")
+transparency.apply()
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = augroup("transparency"),
+  callback = vim.schedule_wrap(transparency.apply),
+})
 
 -- Check for file changes when the cursor is idle.
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {

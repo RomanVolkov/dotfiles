@@ -26,7 +26,7 @@
 --    x*  Lists / Trouble  xq/xl vim quickfix/loclist · xQ/xL Trouble qf/loc · xx/xX Trouble diag · xe→loclist · xt/xT todo
 --    q*  Quit / Sessions  qq quit · qs/qS/ql/qd persistence
 --    d*  Debug            dl run-last · dps profiler scratch (DAP itself is on F-keys)
---    u*  UI                uc pick-colorscheme
+--    u*  UI                uc pick-colorscheme · ut toggle-transparency
 --    L                    :Lazy
 --    n / un               notification history / dismiss
 --    .  / S               scratch / select scratch
@@ -188,6 +188,9 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- Inspect
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
+
+-- Toggle transparent background (also re-applies on colorscheme change)
+map("n", "<leader>ut", function() require("util.transparency").toggle() end, { desc = "Toggle Transparent Background" })
 
 -- Lua scratch
 vim.api.nvim_create_autocmd("FileType", {

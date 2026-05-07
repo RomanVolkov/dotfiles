@@ -1,6 +1,9 @@
 -- All colorscheme plugins live here so theme management is in one place.
 -- Default theme is set in lua/config/lazy.lua via vim.cmd.colorscheme().
 -- Switch interactively with <leader>uc (Snacks.picker.colorschemes — live preview).
+-- Toggle background transparency with <leader>ut. The colorschemes here ship
+-- their natural backgrounds; transparency is layered on top by
+-- lua/util/transparency.lua, which is what the toggle controls.
 
 return {
   {
@@ -12,7 +15,6 @@ return {
       integrations = { blink_cmp = true },
       flavour = "mocha",
       background = { dark = "mocha" },
-      transparent_background = true,
       compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
     },
   },
@@ -22,7 +24,6 @@ return {
     lazy = true,
     opts = {
       background = { dark = "dragon" },
-      transparent = true,
     },
   },
 
@@ -31,16 +32,12 @@ return {
     lazy = true,
     opts = {
       theme = "dark",
-      disable = { background = true },
     },
   },
 
   {
     "vague-theme/vague.nvim",
     lazy = true,
-    opts = {
-      transparent = true,
-    },
   },
 
   -- nyoom-engineering's colorscheme is oxocarbon (nyoom.nvim itself is a
