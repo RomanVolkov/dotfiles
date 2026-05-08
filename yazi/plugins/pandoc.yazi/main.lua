@@ -6,7 +6,7 @@ local M = {}
 
 function M:peek(job)
 	local child = Command("pandoc")
-		:args({
+		:arg({
 			"--to", "plain",
 			"--wrap", "none",
 			tostring(job.file.url),

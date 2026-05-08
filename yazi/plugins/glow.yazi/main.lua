@@ -6,7 +6,7 @@ local M = {}
 
 function M:peek(job)
 	local child = Command("glow")
-		:args({
+		:arg({
 			"--style", "dark",
 			"--width", tostring(math.max(job.area.w - 2, 0)),
 			tostring(job.file.url),
