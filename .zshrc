@@ -86,6 +86,7 @@ alias ssh='TERM=xterm-256color ssh'
 alias k=kubectl
 alias e='exit'
 alias c='clear'
+alias kf='~/.dotfiles/scripts/kitty-font.sh'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

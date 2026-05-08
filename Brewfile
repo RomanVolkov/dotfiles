@@ -25,8 +25,16 @@ brew "lazygit"
 brew "ripgrep"
 
 cask "alfred"
-cask "font-fira-code"
 cask "numi"
 cask "vlc"
 cask "anaconda"
 cask "visual-studio-code"
+
+# Coding fonts (Nerd Font variants, switch with `kf`).
+cask "font-fira-code-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-iosevka-nerd-font"
+cask "font-meslo-lg-nerd-font"
+cask "font-monaspace-nerd-font"
+cask "font-victor-mono-nerd-font"
+cask "font-hack-nerd-font"

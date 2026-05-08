@@ -21,6 +21,7 @@ ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s -f ~/.dotfiles/.aerospace.toml ~/.aerospace.toml
 ln -s -f ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -s -f ~/.dotfiles/current-theme.conf ~/.config/kitty/current-theme.conf
+ln -s -f ~/.dotfiles/current-font.conf ~/.config/kitty/current-font.conf
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s ~/.dotfiles/yazi ~/.config/yazi
 ln -s ~/.dotfiles/opencode ~/.config/opencode
