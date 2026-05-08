@@ -107,6 +107,12 @@ preview_image() {
   else
     chafa "$@"
   fi
+  # kitten icat / chafa can leave the tty's keypad / line-discipline in
+  # a state that breaks zsh-vi-mode's Esc detection. Reset and re-bind.
+  stty sane 2>/dev/null
+  if typeset -f zvm_select_vi_mode >/dev/null 2>&1; then
+    zvm_select_vi_mode "$ZVM_MODE_INSERT" >/dev/null 2>&1
+  fi
 }
 
 function y() {
