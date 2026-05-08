@@ -136,7 +136,11 @@ if [ -f '$HOME/.google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/.google-cloud-sd
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/.google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/.google-cloud-sdk/completion.zsh.inc'; fi
 
-eval "$(zoxide init zsh)"
+# --cmd cd makes zoxide replace `cd` with its smart version (and `zi`
+# becomes `cdi`). Plain `cd ./path`, `cd -`, `cd ~`, `cd` with no args
+# all still work — zoxide falls through to the shell builtin when the
+# argument doesn't match its frecency database.
+eval "$(zoxide init zsh --cmd cd)"
 
 # atuin — better shell history (Ctrl+R). --disable-up-arrow keeps the
 # Up key as zsh's normal in-line history (zsh-vi-mode wants this).
