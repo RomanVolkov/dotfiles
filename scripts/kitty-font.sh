@@ -94,13 +94,5 @@ fi
 # a font re-render across every kitty window using the new family.
 kitty @ load-config 2>/dev/null || true
 
-# kitty does NOT reliably hot-reload font_family in already-rendered
-# windows — the running window keeps its cached font atlas. Workarounds
-# (set-font-size nudge, action triggers, etc.) are flaky across kitty
-# versions. Reliable solution: spawn a fresh kitty OS window, which
-# always picks up the new config.
-kitty @ launch --type=os-window 2>/dev/null || true
-
 echo "Switched to: $variant @ ${size}pt"
-echo "(A new kitty window was opened with the new font."
-echo " Close this old one when ready: exit, or Cmd+W.)"
+echo "(Restart kitty or open a new window with Cmd+N to see the change.)"
