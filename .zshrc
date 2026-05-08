@@ -49,7 +49,10 @@ iterm2
 pip
 docker
 docker-compose
-tmux
+# 'tmux' plugin intentionally disabled: it wraps the tmux command and
+# auto-launches a session, conflicting with kitty.conf's shell line
+# (which already auto-attaches). Also caused `_zsh_tmux_plugin_run`
+# errors from bash subshells. Type `tmux` directly when needed.
 macos
 # 'sudo' plugin is intentionally disabled: it binds double-Esc to
 # prepend sudo, which conflicts with vi-mode's Esc and randomly adds
