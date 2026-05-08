@@ -95,6 +95,26 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Spell inside comments/strings of code files. Treesitter's @spell capture
+-- limits spell-checking to commented or string regions on parsers that
+-- ship the capture; identifiers and keywords are NOT highlighted. Only
+-- enable for filetypes whose treesitter parser has reliable @spell
+-- coverage — adding a filetype that doesn't would spell-check everything.
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("spell_in_comments"),
+  pattern = {
+    "lua", "python", "go", "rust",
+    "javascript", "typescript", "tsx", "javascriptreact", "typescriptreact",
+    "java", "c", "cpp", "cs",
+    "ruby", "swift",
+    "sh", "bash", "zsh",
+    "vim", "vimdoc",
+  },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("json_conceal"),
   pattern = { "json", "jsonc", "json5" },
