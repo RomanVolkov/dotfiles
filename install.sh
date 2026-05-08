@@ -37,7 +37,12 @@ fi
 # vs llhttp) that otherwise surface as runtime dyld errors.
 brew update
 brew upgrade
-brew bundle --file="$DOTFILES/Brewfile"
+# `--force` makes cask installs overwrite any pre-existing fonts in
+# ~/Library/Fonts (e.g. fonts manually downloaded from nerdfonts.com
+# earlier). Without it brew aborts the cask with "existing Font is
+# different from the one being installed" and the bundle exits with
+# `2 Brewfile dependencies failed`.
+HOMEBREW_CASK_OPTS="--force" brew bundle --file="$DOTFILES/Brewfile"
 brew cleanup
 
 ## ----- Symlinks -----
