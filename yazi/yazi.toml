@@ -5,13 +5,13 @@
 [plugin]
 prepend_previewers = [
   # Markdown rendered (instead of the default bat-style highlight).
-  { name = "*.md",        run = "glow" },
-  { name = "*.markdown",  run = "glow" },
+  { url = "*.md",        run = "glow" },
+  { url = "*.markdown",  run = "glow" },
 
   # Office documents → plain text via pandoc.
-  { name = "*.docx", run = "pandoc" },
-  { name = "*.odt",  run = "pandoc" },
-  { name = "*.epub", run = "pandoc" },
+  { url = "*.docx", run = "pandoc" },
+  { url = "*.odt",  run = "pandoc" },
+  { url = "*.epub", run = "pandoc" },
   { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", run = "pandoc" },
   { mime = "application/vnd.oasis.opendocument.text", run = "pandoc" },
   { mime = "application/epub+zip", run = "pandoc" },
