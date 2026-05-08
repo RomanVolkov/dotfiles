@@ -1,6 +1,8 @@
--- glow previewer for markdown files.
--- Yazi 25+ previewer API: peek/seek take a `job` table holding area,
--- file, skip, and units. Use job.* — `self.*` is nil.
+-- glow previewer for markdown files. Yazi 26.x API:
+--   M:peek(job) / M:seek(job)         — job carries area/file/skip/units
+--   ya.preview_widget(job, widgets)   — singular (was preview_widgets)
+--   ya.emit(name, opts)               — was ya.manager_emit
+--   Command(...):arg({list})          — singular arg, was args
 
 local M = {}
 
@@ -16,9 +18,7 @@ function M:peek(job)
 		:spawn()
 
 	if not child then
-		return ya.preview_widgets(job, {
-			ui.Text("Failed to spawn glow"):area(job.area),
-		})
+		return ya.preview_widget(job, ui.Text("Failed to spawn glow"):area(job.area))
 	end
 
 	local limit = job.area.h
@@ -26,9 +26,7 @@ function M:peek(job)
 	repeat
 		local next, event = child:read_line()
 		if event == 1 then
-			return ya.preview_widgets(job, {
-				ui.Text(next):area(job.area),
-			})
+			return ya.preview_widget(job, ui.Text(next):area(job.area))
 		elseif event ~= 0 then
 			break
 		end
@@ -41,15 +39,13 @@ function M:peek(job)
 
 	child:start_kill()
 	if job.skip > 0 and i < job.skip + limit then
-		ya.manager_emit("peek", {
+		ya.emit("peek", {
 			tostring(math.max(0, i - limit)),
 			only_if = tostring(job.file.url),
 			upper_bound = "",
 		})
 	else
-		ya.preview_widgets(job, {
-			ui.Text.parse(lines):area(job.area),
-		})
+		ya.preview_widget(job, ui.Text.parse(lines):area(job.area))
 	end
 end
 
@@ -57,7 +53,7 @@ function M:seek(job)
 	local h = cx.active.preview.area.h
 	local step = math.floor(job.units * h / 10)
 	local skip = math.max(0, cx.active.preview.skip + step)
-	ya.manager_emit("peek", {
+	ya.emit("peek", {
 		tostring(skip),
 		only_if = tostring(job.file.url),
 	})
