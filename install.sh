@@ -78,10 +78,7 @@ fi
 defaults write net.kovidgoyal.kitty ApplePressAndHoldEnabled -bool false
 
 ## ----- Optional one-shot installs -----
-# Go debugger — `go install` is idempotent if go is on PATH.
-if command -v go >/dev/null 2>&1; then
-  go install github.com/go-delve/delve/cmd/dlv@latest >/dev/null 2>&1 || true
-fi
+# (delve is now installed via Brewfile; nothing to do here.)
 
 echo
 echo "✓ Dotfiles install complete."

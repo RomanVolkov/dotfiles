@@ -44,25 +44,21 @@ plugins=(
 brew
 gem
 zsh-autosuggestions
-history
-iterm2
 pip
 docker
 docker-compose
-# 'tmux' plugin intentionally disabled: it wraps the tmux command and
-# auto-launches a session, conflicting with kitty.conf's shell line
-# (which already auto-attaches). Also caused `_zsh_tmux_plugin_run`
-# errors from bash subshells. Type `tmux` directly when needed.
 macos
-# 'sudo' plugin is intentionally disabled: it binds double-Esc to
-# prepend sudo, which conflicts with vi-mode's Esc and randomly adds
-# 'sudo' when switching modes.
-# per-directory-history # CTRL + G to toggle history buckets
-# poetry
-# https://github.com/jeffreytse/zsh-vi-mode
-## git clone https://github.com/jeffreytse/zsh-vi-mode \
-  # $ZSH_CUSTOM/plugins/zsh-vi-mode
+# https://github.com/jeffreytse/zsh-vi-mode  — install:
+#   git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 zsh-vi-mode
+# Disabled (with reasons):
+#   iterm2  — shell integration for iTerm; we use kitty.
+#   history — `h`/`hsi` aliases; atuin replaces them.
+#   tmux    — auto-launches tmux + wraps the binary, conflicts with
+#             kitty.conf's shell line and breaks bash subshells.
+#   sudo    — binds Esc-Esc to prepend sudo; conflicts with vi-mode's Esc.
+#   per-directory-history (CTRL+G to toggle history buckets) — unused.
+#   poetry  — unused.
 )
 
 source $ZSH/oh-my-zsh.sh
