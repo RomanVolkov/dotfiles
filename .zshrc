@@ -73,9 +73,12 @@ source <(fzf --zsh)
 # zvm guarantees these run after its own keymap reset on every line init,
 # so they survive zvm's resets between prompts).
 zvm_after_init_commands+=(
-  "bindkey '^ ' autosuggest-accept"           # Ctrl+Space — accept full suggestion
-  "bindkey '^[[1;5C' forward-word"            # Ctrl+Right — accept one word
-  "bindkey '^[[1;5D' backward-word"           # Ctrl+Left  — back one word
+  # Pin bindings explicitly to the viins keymap. Without -M, bindkey
+  # writes to whatever keymap is current at init time and the binding
+  # can be lost across mode switches (Esc -> vicmd -> i -> viins).
+  "bindkey -M viins '^ ' autosuggest-accept"   # Ctrl+Space — accept full suggestion
+  "bindkey -M viins '^[[1;5C' forward-word"    # Ctrl+Right — accept one word
+  "bindkey -M viins '^[[1;5D' backward-word"   # Ctrl+Left  — back one word
 )
 
 alias vim=nvim
