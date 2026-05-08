@@ -166,3 +166,37 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 export BAT_THEME="Catppuccin Macchiato"
+
+# Copy a file to the macOS clipboard. Auto-detects type:
+#  · PNG / JPEG / GIF / TIFF / PDF  → bytes (pastes inline in Slack/Notes/Messages)
+#  · anything else                  → file reference (pastes as attachment in Mail, file in Finder)
+clipcopy() {
+  if [ -z "$1" ]; then
+    echo "usage: clipcopy <path>" >&2
+    return 1
+  fi
+  local p
+  p=$(realpath "$1" 2>/dev/null) || { echo "clipcopy: not found: $1" >&2; return 1; }
+  if [ ! -f "$p" ]; then
+    echo "clipcopy: not a file: $p" >&2
+    return 1
+  fi
+  local ext=${p##*.}
+  ext=${(L)ext}  # lowercase (zsh)
+  local applescript
+  case "$ext" in
+    png)
+      applescript="set the clipboard to (read POSIX file \"$p\" as «class PNGf»)" ;;
+    jpg|jpeg)
+      applescript="set the clipboard to (read POSIX file \"$p\" as JPEG picture)" ;;
+    gif)
+      applescript="set the clipboard to (read POSIX file \"$p\" as GIF picture)" ;;
+    tif|tiff)
+      applescript="set the clipboard to (read POSIX file \"$p\" as TIFF picture)" ;;
+    pdf)
+      applescript="set the clipboard to (read POSIX file \"$p\" as «class PDF »)" ;;
+    *)
+      applescript="tell app \"Finder\" to set the clipboard to POSIX file \"$p\"" ;;
+  esac
+  osascript -e "$applescript" && echo "copied: $p"
+}
