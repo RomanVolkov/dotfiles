@@ -26,11 +26,11 @@ cask "font-jetbrains-mono-nerd-font"
 cask "font-iosevka-nerd-font"
 cask "font-iosevka-term-nerd-font"
 cask "font-meslo-lg-nerd-font"
-cask "font-monaspace-nerd-font"
+cask "font-monaspice-nerd-font"        # GitHub's Monaspace (homebrew naming)
 cask "font-victor-mono-nerd-font"
 cask "font-hack-nerd-font"
-cask "font-cascadia-code-nerd-font"
-cask "font-cascadia-mono-nerd-font"
+cask "font-caskaydia-cove-nerd-font"   # Cascadia Code (homebrew renames)
+cask "font-caskaydia-mono-nerd-font"   # Cascadia Mono
 cask "font-blex-mono-nerd-font"        # IBM Plex Mono
 cask "font-mononoki-nerd-font"
 cask "font-space-mono-nerd-font"
@@ -43,7 +43,7 @@ cask "font-geist-mono-nerd-font"       # Vercel
 cask "font-zed-mono-nerd-font"
 cask "font-departure-mono-nerd-font"   # Retro pixel
 cask "font-commit-mono-nerd-font"
-cask "font-intel-one-mono-nerd-font"
+cask "font-intone-mono-nerd-font"      # Intel One Mono
 cask "font-lilex-nerd-font"            # FiraCode-derived, more ligatures
 cask "font-0xproto-nerd-font"
 cask "font-hasklug-nerd-font"          # Haskell ligatures
