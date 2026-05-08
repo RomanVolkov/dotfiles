@@ -105,7 +105,10 @@ vim.o.ttimeoutlen = 50
 
 vim.g.snacks_animate = false
 
-vim.opt.spell = true
+-- Spell defaults off globally — the wrap_spell autocmd in autocmds.lua
+-- turns it on for prose filetypes (markdown, text, gitcommit, plaintex,
+-- typst). Spelllang stays globally configured so it's ready when needed.
+vim.opt.spell = false
 vim.opt.spelllang = { "ru", "en" }
 
 vim.opt.listchars:append({ tab = "→ " })
