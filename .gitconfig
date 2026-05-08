@@ -1,0 +1,46 @@
+; Global git config. user.name / user.email stay per-repo (set when
+; you `git clone`) so this file is portable across multiple identities.
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true       ; n / N to move between sections
+	light = false         ; dark terminal
+	line-numbers = true
+	side-by-side = false
+	syntax-theme = Catppuccin Mocha
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	colorMoved = default
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+[pull]
+	ff = only
+
+[rerere]
+	enabled = true        ; remember conflict resolutions
+
+[column]
+	ui = auto             ; multi-column git branch / git tag
+
+[branch]
+	sort = -committerdate ; recent branches first
+
+[tag]
+	sort = version:refname
+
+[fetch]
+	prune = true          ; remove deleted remote branches
+	pruneTags = true

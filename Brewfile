@@ -14,6 +14,16 @@ brew "gh"
 brew "xcodes"
 brew "yt-dlp"
 
+# Modern unix replacements / quality-of-life
+brew "atuin"        # better shell history (Ctrl+R replacement)
+brew "git-delta"    # syntax-highlighted git diffs (used by core.pager)
+brew "fd"           # faster, friendlier `find`
+brew "eza"          # `ls` with git status, icons, tree (alias: ls/ll/lt)
+brew "dust"         # visual `du` tree
+brew "procs"        # nicer `ps`
+brew "tealdeer"     # quick `tldr` examples (rust implementation)
+brew "bat"          # syntax-highlighted `cat` (BAT_THEME already set)
+
 cask "alfred"
 cask "numi"
 cask "vlc"

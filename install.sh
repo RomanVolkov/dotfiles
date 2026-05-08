@@ -18,6 +18,7 @@ source ~/.zshrc
 ln -s -f ~/.dotfiles/.zshrc ~/.zshrc
 ln -s -f ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
+ln -s -f ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s -f ~/.dotfiles/.aerospace.toml ~/.aerospace.toml
 ln -s -f ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -s -f ~/.dotfiles/current-theme.conf ~/.config/kitty/current-theme.conf
@@ -26,5 +27,10 @@ ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s ~/.dotfiles/yazi ~/.config/yazi
 ln -s ~/.dotfiles/opencode ~/.config/opencode
 ln -s ~/.dotfiles/eligere ~/.config/eligere
+
+## tmux plugin manager (TPM) — required for the plugins listed in
+## .tmux.conf (sensible, resurrect, continuum). After this clone,
+## launch tmux and press <prefix> + I to install the plugins.
+[ -d ~/.tmux/plugins/tpm ] || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 defaults write net.kovidgoyal.kitty ApplePressAndHoldEnabled -bool false

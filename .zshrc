@@ -88,6 +88,16 @@ alias e='exit'
 alias c='clear'
 alias kf='~/.dotfiles/scripts/kitty-font.sh'
 
+# Modern Unix replacements (only ls is overridden — find/cat/ps/du
+# stay POSIX so scripts don't break; use fd/bat/procs/dust by name).
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --git --icons=auto'
+  alias ll='eza -la --git --icons=auto'
+  alias la='eza -la --git --icons=auto'
+  alias lt='eza --tree --git-ignore --icons=auto'
+fi
+alias du='dust'   # alias: dust IS du-shaped, drop if it ever surprises you
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -111,6 +121,10 @@ if [ -f '/Users/romanvolkov/.google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ro
 if [ -f '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(zoxide init zsh)"
+
+# atuin — better shell history (Ctrl+R). --disable-up-arrow keeps the
+# Up key as zsh's normal in-line history (zsh-vi-mode wants this).
+command -v atuin >/dev/null 2>&1 && eval "$(atuin init zsh --disable-up-arrow)"
 
 
 # Added by LM Studio CLI (lms)
