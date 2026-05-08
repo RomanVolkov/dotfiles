@@ -51,7 +51,9 @@ docker
 docker-compose
 tmux
 macos
-sudo
+# 'sudo' plugin is intentionally disabled: it binds double-Esc to
+# prepend sudo, which conflicts with vi-mode's Esc and randomly adds
+# 'sudo' when switching modes.
 # per-directory-history # CTRL + G to toggle history buckets
 # poetry
 # https://github.com/jeffreytse/zsh-vi-mode
@@ -64,11 +66,10 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
 
-# Snappy mode switching (default 40 = 400ms after Esc).
-export KEYTIMEOUT=1
-
 # Bindings have to live inside zvm_after_init because zsh-vi-mode resets
 # the keymap after its own setup, clobbering any earlier `bindkey` calls.
+# (Don't set KEYTIMEOUT manually — zsh-vi-mode manages Esc timing itself
+# via ZVM_ESCAPE_KEYTIMEOUT, default 0.03s, which is already snappy.)
 function zvm_after_init() {
   bindkey '^ ' autosuggest-accept            # Ctrl+Space  — accept full suggestion
   bindkey '^[[1;5C' forward-word             # Ctrl+Right  — accept one word
