@@ -58,6 +58,7 @@ link "$DOTFILES/nvim"     "$HOME/.config/nvim"
 link "$DOTFILES/yazi"     "$HOME/.config/yazi"
 link "$DOTFILES/opencode" "$HOME/.config/opencode"
 link "$DOTFILES/eligere"  "$HOME/.config/eligere"
+link "$DOTFILES/eza"      "$HOME/.config/eza"
 
 ## ----- tmux plugin manager (TPM) -----
 # After this script: launch tmux and press <prefix> + I to install plugins.
