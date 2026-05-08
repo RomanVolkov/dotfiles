@@ -98,6 +98,17 @@ if command -v eza >/dev/null 2>&1; then
 fi
 alias du='dust'   # alias: dust IS du-shaped, drop if it ever surprises you
 
+# Inline image preview. Inside kitty (incl. through tmux thanks to
+# allow-passthrough) we use kitten icat for native graphics-protocol
+# rendering; otherwise fall back to chafa's ANSI approximation.
+preview_image() {
+  if [ -n "$KITTY_WINDOW_ID" ] && command -v kitten >/dev/null 2>&1; then
+    kitten icat --align=left "$@"
+  else
+    chafa "$@"
+  fi
+}
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
