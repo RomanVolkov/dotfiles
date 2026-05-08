@@ -36,8 +36,7 @@
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
-    vi_mode                 # current zsh vi mode (blank in INSERT)
-    prompt_char             # prompt symbol
+    prompt_char             # prompt symbol — rotates per vi mode
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -139,35 +138,19 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=76
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=196
-  # Default prompt symbol.
+  # ❯ insert · ❮ normal (180°) · ⌄ visual (down) · ❯ overwrite (same as insert).
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
-  # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
-  # Prompt symbol in visual vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='V'
-  # Prompt symbol in overwrite vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIOWR_CONTENT_EXPANSION='▶'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='⌄'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIOWR_CONTENT_EXPANSION='❯'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
   # No line terminator if prompt_char is the last segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
   # No line introducer if prompt_char is the first segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
 
-  #####################################[ vi_mode: vi keymap ]####################################
-  # Single-glyph icons per mode, distinct colors. No text labels.
-  #   ─  insert      (a flowing horizontal stroke)
-  #   ■  normal      (a solid block; "stopped")
-  #   ◆  visual      (a diamond; "selecting")
-  #   ▶  overwrite   (a forward triangle; "advancing")
-  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING='─'
-  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING='■'
-  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING='◆'
-  typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING='▶'
-  # Colors per mode (cyan / yellow / magenta / red).
-  typeset -g POWERLEVEL9K_VI_INSERT_MODE_FOREGROUND=44
-  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_FOREGROUND=178
-  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_FOREGROUND=170
-  typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_FOREGROUND=196
+  # (vi_mode segment removed — the prompt_char rotation per mode handles
+  # mode signaling: ❯ insert / ❮ normal / ⌄ visual / ❯ overwrite.)
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
