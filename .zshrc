@@ -1,18 +1,24 @@
-# OPENSPEC:START
-# OpenSpec shell completions configuration
-fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
-autoload -Uz compinit
-compinit
-# OPENSPEC:END
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# NOTE: nothing that can write to stdout (compinit, anything sourcing
+# from non-existent paths, etc.) is allowed above this point — instant
+# prompt would render whatever leaks through as visual garbage.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Append extra completion dirs to fpath BEFORE oh-my-zsh runs compinit.
+# Putting them here means OMZ's single compinit picks them up — we don't
+# call compinit a second (or third) time. OpenSpec and Docker Desktop
+# both expect their completions to live in the fpath at compinit time.
+fpath=(
+  "$HOME/.oh-my-zsh/custom/completions"
+  "$HOME/.docker/completions"
+  $fpath
+)
 
 export EDITOR='nvim'
 export ZSH="$HOME/.oh-my-zsh"
@@ -32,17 +38,18 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/bin/omnisharp-roslyn:$PATH"
 # export PATH="$HOME/nvim-macos-arm64/bin:$PATH"
 
-. "$HOME/.cargo/env"
+# Guard each external init source — these files only exist on machines
+# where the corresponding tool was actually installed, and unguarded
+# `source` errors break shell startup on a fresh box.
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # Wasmer
 export WASMER_DIR="$HOME/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
-source ~/.env
+[ -f "$HOME/.env" ] && source "$HOME/.env"
 
 plugins=(
-brew
-gem
 zsh-autosuggestions
 pip
 docker
@@ -52,8 +59,11 @@ macos
 #   git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 zsh-vi-mode
 # Disabled (with reasons):
+#   brew    — modern OMZ brew plugin is essentially empty (just a few stubs).
+#   gem     — rubygems aliases; not used in this setup.
 #   iterm2  — shell integration for iTerm; we use kitty.
-#   history — `h`/`hsi` aliases; atuin replaces them.
+#   history — `h`/`hsi` aliases; atuin used to replace them, fzf's
+#             Ctrl+R now does the same.
 #   tmux    — auto-launches tmux + wraps the binary, conflicts with
 #             kitty.conf's shell line and breaks bash subshells.
 #   sudo    — binds Esc-Esc to prepend sudo; conflicts with vi-mode's Esc.
@@ -98,7 +108,13 @@ zvm_after_init_commands+=(
 alias vim=nvim
 alias v=nvim
 alias g=lazygit
-alias ssh='TERM=xterm-256color ssh'
+# Inside kitty, prefer `kitten ssh` — it copies kitty's terminfo to the
+# remote so cursor styling, hyperlinks, and graphics work even on hosts
+# that don't ship xterm-kitty terminfo. Outside kitty, fall back to
+# plain ssh. (No more `TERM=xterm-256color` workaround.)
+if [ -n "$KITTY_WINDOW_ID" ] && command -v kitten >/dev/null 2>&1; then
+  alias ssh='kitten ssh'
+fi
 alias k=kubectl
 alias e='exit'
 alias c='clear'
@@ -141,17 +157,9 @@ function y() {
 }
 
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=($HOME/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/.google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/.google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/.google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/.google-cloud-sdk/completion.zsh.inc'; fi
+# Docker Desktop's completions dir is added to fpath at the top of
+# this file, before oh-my-zsh's compinit runs — so we don't need a
+# second compinit call here.
 
 # --cmd cd makes zoxide replace `cd` with its smart version (and `zi`
 # becomes `cdi`). Plain `cd ./path`, `cd -`, `cd ~`, `cd` with no args
