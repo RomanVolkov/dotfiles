@@ -91,10 +91,10 @@ alias kf='~/.dotfiles/scripts/kitty-font.sh'
 # Modern Unix replacements (only ls is overridden — find/cat/ps/du
 # stay POSIX so scripts don't break; use fd/bat/procs/dust by name).
 if command -v eza >/dev/null 2>&1; then
-  alias ls='eza --git --icons=auto'
-  alias ll='eza -la --git --icons=auto'
-  alias la='eza -la --git --icons=auto'
-  alias lt='eza --tree --git-ignore --icons=auto'
+  alias ls='eza --git --icons=auto --no-user'
+  alias ll='eza -la --git --icons=auto --no-user'
+  alias la='eza -la --git --icons=auto --no-user'
+  alias lt='eza --tree --git-ignore --icons=auto --no-user'
 fi
 alias du='dust'   # alias: dust IS du-shaped, drop if it ever surprises you
 
