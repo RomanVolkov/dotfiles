@@ -81,23 +81,10 @@ zvm_after_init_commands+=(
   "bindkey -M viins '^[[1;5D' backward-word"   # Ctrl+Left  — back one word
 )
 
-# Cursor-shape re-sync. zsh-vi-mode tracks the cursor itself, but
-# external commands (kitten icat, some fzf widgets) can flip the
-# terminal to a block/beam that no longer matches the actual mode.
-# This precmd hook re-asserts the cursor on every prompt redraw based
-# on the current $ZVM_MODE.
-autoload -Uz add-zsh-hook
-_zvm_resync_cursor() {
-  case "$ZVM_MODE" in
-    "$ZVM_MODE_NORMAL"|"$ZVM_MODE_VISUAL"|"$ZVM_MODE_VISUAL_LINE")
-      print -n -- '\e[2 q'   # steady block
-      ;;
-    *)
-      print -n -- '\e[5 q'   # blinking beam (insert default)
-      ;;
-  esac
-}
-add-zsh-hook precmd _zvm_resync_cursor
+# (Removed the cursor-resync precmd hook — emitting escape sequences
+# inline with the prompt was breaking zsh-vi-mode's Esc detection
+# and rendering as visible garbage. Trust zvm's own cursor handling;
+# if it desyncs after a specific command, fix that command's wrapper.)
 
 alias vim=nvim
 alias v=nvim
