@@ -24,6 +24,19 @@ brew "procs"        # nicer `ps`
 brew "tealdeer"     # quick `tldr` examples (rust implementation)
 brew "bat"          # syntax-highlighted `cat` (BAT_THEME already set)
 
+# yazi preview backends (yazi auto-detects what's installed)
+brew "ripgrep"             # grep used internally by yazi (and `:` filter)
+brew "jq"                  # JSON pretty-print preview
+brew "poppler"             # PDF previews via pdftoppm/pdftotext
+brew "imagemagick"         # SVG, HEIC, RAW, fallback for many image formats
+brew "ffmpegthumbnailer"   # quick video thumbnail extraction
+brew "mediainfo"           # video/audio metadata in preview pane
+brew "pandoc"              # convert .docx/.odt/.epub/etc. to text for preview
+brew "glow"                # markdown rendered in the preview pane
+brew "chafa"               # image preview fallback (used outside kitty)
+brew "sevenzip"            # 7z formula provides 7z; archive content listing
+brew "hexyl"               # hex preview for binary files
+
 cask "alfred"
 cask "numi"
 cask "vlc"
