@@ -96,7 +96,7 @@ return {
       )
     end
 
-    local path = "/Users/romanvolkov/.virtualenvs/debugpy/"
+    local path = vim.env.HOME .. "/.virtualenvs/debugpy/"
     require("dap-python").setup(path .. "bin/python")
 
     -- swift

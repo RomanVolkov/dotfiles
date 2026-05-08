@@ -1,1 +1,5 @@
 .DS_Store
+
+# Claude Code per-project state (auto-generated permission grants
+# with literal absolute paths; not portable, not config).
+.claude/settings.local.json

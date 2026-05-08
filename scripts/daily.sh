@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # open current daily note inside Obsidian VAULT
 
-VAULT="/Users/romanvolkov/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obsidian"
+VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/obsidian"
 NOTE="$VAULT/daily/$(date +%Y-%m-%d).md" # daily note name
 
 touch "$NOTE" # ensure today’s note exists

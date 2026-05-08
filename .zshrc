@@ -1,6 +1,6 @@
 # OPENSPEC:START
 # OpenSpec shell completions configuration
-fpath=("/Users/romanvolkov/.oh-my-zsh/custom/completions" $fpath)
+fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
 autoload -Uz compinit
 compinit
 # OPENSPEC:END
@@ -15,7 +15,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export EDITOR='nvim'
-export ZSH="/Users/romanvolkov/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -27,10 +27,10 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$GOPATH/bin/"
 export PATH="$PATH:$HOME/dev/personal/scripts"
 export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/Users/romanvolkov/.local/bin:$PATH"
-export PATH="/Users/romanvolkov/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/bin/omnisharp-roslyn:$PATH"
-# export PATH="/Users/romanvolkov/nvim-macos-arm64/bin:$PATH"
+# export PATH="$HOME/nvim-macos-arm64/bin:$PATH"
 
 . "$HOME/.cargo/env"
 
@@ -109,16 +109,16 @@ function y() {
 
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/romanvolkov/.docker/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/romanvolkov/.google-cloud-sdk/path.zsh.inc' ]; then . '/Users/romanvolkov/.google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/.google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/.google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/romanvolkov/.google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/.google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/.google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(zoxide init zsh)"
 
@@ -128,7 +128,7 @@ command -v atuin >/dev/null 2>&1 && eval "$(atuin init zsh --disable-up-arrow)"
 
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/romanvolkov/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 export BAT_THEME="Catppuccin Mocha"
