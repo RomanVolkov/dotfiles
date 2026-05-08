@@ -92,9 +92,15 @@ return {
         },
       },
       sourcekit = {
-        cmd = {
-          "/Applications/Xcode-26.3.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
-        },
+        -- Resolve the active Xcode toolchain at startup so this isn't pinned
+        -- to a specific Xcode version (was hardcoded to Xcode-26.3.0.app).
+        cmd = (function()
+          local dev = vim.fn.system("xcode-select -p"):gsub("%s+$", "")
+          if vim.v.shell_error == 0 and dev ~= "" then
+            return { dev .. "/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" }
+          end
+          return { "sourcekit-lsp" } -- fall back to PATH
+        end)(),
         filetypes = { "swift" },
       },
       ts_ls = {enabled = false},

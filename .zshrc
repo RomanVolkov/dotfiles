@@ -148,4 +148,4 @@ command -v atuin >/dev/null 2>&1 && eval "$(atuin init zsh --disable-up-arrow)"
 export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
-export BAT_THEME="Catppuccin Mocha"
+export BAT_THEME="Catppuccin Macchiato"

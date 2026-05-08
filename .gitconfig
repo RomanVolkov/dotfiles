@@ -12,7 +12,7 @@
 	light = false         ; dark terminal
 	line-numbers = true
 	side-by-side = false
-	syntax-theme = Catppuccin Mocha
+	syntax-theme = Catppuccin Macchiato
 
 [merge]
 	conflictstyle = zdiff3

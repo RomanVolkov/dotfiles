@@ -96,8 +96,15 @@ return {
       )
     end
 
-    local path = vim.env.HOME .. "/.virtualenvs/debugpy/"
-    require("dap-python").setup(path .. "bin/python")
+    -- Python debugging via debugpy. Setup is gated on the venv existing
+    -- so a missing virtualenv doesn't error out the whole DAP config.
+    -- Create with:
+    --   python3 -m venv ~/.virtualenvs/debugpy && \
+    --   ~/.virtualenvs/debugpy/bin/pip install debugpy
+    local debugpy_python = vim.env.HOME .. "/.virtualenvs/debugpy/bin/python"
+    if vim.fn.executable(debugpy_python) == 1 then
+      require("dap-python").setup(debugpy_python)
+    end
 
     -- swift
     local dap = require("dap")
