@@ -51,3 +51,4 @@ cask "font-monofur-nerd-font"
 cask "font-shure-tech-mono-nerd-font"
 cask "font-anonymice-nerd-font"        # Anonymous Pro
 cask "font-symbols-only-nerd-font"     # Glyphs-only fallback
+cask "font-terminess-ttf-nerd-font"    # Terminess (Terminus-based, retro)
