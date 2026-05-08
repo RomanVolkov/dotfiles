@@ -93,6 +93,14 @@ fi
 # load-config picks up font_family changes; set-font-size --all forces
 # a font re-render across every kitty window using the new family.
 kitty @ load-config 2>/dev/null || true
+
+# Forcing a font re-render in already-running windows: setting font-size
+# to the SAME value as before is a no-op for many kitty versions, so we
+# bump to a different size and immediately back. Each set-font-size
+# invocation rebuilds the font atlas, which is when the new font_family
+# from load-config actually gets picked up.
+nudge=$((size == 12 ? 13 : size - 1))
+kitty @ set-font-size --all "$nudge" 2>/dev/null || true
 kitty @ set-font-size --all "$size" 2>/dev/null || true
 
 echo "Switched to: $variant @ ${size}pt"
