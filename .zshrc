@@ -64,9 +64,16 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
 
-bindkey '^ ' autosuggest-accept # accept current suggestion by zsh-autosuggestions
-# bindkey '^K' up-line-or-history 
-# bindkey '^j' down-line-or-history 
+# Snappy mode switching (default 40 = 400ms after Esc).
+export KEYTIMEOUT=1
+
+# Bindings have to live inside zvm_after_init because zsh-vi-mode resets
+# the keymap after its own setup, clobbering any earlier `bindkey` calls.
+function zvm_after_init() {
+  bindkey '^ ' autosuggest-accept            # Ctrl+Space  — accept full suggestion
+  bindkey '^[[1;5C' forward-word             # Ctrl+Right  — accept one word
+  bindkey '^[[1;5D' backward-word            # Ctrl+Left   — back one word
+}
 
 alias vim=nvim
 alias v=nvim
