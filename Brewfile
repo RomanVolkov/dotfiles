@@ -15,7 +15,6 @@ brew "xcodes"
 brew "yt-dlp"
 
 # Modern unix replacements / quality-of-life
-brew "atuin"        # better shell history (Ctrl+R replacement)
 brew "git-delta"    # syntax-highlighted git diffs (used by core.pager)
 brew "fd"           # faster, friendlier `find`
 brew "eza"          # `ls` with git status, icons, tree (alias: ls/ll/lt)

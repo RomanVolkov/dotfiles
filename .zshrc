@@ -156,9 +156,7 @@ if [ -f '$HOME/.google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/.google-cl
 # argument doesn't match its frecency database.
 eval "$(zoxide init zsh --cmd cd)"
 
-# atuin — better shell history (Ctrl+R). --disable-up-arrow keeps the
-# Up key as zsh's normal in-line history (zsh-vi-mode wants this).
-command -v atuin >/dev/null 2>&1 && eval "$(atuin init zsh --disable-up-arrow)"
+# Ctrl+R history is provided by fzf's --zsh integration sourced above.
 
 
 # Added by LM Studio CLI (lms)
