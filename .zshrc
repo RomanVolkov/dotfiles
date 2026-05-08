@@ -68,6 +68,12 @@ source $ZSH/oh-my-zsh.sh
 # the same bindings, which used to clobber zvm's keymap on each prompt.
 source <(fzf --zsh)
 
+# Add `jk` as an alternate Esc — typed quickly in insert mode it
+# leaves to normal mode. Standard Esc still works; this is a fallback
+# that bypasses zsh's escape-sequence detection (the layer that gets
+# fragile around fzf widgets, atuin async fetches, etc.).
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
 # Custom keybindings live inside zsh-vi-mode's zvm_after_init_commands
 # array (the array form is more reliable than the function callback —
 # zvm guarantees these run after its own keymap reset on every line init,
