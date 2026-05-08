@@ -154,14 +154,17 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
 
   #####################################[ vi_mode: vi keymap ]####################################
-  # Show a label only when NOT in insert mode — insert is the default and
-  # would otherwise clutter the prompt. NORMAL/VISUAL/OVERWRITE all show.
-  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING=
-  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING=NORMAL
-  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING=VISUAL
-  typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING=OVERWRITE
-  # Colors per mode. Yellow for normal (most common), magenta for visual,
-  # red for overwrite (destructive).
+  # Single-glyph icons per mode, distinct colors. No text labels.
+  #   ─  insert      (a flowing horizontal stroke)
+  #   ■  normal      (a solid block; "stopped")
+  #   ◆  visual      (a diamond; "selecting")
+  #   ▶  overwrite   (a forward triangle; "advancing")
+  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING='─'
+  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING='■'
+  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING='◆'
+  typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING='▶'
+  # Colors per mode (cyan / yellow / magenta / red).
+  typeset -g POWERLEVEL9K_VI_INSERT_MODE_FOREGROUND=44
   typeset -g POWERLEVEL9K_VI_COMMAND_MODE_FOREGROUND=178
   typeset -g POWERLEVEL9K_VI_VISUAL_MODE_FOREGROUND=170
   typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_FOREGROUND=196
