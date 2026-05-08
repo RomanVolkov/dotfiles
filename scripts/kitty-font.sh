@@ -1,18 +1,30 @@
 #!/usr/bin/env zsh
-# Two-stage kitty font switcher.
+# Three-stage kitty font picker.
 #
 # Stage 1: pick the Nerd Font family (base name).
 # Stage 2: pick the weight/style variant of that family.
-# After confirming both, current-font.conf is rewritten and kitty
-# reloads its config once.
-#
-# (Live preview during fzf was tried but `kitty @ load-config` is
-# heavy enough that triggering it on every cursor move breaks
-# terminal input — arrows, Esc, and search stop responding.)
+# Stage 3: pick the font size (12-20).
+# After confirming all three, current-font.conf is rewritten and the
+# running kitty window is refreshed via `kitty @ set-font-size --all`,
+# which both applies the size AND forces a font re-render so the new
+# family/weight take effect without opening a new window.
 
 set -e
 
 CONF="${HOME}/.dotfiles/current-font.conf"
+KITTY_CONF="${HOME}/.dotfiles/kitty.conf"
+
+# ----- Helpers -----
+# Read current font_size from current-font.conf, falling back to kitty.conf,
+# then to 16 if neither has one.
+get_current_size() {
+  local size
+  size=$(grep -E '^font_size' "$CONF" 2>/dev/null | awk '{print $2}' | head -1)
+  [[ -z "$size" ]] && size=$(grep -E '^font_size' "$KITTY_CONF" 2>/dev/null | awk '{print $2}' | head -1)
+  # strip trailing .0 so it lines up with integer sizes in the picker
+  size=${size%.0}
+  echo "${size:-16}"
+}
 
 # ----- Stage 1: pick base family -----
 base_families=$(fc-list :mono family \
@@ -28,7 +40,7 @@ fi
 
 family=$(printf '%s\n' "$base_families" | fzf \
   --prompt "Family ❯ " \
-  --header "Stage 1/2 — Nerd Font family   (Enter=next · Esc=cancel)" \
+  --header "Stage 1/3 — Nerd Font family   (Enter=next · Esc=cancel)" \
   --no-multi)
 
 if [[ -z "$family" ]]; then
@@ -44,13 +56,12 @@ variants=$(fc-list :mono family \
   | sort -u)
 variants=$(printf '%s\n%s' "$family" "$variants" | sort -u)
 
-# If only one variant exists (the base family itself), skip stage 2.
 if [[ $(printf '%s\n' "$variants" | wc -l) -le 1 ]]; then
   variant="$family"
 else
   variant=$(printf '%s\n' "$variants" | fzf \
     --prompt "Weight ❯ " \
-    --header "Stage 2/2 — weight   (just $family = Regular)" \
+    --header "Stage 2/3 — weight   (just $family = Regular)" \
     --no-multi)
 fi
 
@@ -59,8 +70,29 @@ if [[ -z "$variant" ]]; then
   exit 0
 fi
 
-# Write and reload once.
-print -- "font_family $variant" > "$CONF"
+# ----- Stage 3: pick font size -----
+current_size=$(get_current_size)
+
+size=$(seq 12 20 | fzf \
+  --prompt "Size ❯ " \
+  --header "Stage 3/3 — font size 12-20   (current: $current_size)" \
+  --query "$current_size" \
+  --no-multi)
+
+if [[ -z "$size" ]]; then
+  echo "Cancelled."
+  exit 0
+fi
+
+# ----- Write and refresh -----
+{
+  print -- "font_family $variant"
+  print -- "font_size $size"
+} > "$CONF"
+
+# load-config picks up font_family changes; set-font-size --all forces
+# a font re-render across every kitty window using the new family.
 kitty @ load-config 2>/dev/null || true
-echo "Switched to: $variant"
-echo "(Open a new kitty window if the current one doesn't update.)"
+kitty @ set-font-size --all "$size" 2>/dev/null || true
+
+echo "Switched to: $variant @ ${size}pt"
