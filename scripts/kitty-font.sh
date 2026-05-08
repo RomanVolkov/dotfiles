@@ -17,11 +17,16 @@ set -e
 CONF=${HOME}/.dotfiles/current-font.conf
 current=$(grep -E '^font_family' "$CONF" 2>/dev/null | sed 's/^font_family[[:space:]]*//' | head -1)
 
-# Build a list of monospaced font families. fc-list with :mono filter
-# gives every system monospace font; cut family field, dedupe.
-fonts=$(fc-list :mono family | tr ',' '\n' | sed 's/^[[:space:]]*//' | sort -u)
+# List monospaced font families that include Nerd Font glyphs (icons in
+# nvim / lazygit / yazi rely on these glyphs — picking a non-nerd font
+# would render boxes instead). Only show base family names ending in
+# "Nerd Font", "Nerd Font Mono", or "Nerd Font Propo" — weight/style
+# variants like "FiraCode Nerd Font Light" or "Med" are filtered out.
+fonts=$(fc-list :mono family | tr ',' '\n' | sed 's/^[[:space:]]*//' \
+  | grep -E "Nerd Font( Mono| Propo)?$" | sort -u)
 if [[ -z "$fonts" ]]; then
-  echo "No monospaced fonts found via fc-list. Is fontconfig installed?" >&2
+  echo "No Nerd Font families found." >&2
+  echo "Install some via:  brew bundle --file=~/.dotfiles/Brewfile" >&2
   exit 1
 fi
 
