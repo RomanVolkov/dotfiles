@@ -63,18 +63,21 @@ zsh-vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fzf shell integration — ONE source, not two. `fzf --zsh` is the modern
+# way (fzf >= 0.48); ~/.fzf.zsh is from the old install.sh and registers
+# the same bindings, which used to clobber zvm's keymap on each prompt.
 source <(fzf --zsh)
 
-# Bindings have to live inside zvm_after_init because zsh-vi-mode resets
-# the keymap after its own setup, clobbering any earlier `bindkey` calls.
-# (Don't set KEYTIMEOUT manually — zsh-vi-mode manages Esc timing itself
-# via ZVM_ESCAPE_KEYTIMEOUT, default 0.03s, which is already snappy.)
-function zvm_after_init() {
-  bindkey '^ ' autosuggest-accept            # Ctrl+Space  — accept full suggestion
-  bindkey '^[[1;5C' forward-word             # Ctrl+Right  — accept one word
-  bindkey '^[[1;5D' backward-word            # Ctrl+Left   — back one word
-}
+# Custom keybindings live inside zsh-vi-mode's zvm_after_init_commands
+# array (the array form is more reliable than the function callback —
+# zvm guarantees these run after its own keymap reset on every line init,
+# so they survive zvm's resets between prompts).
+zvm_after_init_commands+=(
+  "bindkey '^ ' autosuggest-accept"           # Ctrl+Space — accept full suggestion
+  "bindkey '^[[1;5C' forward-word"            # Ctrl+Right — accept one word
+  "bindkey '^[[1;5D' backward-word"           # Ctrl+Left  — back one word
+)
 
 alias vim=nvim
 alias v=nvim
