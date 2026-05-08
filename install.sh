@@ -19,6 +19,39 @@ link() {
   ln -sfn "$src" "$dst"
 }
 
+# Remove nerd-font files in ~/Library/Fonts that brew doesn't own. These
+# come from manually downloading fonts from nerdfonts.com and cause brew
+# casks to abort with "existing Font is different from the one being
+# installed". Files that match a name in /opt/homebrew/Caskroom/font-*
+# are kept (brew already manages them).
+purge_legacy_nerd_fonts() {
+  local fonts_dir="$HOME/Library/Fonts"
+  [ -d "$fonts_dir" ] || return 0
+
+  local cask_root
+  cask_root="$(brew --prefix 2>/dev/null)/Caskroom"
+  # If brew has no caskroom yet (fresh laptop), every nerd-font file in
+  # ~/Library/Fonts is by definition manually-installed → purge all.
+  local owned=""
+  if [ -d "$cask_root" ]; then
+    owned=$(find "$cask_root"/font-* -type f \( -name '*.ttf' -o -name '*.otf' \) 2>/dev/null \
+            | xargs -n1 basename 2>/dev/null | sort -u)
+  fi
+
+  shopt -s nullglob
+  local f base removed=0
+  for f in "$fonts_dir"/*Nerd*.ttf "$fonts_dir"/*Nerd*.otf; do
+    base=$(basename "$f")
+    if [ -z "$owned" ] || ! printf '%s\n' "$owned" | grep -qFx "$base"; then
+      echo "  purging legacy nerd-font: $base"
+      rm -f -- "$f"
+      removed=$((removed + 1))
+    fi
+  done
+  shopt -u nullglob
+  [ "$removed" -gt 0 ] && echo "  removed $removed legacy nerd-font file(s) — brew bundle will reinstall"
+}
+
 ## ----- Pre-reqs (commented prereqs left for reference) -----
 ## Brew:
 ##   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -37,11 +70,14 @@ fi
 # vs llhttp) that otherwise surface as runtime dyld errors.
 brew update
 brew upgrade
-# `--force` makes cask installs overwrite any pre-existing fonts in
-# ~/Library/Fonts (e.g. fonts manually downloaded from nerdfonts.com
-# earlier). Without it brew aborts the cask with "existing Font is
-# different from the one being installed" and the bundle exits with
-# `2 Brewfile dependencies failed`.
+# Clear any manually-downloaded nerd fonts that don't match brew's
+# expected hashes — otherwise the matching cask aborts with "existing
+# Font is different from the one being installed". Conservative: only
+# removes files brew doesn't already own.
+purge_legacy_nerd_fonts
+# `--force` is a belt-and-suspenders fallback: even if a file slips
+# past purge_legacy_nerd_fonts, brew will overwrite it instead of
+# refusing to install.
 HOMEBREW_CASK_OPTS="--force" brew bundle --file="$DOTFILES/Brewfile"
 brew cleanup
 
