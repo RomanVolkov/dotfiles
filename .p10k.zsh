@@ -36,6 +36,7 @@
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
+    vi_mode                 # current zsh vi mode (blank in INSERT)
     prompt_char             # prompt symbol
   )
 
@@ -50,7 +51,6 @@
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     virtualenv              # python virtual environment
-    anaconda                # conda environment
     pyenv                   # python environment
     goenv                   # go environment
     nvm                     # node.js version from nvm
@@ -152,6 +152,19 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
   # No line introducer if prompt_char is the first segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
+
+  #####################################[ vi_mode: vi keymap ]####################################
+  # Show a label only when NOT in insert mode — insert is the default and
+  # would otherwise clutter the prompt. NORMAL/VISUAL/OVERWRITE all show.
+  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING=
+  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING=NORMAL
+  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING=VISUAL
+  typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING=OVERWRITE
+  # Colors per mode. Yellow for normal (most common), magenta for visual,
+  # red for overwrite (destructive).
+  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_FOREGROUND=178
+  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_FOREGROUND=170
+  typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_FOREGROUND=196
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
