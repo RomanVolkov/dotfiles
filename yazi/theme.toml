@@ -1,0 +1,6 @@
+# Yazi colors + syntax highlighting. The flavor is installed by
+# `ya pkg install` (run during install.sh) from the dep declared in
+# package.toml. Setting `dark = "catppuccin-macchiato"` activates it.
+
+[flavor]
+dark = "catppuccin-macchiato"

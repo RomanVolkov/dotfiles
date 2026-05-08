@@ -3,3 +3,7 @@
 # Claude Code per-project state (auto-generated permission grants
 # with literal absolute paths; not portable, not config).
 .claude/settings.local.json
+
+# Yazi packages installed by `ya pkg install` — reproduced from
+# package.toml on each machine, no need to track upstream content.
+yazi/flavors/

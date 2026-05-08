@@ -66,6 +66,13 @@ if [ ! -d "$TPM_DIR" ]; then
   git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
 fi
 
+## ----- yazi packages -----
+# Installs every dep in yazi/package.toml (catppuccin flavor, plugins).
+# Idempotent: pinned by rev+hash, re-runs are no-ops if already deployed.
+if command -v ya >/dev/null 2>&1; then
+  ya pkg install >/dev/null 2>&1 || true
+fi
+
 ## ----- macOS tweaks -----
 # Disable press-and-hold for keys (let kitty's vim-mode key repeats work).
 defaults write net.kovidgoyal.kitty ApplePressAndHoldEnabled -bool false
