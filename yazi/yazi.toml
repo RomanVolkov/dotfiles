@@ -1,0 +1,18 @@
+# Custom previewers — wired to plugins under ./plugins/.
+# Yazi tries `prepend_previewers` before its built-ins; the first one
+# whose `name`/`mime` matches wins.
+
+[plugin]
+prepend_previewers = [
+  # Markdown rendered (instead of the default bat-style highlight).
+  { name = "*.md",        run = "glow" },
+  { name = "*.markdown",  run = "glow" },
+
+  # Office documents → plain text via pandoc.
+  { name = "*.docx", run = "pandoc" },
+  { name = "*.odt",  run = "pandoc" },
+  { name = "*.epub", run = "pandoc" },
+  { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", run = "pandoc" },
+  { mime = "application/vnd.oasis.opendocument.text", run = "pandoc" },
+  { mime = "application/epub+zip", run = "pandoc" },
+]
