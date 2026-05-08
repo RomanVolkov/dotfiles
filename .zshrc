@@ -28,13 +28,16 @@ export BAT_THEME="Catppuccin Macchiato"
 # ============================================================================
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"           # system go (other laptop)
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"            # rust (other laptop)
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="/usr/local/bin/omnisharp-roslyn:$PATH"
 export PATH="$HOME/.lmstudio/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/dev/personal/scripts"  # personal scripts (other laptop)
 
 # ============================================================================
 # fpath — extra completion dirs (BEFORE oh-my-zsh runs compinit)
