@@ -85,6 +85,9 @@ zvm_after_init_commands+=(
   "bindkey -M viins '^ ' autosuggest-accept"   # Ctrl+Space — accept full suggestion
   "bindkey -M viins '^[[1;5C' forward-word"    # Ctrl+Right — accept one word
   "bindkey -M viins '^[[1;5D' backward-word"   # Ctrl+Left  — back one word
+  # Remove fzf's Alt+C cd-widget — zoxide handles smart cd.
+  "bindkey -M viins -r '^[c' 2>/dev/null"
+  "bindkey -M vicmd -r '^[c' 2>/dev/null"
 )
 
 # (Removed the cursor-resync precmd hook — emitting escape sequences
