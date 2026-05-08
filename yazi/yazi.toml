@@ -2,6 +2,9 @@
 # Yazi tries `prepend_previewers` before its built-ins; the first one
 # whose `name`/`mime` matches wins.
 
+[mgr]
+show_hidden = true   # show dotfiles/dirs by default; toggle in-session with `.`
+
 [plugin]
 prepend_previewers = [
   # Markdown rendered (instead of the default bat-style highlight).
