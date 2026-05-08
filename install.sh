@@ -32,8 +32,13 @@ if [ ! -d "$P10K_DIR" ]; then
 fi
 
 ## ----- Homebrew packages -----
-# brew bundle is itself idempotent (skips already-installed casks/formulae)
+# Refresh + upgrade existing formulae before installing new ones from
+# the Brewfile. Catches dependency-version mismatches (e.g. libgit2
+# vs llhttp) that otherwise surface as runtime dyld errors.
+brew update
+brew upgrade
 brew bundle --file="$DOTFILES/Brewfile"
+brew cleanup
 
 ## ----- Symlinks -----
 # Home dir
