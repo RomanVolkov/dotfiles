@@ -213,3 +213,6 @@ clipcopy() {
   esac
   osascript -e "$applescript" && echo "copied: $p"
 }
+
+# eza colors matching yazi (truecolor: 38;2;R;G;B)
+export EZA_COLORS="di=38;2;124;157;219:ex=38;2;166;218;149:*.md=38;2;202;211;245"
