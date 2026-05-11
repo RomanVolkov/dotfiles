@@ -9,6 +9,15 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 -- options must load before plugins so leader keys etc. take effect on plugin keymaps
 require("config.options")
 
+-- autocmds must load BEFORE lazy.setup so FileType-based autocmds (e.g.
+-- wrap_spell which enables spell on markdown) are registered by the
+-- time the initial buffer's FileType fires during VimEnter. Loading on
+-- User VeryLazy is too late: VeryLazy fires inside VimEnter, AFTER the
+-- first buffer's FileType has already run, so wrap_spell would miss it.
+-- This file uses only the pure vim API — no plugin requires — so it's
+-- safe to load before any plugin spec.
+require("config.autocmds")
+
 -- Auto-restore the last session for cwd if nvim was launched with no args.
 -- Registered here (not in config/autocmds.lua) because that file loads on
 -- User VeryLazy which fires from inside VimEnter — too late for a VimEnter
@@ -53,11 +62,13 @@ require("lazy").setup({
   },
 })
 
--- autocmds and keymaps load after VeryLazy so Snacks et al. are available
+-- keymaps load after VeryLazy so snacks-referencing callbacks have
+-- Snacks available by the time they bind. autocmds.lua is loaded
+-- eagerly above (it has no plugin deps and FileType autocmds need to
+-- exist before the first buffer's FileType fires during VimEnter).
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
-    require("config.autocmds")
     require("config.keymaps")
   end,
 })

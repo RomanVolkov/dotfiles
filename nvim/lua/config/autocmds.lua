@@ -160,3 +160,17 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 -- Optionally, modify the 'updatetime' to make the CursorHold event trigger more frequently
 vim.opt.updatetime = 2000 -- 2000 milliseconds or 2 seconds
 
+-- nvim runs its built-in filetype detection BEFORE sourcing init.lua,
+-- so FileType=markdown for the buffer passed on the command line fires
+-- before any user FileType autocmds in this file are registered.
+-- Replay FileType for every already-loaded buffer so e.g. wrap_spell
+-- catches the initial buffer. Cheap (just runs the callbacks once per
+-- existing buffer) and idempotent.
+for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+  if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].filetype ~= "" then
+    vim.api.nvim_buf_call(buf, function()
+      vim.cmd("doautocmd FileType")
+    end)
+  end
+end
+
