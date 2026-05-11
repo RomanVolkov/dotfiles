@@ -1,18 +1,19 @@
--- Spell-fix UX for markdown (en + ru). Vim's z= works natively; this
--- layers a snacks.picker-based replacement flow on top and exposes
--- "add to user dict" / "mark as wrong" as keymaps.
+-- Spell-fix UX for markdown / text / gitcommit (en + ru). Vim's z=
+-- works natively; this layers a snacks.picker-based replacement flow
+-- on top and exposes "add to user dict" / "mark as wrong" as keymaps.
 --
--- All bindings live under the <leader>z* namespace (mirroring vim's
--- native z= / zg / zw spell commands) so they don't collide with
--- <leader>c* — which the LSP setup uses for code actions, and which
--- you naturally reach for on a C# comment where spell-in-comments is
--- active.
+-- Bindings are buffer-local on prose filetypes only — they don't
+-- extend to code buffers where spell-in-comments is also active,
+-- because the LSP setup binds <leader>c* on LspAttach (code action,
+-- rename, codelens) and we don't want spell to shadow those.
 --
 -- Spell itself is enabled elsewhere:
 --   lua/config/options.lua   — spelllang = { "ru", "en" }
 --   lua/config/autocmds.lua  — FileType autocmd that sets `spell` on
 --                              markdown/text/plaintex/typst/gitcommit,
 --                              plus spell_in_comments for code files.
+-- Native z= / zg / zw still work in code buffers if you want spell-fix
+-- inside a code comment.
 
 local M = {}
 
@@ -70,30 +71,16 @@ return {
     "folke/snacks.nvim",
     optional = true,
     init = function()
-      -- Bind on the same filetypes that have spell enabled — prose
-      -- buffers AND code buffers where spell-in-comments is active —
-      -- so the spell-fix UX is reachable wherever you can see a
-      -- SpellBad underline. Keep this list in sync with the two
-      -- spell-enabling autocmds in config/autocmds.lua.
-      local spell_filetypes = {
-        "markdown", "text", "plaintex", "typst", "gitcommit",
-        "lua", "python", "go", "rust",
-        "javascript", "typescript", "tsx", "javascriptreact", "typescriptreact",
-        "java", "c", "cpp", "cs",
-        "ruby", "swift",
-        "sh", "bash", "zsh",
-        "vim", "vimdoc",
-      }
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = spell_filetypes,
+        pattern = { "markdown", "text", "gitcommit" },
         callback = function(ev)
           local function map(lhs, fn, desc)
             vim.keymap.set("n", lhs, fn,
               { buffer = ev.buf, silent = true, desc = desc })
           end
-          map("<leader>zs", M.fix, "Spell: fix word (picker)")
-          map("<leader>zg", M.add, "Spell: add to user dict")
-          map("<leader>zw", M.bad, "Spell: mark as wrong")
+          map("<leader>cs", M.fix, "Spell: fix word (picker)")
+          map("<leader>ca", M.add, "Spell: add to user dict")
+          map("<leader>cw", M.bad, "Spell: mark as wrong")
         end,
       })
     end,
