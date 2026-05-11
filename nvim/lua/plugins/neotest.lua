@@ -7,14 +7,25 @@ return {
     "nvim-treesitter/nvim-treesitter",
     { "fredrikaverpil/neotest-golang", version = "*" },
     "nvim-neotest/neotest-jest",
+    "nsidorenco/neotest-vstest", -- .NET / C# / F# via VSTest
   },
   opts = {},
   config = function()
+    -- neotest-vstest reads vim.g.neotest_vstest at require-time, so any
+    -- settings (dap_settings, sdk_path, solution_selector, …) must be
+    -- assigned BEFORE the require call below. Defaults work for most
+    -- projects; uncomment + customize the table here if you hit a
+    -- specific case.
+    -- vim.g.neotest_vstest = {
+    --   dap_settings = { type = "netcoredbg" },
+    -- }
+
     local neotest_golang_opts = {} -- Specify custom configuration
     require("neotest").setup({
       adapters = {
         require("neotest-golang")(neotest_golang_opts), -- Registration
         require("neotest-vitest"),
+        require("neotest-vstest"),
       },
     })
   end,
