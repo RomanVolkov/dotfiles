@@ -19,13 +19,37 @@ function M.fix()
     vim.notify("No spell suggestions for '" .. word .. "'", vim.log.levels.INFO)
     return
   end
+
+  -- Resolve the word's exact byte range under the cursor NOW, before
+  -- the picker opens. `:normal! ciw` from inside the picker callback
+  -- is unreliable (focus is on the picker buffer when the callback
+  -- fires) and corrupts multi-word replacements like "signup" → "sign
+  -- up". With a concrete byte range we can do a precise
+  -- buf_set_text without depending on cursor or insert-mode mechanics.
+  local buf = vim.api.nvim_get_current_buf()
+  local row = vim.fn.line(".") - 1
+  local col = vim.fn.col(".") - 1
+  local line = vim.api.nvim_buf_get_lines(buf, row, row + 1, false)[1] or ""
+
+  local s, e = nil, nil
+  local search_from = 1
+  while true do
+    local fs, fe = line:find(word, search_from, true) -- literal match (handles utf-8 bytes)
+    if not fs then break end
+    if col + 1 >= fs and col + 1 <= fe then
+      s, e = fs - 1, fe -- 0-based, end-exclusive
+      break
+    end
+    search_from = fe + 1
+  end
+  if not s then return end
+
   Snacks.picker.select(
     suggestions,
     { prompt = "Replace '" .. word .. "' with:" },
     function(choice)
       if not choice then return end
-      vim.cmd("normal! ciw" .. choice)
-      vim.cmd("stopinsert")
+      vim.api.nvim_buf_set_text(buf, row, s, row, e, { choice })
     end
   )
 end
