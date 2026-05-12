@@ -39,6 +39,7 @@ brew "hexyl"               # hex preview for binary files
 cask "alfred"
 cask "numi"
 cask "vlc"
+cask "karabiner-elements"   # Caps Lock dual-function (tap=Esc, hold=Ctrl)
 
 # Coding fonts (Nerd Font variants, switch with `kf`).
 # Curated set from https://www.nerdfonts.com/font-downloads — only

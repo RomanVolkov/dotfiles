@@ -94,6 +94,10 @@ link "$DOTFILES/kitty.conf"          "$HOME/.config/kitty/kitty.conf"
 link "$DOTFILES/current-theme.conf"  "$HOME/.config/kitty/current-theme.conf"
 link "$DOTFILES/current-font.conf"   "$HOME/.config/kitty/current-font.conf"
 
+# Karabiner-Elements: link only the json file, not the directory —
+# Karabiner writes an automatic_backups/ subdir we don't want to track.
+link "$DOTFILES/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+
 # ~/.config directory configs
 link "$DOTFILES/nvim"     "$HOME/.config/nvim"
 link "$DOTFILES/yazi"     "$HOME/.config/yazi"
