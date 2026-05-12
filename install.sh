@@ -94,9 +94,15 @@ link "$DOTFILES/kitty.conf"          "$HOME/.config/kitty/kitty.conf"
 link "$DOTFILES/current-theme.conf"  "$HOME/.config/kitty/current-theme.conf"
 link "$DOTFILES/current-font.conf"   "$HOME/.config/kitty/current-font.conf"
 
-# Karabiner-Elements: link only the json file, not the directory —
-# Karabiner writes an automatic_backups/ subdir we don't want to track.
-link "$DOTFILES/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+# Karabiner-Elements: must COPY, not symlink. Karabiner replaces the
+# file (not just rewrites it) whenever changes are made via its UI
+# (e.g. Devices tab "Modify events" toggle), which would destroy a
+# symlink. Dotfiles is the source of truth; UI changes you want to keep
+# must be manually copied back: cp ~/.config/karabiner/karabiner.json
+# $DOTFILES/karabiner/. We use `cp -n` so we don't clobber a live config
+# that might have unsaved UI changes on a re-run.
+mkdir -p "$HOME/.config/karabiner"
+cp -n "$DOTFILES/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json" 2>/dev/null || true
 
 # ~/.config directory configs
 link "$DOTFILES/nvim"     "$HOME/.config/nvim"

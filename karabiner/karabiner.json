@@ -31,9 +31,94 @@
                 ]
               }
             ]
+          },
+          {
+            "description": "Disable Cmd+H (hide) and Cmd+M (minimize) - hostile in Aerospace tiling WM",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": { "key_code": "h", "modifiers": { "mandatory": ["left_command"] } },
+                "to": [{ "key_code": "vk_none" }]
+              },
+              {
+                "type": "basic",
+                "from": { "key_code": "m", "modifiers": { "mandatory": ["left_command"] } },
+                "to": [{ "key_code": "vk_none" }]
+              }
+            ]
+          },
+          {
+            "description": "Right Cmd -> Hyper (Cmd+Ctrl+Opt+Shift)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": { "key_code": "right_command", "modifiers": { "optional": ["any"] } },
+                "to": [{
+                  "key_code": "left_shift",
+                  "modifiers": ["left_command", "left_control", "left_option"]
+                }]
+              }
+            ]
+          },
+          {
+            "description": "Hyper bindings",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": {
+                    "mandatory": ["left_command", "left_control", "left_option", "left_shift"]
+                  }
+                },
+                "to": [{ "shell_command": "open -a 'kitty'" }]
+              }
+            ]
+          },
+          {
+            "description": "Fn + hjkl/. -> arrows + forward-delete (vim ergonomics in non-vim apps)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": { "key_code": "h", "modifiers": { "mandatory": ["fn"], "optional": ["any"] } },
+                "to": [{ "key_code": "left_arrow" }]
+              },
+              {
+                "type": "basic",
+                "from": { "key_code": "j", "modifiers": { "mandatory": ["fn"], "optional": ["any"] } },
+                "to": [{ "key_code": "down_arrow" }]
+              },
+              {
+                "type": "basic",
+                "from": { "key_code": "k", "modifiers": { "mandatory": ["fn"], "optional": ["any"] } },
+                "to": [{ "key_code": "up_arrow" }]
+              },
+              {
+                "type": "basic",
+                "from": { "key_code": "l", "modifiers": { "mandatory": ["fn"], "optional": ["any"] } },
+                "to": [{ "key_code": "right_arrow" }]
+              },
+              {
+                "type": "basic",
+                "from": { "key_code": "period", "modifiers": { "mandatory": ["fn"], "optional": ["any"] } },
+                "to": [{ "key_code": "delete_forward" }]
+              }
+            ]
           }
         ]
       },
+      "devices": [
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 33398,
+            "vendor_id": 9306
+          },
+          "ignore": false,
+          "treat_as_built_in_keyboard": true
+        }
+      ],
       "virtual_hid_keyboard": {
         "keyboard_type_v2": "ansi"
       }
