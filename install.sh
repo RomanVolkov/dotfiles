@@ -22,7 +22,7 @@ link() {
 # Remove nerd-font files in ~/Library/Fonts that brew doesn't own. These
 # come from manually downloading fonts from nerdfonts.com and cause brew
 # casks to abort with "existing Font is different from the one being
-# installed". Files that match a name in /opt/homebrew/Caskroom/font-*
+# installed". Files/symlinks that match a name in /opt/homebrew/Caskroom/font-*
 # are kept (brew already manages them).
 purge_legacy_nerd_fonts() {
   local fonts_dir="$HOME/Library/Fonts"
@@ -30,11 +30,11 @@ purge_legacy_nerd_fonts() {
 
   local cask_root
   cask_root="$(brew --prefix 2>/dev/null)/Caskroom"
-  # If brew has no caskroom yet (fresh laptop), every nerd-font file in
-  # ~/Library/Fonts is by definition manually-installed → purge all.
+  # Collect owned fonts: actual files AND symlinks from brew's caskroom.
+  # Symlinks are important because modern Homebrew uses them exclusively.
   local owned=""
   if [ -d "$cask_root" ]; then
-    owned=$(find "$cask_root"/font-* -type f \( -name '*.ttf' -o -name '*.otf' \) 2>/dev/null \
+    owned=$(find "$cask_root"/font-* \( -type f -o -type l \) \( -name '*.ttf' -o -name '*.otf' \) 2>/dev/null \
             | xargs -n1 basename 2>/dev/null | sort -u)
   fi
 
@@ -51,6 +51,7 @@ purge_legacy_nerd_fonts() {
   shopt -u nullglob
   [ "$removed" -gt 0 ] && echo "  removed $removed legacy nerd-font file(s) — brew bundle will reinstall"
 }
+
 
 ## ----- Pre-reqs (commented prereqs left for reference) -----
 ## Brew:
@@ -73,7 +74,7 @@ brew upgrade
 # Clear any manually-downloaded nerd fonts that don't match brew's
 # expected hashes — otherwise the matching cask aborts with "existing
 # Font is different from the one being installed". Conservative: only
-# removes files brew doesn't already own.
+# removes files brew doesn't already own. Now includes symlinks.
 purge_legacy_nerd_fonts
 # `--force` is a belt-and-suspenders fallback: even if a file slips
 # past purge_legacy_nerd_fonts, brew will overwrite it instead of
