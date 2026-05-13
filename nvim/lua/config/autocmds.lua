@@ -95,6 +95,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Markdown: soft-wrap breaks tables — render-markdown draws cell separators
+-- only on the first visual row, so a wrapped long cell turns the table into
+-- loose prose. Override wrap_spell above and accept horizontal scroll for
+-- long prose lines so tables stay aligned.
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("markdown_nowrap"),
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt_local.wrap = false
+  end,
+})
+
 -- Spell inside comments/strings of code files. Treesitter's @spell capture
 -- limits spell-checking to commented or string regions on parsers that
 -- ship the capture; identifiers and keywords are NOT highlighted. Only

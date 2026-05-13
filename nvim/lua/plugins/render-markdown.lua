@@ -1,7 +1,7 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
-  preset = "obsidian",
   opts = {
+    preset = "obsidian",
     file_types = { "markdown", "Avante" },
     heading = {
       enabled = false,
