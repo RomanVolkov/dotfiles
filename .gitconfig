@@ -44,3 +44,6 @@
 [fetch]
 	prune = true          ; remove deleted remote branches
 	pruneTags = true
+[user]
+	email = roman.volkov.mail@gmail.com
+	name = Roman Volkov
