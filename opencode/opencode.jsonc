@@ -1,0 +1,46 @@
+// OpenCode config with RunPod and Local LM Studio providers
+// Schema: https://opencode.ai/config.json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "disabled_providers": [],
+  "provider": {
+    "runpod": {
+      "name": "RunPod",
+      "npm": "@ai-sdk/openai-compatible",
+      "models": {
+        "gemma4:31b": {
+          "name": "gemma4:31b"
+        },
+        "gemma4:9b": {
+          "name": "gemma4:9b"
+        },
+        "mistral:latest": {
+          "name": "mistral:latest"
+        }
+      },
+      "options": {
+        "baseURL": "https://runpod-pod-id-8000.proxy.runpod.net/v1",
+        "apiKey": "runpod-api-key-placeholder"
+      }
+    },
+    "lmstudio": {
+      "name": "LM Studio (Local)",
+      "npm": "@ai-sdk/openai-compatible",
+      "models": {
+        "google/gemma-4-e4b": {
+          "name": "google/gemma-4-e4b"
+        },
+        "google/gemma-2-9b": {
+          "name": "google/gemma-2-9b"
+        },
+        "mistral-nemo": {
+          "name": "mistral-nemo"
+        }
+      },
+      "options": {
+        "baseURL": "http://localhost:1234/v1",
+        "apiKey": "lm-studio"
+      }
+    }
+  }
+}
