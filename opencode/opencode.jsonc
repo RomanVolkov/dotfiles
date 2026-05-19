@@ -24,6 +24,12 @@
         "google/gemma-4-e4b": {
           "name": "google/gemma-4-e4b"
         },
+        "qwen/qwen3.5-9b": {
+          "name": "qwen/qwen3.5-9b"
+        },
+        "qwen/qwen2.5-coder-14b": {
+          "name": "qwen/qwen2.5-coder-14b"
+        },
       },
       "options": {
         "baseURL": "http://localhost:1234/v1",
