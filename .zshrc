@@ -137,6 +137,7 @@ alias k=kubectl
 alias e=exit
 alias c=clear
 alias kf='~/.dotfiles/scripts/kitty-font.sh'
+alias cc=claude
 
 # Modern Unix replacements — only `ls` is overridden so POSIX scripts
 # still work; reach for fd/bat/procs/dust by their real names.
