@@ -42,6 +42,12 @@
         "Qwen/Qwen3-32B": {
           "name": "Qwen/Qwen3-32B"
         },
+        "gemma4:latest": {
+          "name": "gemma4:latest"
+        },
+        "google/gemma-4-31b-it": {
+          "name": "google/gemma-4-31b-it"
+        },
         "qwen3.6:27b": {
           "name": "qwen3.6:27b"
         }
@@ -50,7 +56,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "options": {
         "apiKey": "{env:RUNPOD_API_KEY}",
-        "baseURL": "https://api.runpod.ai/v2/118tx85mqox1xq/openai/v1"
+        "baseURL": "https://api.runpod.ai/v2/kl0rg0djirfhwe/openai/v1"
       }
     }
   }
