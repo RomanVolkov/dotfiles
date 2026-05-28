@@ -49,8 +49,8 @@
       "name": "RunPod Serverless",
       "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "apiKey": "rpa_9GNCGBOQEV12Q2U2U0VEB7DUM3FEBW7B9UQR5WUK1hvp3l",
-        "baseURL": "https://api.runpod.ai/v2/67gnzsyl15rcvu/openai/v1"
+        "apiKey": "{env:RUNPOD_API_KEY}",
+        "baseURL": "https://api.runpod.ai/v2/118tx85mqox1xq/openai/v1"
       }
     }
   }
