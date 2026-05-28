@@ -186,3 +186,14 @@ for _, buf in ipairs(vim.api.nvim_list_bufs()) do
   end
 end
 
+-- Clean up LuaSnip state when exiting insert mode to prevent hanging snippets
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = augroup("luasnip_cleanup"),
+  callback = function()
+    local ok, ls = pcall(require, "luasnip")
+    if ok and ls.session.current_nodes[vim.api.nvim_get_current_buf()] then
+      ls.unlink_current()
+    end
+  end,
+})
+

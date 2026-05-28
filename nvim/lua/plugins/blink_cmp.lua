@@ -8,6 +8,8 @@ return {
   },
 
   config = function()
+    local ls = require("luasnip")
+
     require("blink-cmp").setup({
       snippets = { preset = "luasnip" },
       keymap = {
@@ -16,7 +18,9 @@ return {
             if cmp.snippet_active() then
               return cmp.accept()
             else
-              return cmp.select_and_accept()
+              cmp.select_and_accept()
+              ls.unlink_current()
+              return true
             end
           end,
           "snippet_forward",
@@ -53,6 +57,10 @@ return {
           },
         },
         trigger = { prefetch_on_insert = false },
+        accept = {
+          create_undo_point = true,
+          auto_brackets = { enabled = true },
+        },
         menu = {
           draw = {
             components = {
