@@ -1,39 +1,56 @@
-// OpenCode config with RunPod and Local LM Studio providers
-// Schema: https://opencode.ai/config.json
 {
   "$schema": "https://opencode.ai/config.json",
   "disabled_providers": [],
   "provider": {
-    "runpod": {
-      "name": "RunPod",
-      "npm": "@ai-sdk/openai-compatible",
-      "models": {
-        "gemma4:31b": {
-          "name": "gemma4:31b"
-        },
-      },
-      "options": {
-        "baseURL": "https://runpod-pod-id-8000.proxy.runpod.net/v1",
-        "apiKey": "runpod-api-key-placeholder"
-      }
-    },
     "lmstudio": {
-      "name": "LM Studio (Local)",
-      "npm": "@ai-sdk/openai-compatible",
       "models": {
         "google/gemma-4-e4b": {
           "name": "google/gemma-4-e4b"
         },
-        "qwen/qwen3.5-9b": {
-          "name": "qwen/qwen3.5-9b"
-        },
         "qwen/qwen2.5-coder-14b": {
           "name": "qwen/qwen2.5-coder-14b"
         },
+        "qwen/qwen3.5-9b": {
+          "name": "qwen/qwen3.5-9b"
+        }
       },
+      "name": "LM Studio (Local)",
+      "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "baseURL": "http://localhost:1234/v1",
-        "apiKey": "lm-studio"
+        "apiKey": "lm-studio",
+        "baseURL": "http://localhost:1234/v1"
+      }
+    },
+    "runpod": {
+      "models": {
+        "gemma4:31b": {
+          "name": "gemma4:31b"
+        },
+        "qwen3.6:27b": {
+          "name": "qwen3.6:27b"
+        }
+      },
+      "name": "RunPod",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "cTgpRyBckhAoSkC3N/COoiDQzczBgdJ86NvIifQNWTg=",
+        "baseURL": "https://0y4uv408gamoyq-8000.proxy.runpod.net/v1"
+      }
+    },
+    "runpod-serverless": {
+      "models": {
+        "Qwen/Qwen3-32B": {
+          "name": "Qwen/Qwen3-32B"
+        },
+        "qwen3.6:27b": {
+          "name": "qwen3.6:27b"
+        }
+      },
+      "name": "RunPod Serverless",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "rpa_9GNCGBOQEV12Q2U2U0VEB7DUM3FEBW7B9UQR5WUK1hvp3l",
+        "baseURL": "https://api.runpod.ai/v2/67gnzsyl15rcvu/openai/v1"
       }
     }
   }
