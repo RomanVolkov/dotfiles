@@ -17,13 +17,15 @@ return {
           function(cmp)
             if cmp.snippet_active() then
               return cmp.accept()
+            elseif cmp.is_visible() then
+              return cmp.accept()
             else
-              cmp.select_and_accept()
-              ls.unlink_current()
-              return true
+              if ls.session.current_nodes[vim.api.nvim_get_current_buf()] then
+                ls.unlink_current()
+              end
+              return false
             end
           end,
-          "snippet_forward",
           "fallback",
         },
         ["<Tab>"] = {

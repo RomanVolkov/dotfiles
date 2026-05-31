@@ -56,7 +56,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "options": {
         "apiKey": "{env:RUNPOD_API_KEY}",
-        "baseURL": "https://api.runpod.ai/v2/kl0rg0djirfhwe/openai/v1"
+        "baseURL": "https://api.runpod.ai/v2/o37iln4voeiegs/openai/v1"
       }
     }
   }

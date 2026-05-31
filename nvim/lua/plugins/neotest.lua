@@ -8,6 +8,7 @@ return {
     { "fredrikaverpil/neotest-golang", version = "*" },
     "nvim-neotest/neotest-jest",
     "nsidorenco/neotest-vstest", -- .NET / C# / F# via VSTest
+    "rouge8/neotest-rust",
   },
   opts = {},
   config = function()
@@ -26,6 +27,10 @@ return {
         require("neotest-golang")(neotest_golang_opts), -- Registration
         require("neotest-vitest"),
         require("neotest-vstest"),
+        require("neotest-rust")({
+          args = { "--lib", "--bins" },
+          dap = { adapter = "lldb" },
+        }),
       },
     })
   end,
