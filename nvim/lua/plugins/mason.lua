@@ -28,7 +28,9 @@ return {
       "go-debug-adapter",
       "js-debug-adapter",
       -- LSPs that mason-lspconfig won't auto-install for us
-      "roslyn",
+      -- roslyn.nvim looks for a binary named `roslyn-language-server`; the
+      -- official mason-org package installs exactly that name.
+      "roslyn-language-server",
       "netcoredbg",
       -- Treesitter CLI for parser builds
       "tree-sitter-cli",
