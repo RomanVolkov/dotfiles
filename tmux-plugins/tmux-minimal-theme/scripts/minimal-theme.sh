@@ -51,17 +51,17 @@ apply_minimal_theme() {
     tmux set-option -g window-status-separator " "
 
     # Status left (session name)
-    tmux set-option -g status-left " #[fg=$accent_color,bold]$icon_session #[fg=$inactive_color]│"
+    tmux set-option -g status-left " #[fg=$accent_color,bold]$icon_session  #[fg=$inactive_color]│"
 
     # Status right with system info (macOS compatible)
     local status_right="\
-#[fg=$accent_color]$icon_dir #[fg=$text_color]#([ #{pane_current_path} = \$HOME ] && echo '~' || basename #{pane_current_path}) \
+#[fg=$accent_color]$icon_dir  #[fg=$text_color]#([ #{pane_current_path} = \$HOME ] && echo '~' || basename #{pane_current_path}) \
 #[fg=$inactive_color]│ \
-#[fg=$accent_color]$icon_battery #[fg=$text_color]#(pmset -g batt | awk -F'[\t;]' '/InternalBattery/{gsub(/ /,\"\",\$2); print \$2}') \
+#[fg=$accent_color]$icon_battery  #[fg=$text_color]#(pmset -g batt | awk -F'[\t;]' '/InternalBattery/{gsub(/ /,\"\",\$2); print \$2}') \
 #[fg=$inactive_color]│ \
-#[fg=$accent_color]$icon_date #[fg=$text_color]#(date +%d/%m) \
+#[fg=$accent_color]$icon_date  #[fg=$text_color]#(date +%d/%m) \
 #[fg=$inactive_color]│ \
-#[fg=$accent_color]$icon_clock #[fg=$text_color]#(date +%H:%M) "
+#[fg=$accent_color]$icon_clock  #[fg=$text_color]#(date +%H:%M) "
 
     tmux set-option -g status-right "$status_right"
 
