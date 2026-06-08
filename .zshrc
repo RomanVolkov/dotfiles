@@ -139,6 +139,7 @@ alias c=clear
 alias kf='~/.dotfiles/scripts/kitty-font.sh'
 alias cc=claude
 alias ccc='claude -c'
+alias op=opencode
 
 # Modern Unix replacements — only `ls` is overridden so POSIX scripts
 # still work; reach for fd/bat/procs/dust by their real names.
