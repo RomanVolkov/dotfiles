@@ -37,27 +37,5 @@
         "baseURL": "https://0y4uv408gamoyq-8000.proxy.runpod.net/v1"
       }
     },
-    "runpod-serverless": {
-      "models": {
-        "Qwen/Qwen3-32B": {
-          "name": "Qwen/Qwen3-32B"
-        },
-        "gemma4:latest": {
-          "name": "gemma4:latest"
-        },
-        "google/gemma-4-31b-it": {
-          "name": "google/gemma-4-31b-it"
-        },
-        "qwen3.6:27b": {
-          "name": "qwen3.6:27b"
-        }
-      },
-      "name": "RunPod Serverless",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "apiKey": "{env:RUNPOD_API_KEY}",
-        "baseURL": "https://api.runpod.ai/v2/o37iln4voeiegs/openai/v1"
-      }
-    }
-  }
+  },
 }
