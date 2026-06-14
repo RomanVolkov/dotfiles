@@ -190,6 +190,51 @@ y() {
   rm -f -- "$tmp"
 }
 
+# Auto-commit & push with AI-generated message.
+# Usage: gcp [optional-context]
+# Stages all changes, generates a conventional commit message via opencode,
+# commits, and pushes to the current branch.
+gcp() {
+  local context="${1:-}"
+  local diff
+
+  # Stage everything if nothing is staged yet
+  if git diff --cached --quiet; then
+    git add -A
+  fi
+
+  diff=$(git diff --cached)
+  if [[ -z "$diff" ]]; then
+    echo "gcp: nothing to commit" >&2
+    return 1
+  fi
+
+  # Build prompt for opencode
+  local prompt="Generate a concise conventional commit message for the following git diff.\n"
+  if [[ -n "$context" ]]; then
+    prompt="Generate a concise conventional commit message for the following git diff. Context: $context\n"
+  fi
+  prompt="${prompt}Do NOT include markdown formatting, code blocks, or explanations. Output ONLY the commit message.\n\n${diff}"
+
+  # Call opencode to generate the message
+  local msg
+  msg=$(echo "$prompt" | opencode -c 2>/dev/null || echo "$prompt" | opencode 2>/dev/null)
+
+  if [[ -z "$msg" ]]; then
+    echo "gcp: failed to generate commit message" >&2
+    return 1
+  fi
+
+  # Clean up the message (remove quotes, newlines, etc.)
+  msg=$(echo "$msg" | tr -d '\n' | sed 's/^["'"'"']*//;s/["'"'"']*$//')
+
+  echo "Commit message: $msg"
+  echo "Press Enter to commit and push, or Ctrl+C to abort"
+  read
+
+  git commit -m "$msg" && git push
+}
+
 # Copy a file to the macOS clipboard, auto-detecting type:
 #   PNG/JPEG/GIF/TIFF/PDF → bytes (pastes inline in Slack/Notes/Messages)
 #   anything else         → file reference (Mail attachment / Finder file)
