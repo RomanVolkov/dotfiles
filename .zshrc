@@ -229,10 +229,24 @@ gcp() {
   msg=$(echo "$msg" | tr -d '\n' | sed 's/^["'"'"']*//;s/["'"'"']*$//')
 
   echo "Commit message: $msg"
-  echo "Press Enter to commit and push, or Ctrl+C to abort"
-  read
-
-  git commit -m "$msg" && git push
+  echo ""
+  while true; do
+    echo -n "Proceed with commit and push? [y]/n: "
+    read -r answer
+    case "$answer" in
+      ''|y|Y|yes|Yes)
+        git commit -m "$msg" && git push
+        break
+        ;;
+      n|N|no|No)
+        echo "Aborted."
+        return 1
+        ;;
+      *)
+        echo "Please answer y or n."
+        ;;
+    esac
+  done
 }
 
 # Copy a file to the macOS clipboard, auto-detecting type:
