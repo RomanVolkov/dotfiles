@@ -30,13 +30,23 @@ return {
         },
         ["<Tab>"] = {
           function(cmp)
-            return cmp.select_next()
+            if cmp.snippet_active() then
+              return cmp.snippet_forward()
+            elseif cmp.is_visible() then
+              return cmp.select_next()
+            end
+            return false
           end,
           "fallback",
         },
         ["<S-Tab>"] = {
           function(cmp)
-            return cmp.select_prev()
+            if cmp.snippet_active() then
+              return cmp.snippet_backward()
+            elseif cmp.is_visible() then
+              return cmp.select_prev()
+            end
+            return false
           end,
           "fallback",
         },
