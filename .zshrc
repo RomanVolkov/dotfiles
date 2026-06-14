@@ -216,17 +216,17 @@ gcp() {
   fi
   prompt="${prompt}Do NOT include markdown formatting, code blocks, or explanations. Output ONLY the commit message.\n\n${diff}"
 
-  # Call opencode to generate the message
+  # Call opencode to generate the message (JSON mode for clean extraction)
   local msg
-  msg=$(echo "$prompt" | opencode -c 2>/dev/null || echo "$prompt" | opencode 2>/dev/null)
+  msg=$(opencode run --format json "$prompt" 2>/dev/null | jq -r 'select(.type == "text") | .part.text')
 
   if [[ -z "$msg" ]]; then
     echo "gcp: failed to generate commit message" >&2
     return 1
   fi
 
-  # Clean up the message (remove quotes, newlines, etc.)
-  msg=$(echo "$msg" | tr -d '\n' | sed 's/^["'"'"']*//;s/["'"'"']*$//')
+  # Clean up the message (trim whitespace, collapse newlines)
+  msg=$(echo "$msg" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | tr '\n' ' ' | sed 's/  */ /g')
 
   echo "Commit message: $msg"
   echo ""
