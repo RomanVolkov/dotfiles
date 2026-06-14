@@ -15,6 +15,10 @@ return {
       { "<leader>d", group = "debug" },
       { "<leader>r", group = "run/overseer" },
       { "<leader>u", group = "UI" },
+      { "<c-h>", desc = "Navigate left (pane)" },
+      { "<c-j>", desc = "Navigate down (pane)" },
+      { "<c-k>", desc = "Navigate up (pane)" },
+      { "<c-l>", desc = "Navigate right (pane)" },
     },
   },
 }

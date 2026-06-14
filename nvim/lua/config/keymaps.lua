@@ -13,6 +13,9 @@
 --    ]t [t                    next/prev todo
 --    n N                      search nav
 --    -  _                     Yazi at file / cwd
+--    NOTE: <C-s> is tmux prefix — neovim does NOT capture it.
+--    Use <leader>fs to save (or :w in normal mode).
+--    NOTE: Insert mode — use jj or jk to escape (alternative to CapsLock tap).
 --
 -- 2) <leader>{NOUN}{VERB} — first letter is what you operate on
 --    f*  Files            ff find · fg grep · fN new · fe/fE yazi
@@ -103,8 +106,12 @@ map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
--- Save
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+-- Save (Ctrl+S is tmux prefix — neovim must not capture it)
+map("n", "<leader>fs", "<cmd>w<cr>", { desc = "File Save" })
+
+-- Insert mode quick-escape (alternative to CapsLock tap)
+map("i", "jj", "<esc>", { desc = "Escape (jj)" })
+map("i", "jk", "<esc>", { desc = "Escape (jk)" })
 
 -- Indent
 map("x", "<", "<gv")

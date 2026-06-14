@@ -10,8 +10,8 @@
       "selected": true,
       "complex_modifications": {
         "parameters": {
-          "basic.to_if_alone_timeout_milliseconds": 250,
-          "basic.to_if_held_down_threshold_milliseconds": 250
+          "basic.to_if_alone_timeout_milliseconds": 500,
+          "basic.to_if_held_down_threshold_milliseconds": 500
         },
         "rules": [
           {

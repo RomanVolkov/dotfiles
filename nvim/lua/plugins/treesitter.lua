@@ -16,6 +16,7 @@ local ensure_installed = {
   "jsonc",
   "lua",
   "luadoc",
+  "wgsl",
   "luap",
   "markdown",
   "markdown_inline",
