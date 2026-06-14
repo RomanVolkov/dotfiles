@@ -218,7 +218,7 @@ gcp() {
 
   # Call opencode to generate the message (JSON mode for clean extraction)
   local msg
-  msg=$(opencode run --format json "$prompt" 2>/dev/null | jq -r 'select(.type == "text") | .part.text')
+  msg=$(opencode run --format json -m "opencode-go/deepseek-v4-flash" "$prompt" 2>/dev/null | jq -r 'select(.type == "text") | .part.text')
 
   if [[ -z "$msg" ]]; then
     echo "gcp: failed to generate commit message" >&2
