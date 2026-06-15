@@ -31,10 +31,10 @@
                 ],
                 "to_delayed_action": {
                   "to_if_invoked": [
-                    { "key_code": "escape" },
                     { "set_variable": { "name": "caps_lock_tapped", "value": 0 } }
                   ],
                   "to_if_canceled": [
+                    { "key_code": "escape" },
                     { "set_variable": { "name": "caps_lock_tapped", "value": 0 } }
                   ]
                 },
