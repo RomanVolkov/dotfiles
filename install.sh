@@ -95,15 +95,19 @@ link "$DOTFILES/kitty.conf"          "$HOME/.config/kitty/kitty.conf"
 link "$DOTFILES/current-theme.conf"  "$HOME/.config/kitty/current-theme.conf"
 link "$DOTFILES/current-font.conf"   "$HOME/.config/kitty/current-font.conf"
 
-# Karabiner-Elements: must COPY, not symlink. Karabiner replaces the
-# file (not just rewrites it) whenever changes are made via its UI
-# (e.g. Devices tab "Modify events" toggle), which would destroy a
-# symlink. Dotfiles is the source of truth; UI changes you want to keep
-# must be manually copied back: cp ~/.config/karabiner/karabiner.json
-# $DOTFILES/karabiner/. We use `cp -n` so we don't clobber a live config
-# that might have unsaved UI changes on a re-run.
+# Karabiner-Elements: must COPY, not symlink. Karabiner atomically
+# replaces the file (destroying any symlink) whenever it saves — e.g. a
+# UI change (Devices tab "Modify events" toggle) or config-format
+# migration on update. $DOTFILES/karabiner/karabiner.json is the single
+# source of truth, so we overwrite the live config on every run, backing
+# up the previous one first in case it held unsynced UI tweaks. Edit the
+# config in the repo (not the Karabiner UI), then re-run this script.
 mkdir -p "$HOME/.config/karabiner"
-cp -n "$DOTFILES/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json" 2>/dev/null || true
+kb_live="$HOME/.config/karabiner/karabiner.json"
+if [ -f "$kb_live" ] && ! cmp -s "$DOTFILES/karabiner/karabiner.json" "$kb_live"; then
+  cp "$kb_live" "$kb_live.bak"
+fi
+cp -f "$DOTFILES/karabiner/karabiner.json" "$kb_live"
 
 # ~/.config directory configs
 link "$DOTFILES/nvim"     "$HOME/.config/nvim"

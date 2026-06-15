@@ -15,8 +15,22 @@
         },
         "rules": [
           {
-            "description": "Caps Lock -> Escape (tap) / Left Control (hold)",
+            "description": "Caps Lock -> Left Control (hold) / double-tap -> Escape",
             "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [
+                  { "set_variable": { "name": "caps_lock_tapped", "value": 0 } },
+                  { "key_code": "escape" }
+                ],
+                "conditions": [
+                  { "type": "variable_if", "name": "caps_lock_tapped", "value": 1 }
+                ]
+              },
               {
                 "type": "basic",
                 "from": {
@@ -27,8 +41,19 @@
                   { "key_code": "left_control", "lazy": true }
                 ],
                 "to_if_alone": [
-                  { "key_code": "escape" }
-                ]
+                  { "set_variable": { "name": "caps_lock_tapped", "value": 1 } }
+                ],
+                "to_delayed_action": {
+                  "to_if_invoked": [
+                    { "set_variable": { "name": "caps_lock_tapped", "value": 0 } }
+                  ],
+                  "to_if_canceled": [
+                    { "set_variable": { "name": "caps_lock_tapped", "value": 0 } }
+                  ]
+                },
+                "parameters": {
+                  "basic.to_delayed_action_delay_milliseconds": 300
+                }
               }
             ]
           },
