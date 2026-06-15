@@ -56,8 +56,42 @@ return {
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
-      { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>xt", function()
+        local function open_todos(results)
+          local items = {}
+          for _, r in ipairs(results) do
+            items[#items + 1] = {
+              file = r.filename,
+              text = string.format("%s: %s", r.tag, r.text),
+              pos = { r.lnum, r.col - 1 },
+            }
+          end
+          Snacks.picker({
+            items = items,
+            format = "file",
+            title = "Todo Comments",
+          })
+        end
+        require("todo-comments.search").search(open_todos)
+      end, desc = "Todos" },
+      { "<leader>xT", function()
+        local function open_todos(results)
+          local items = {}
+          for _, r in ipairs(results) do
+            items[#items + 1] = {
+              file = r.filename,
+              text = string.format("%s: %s", r.tag, r.text),
+              pos = { r.lnum, r.col - 1 },
+            }
+          end
+          Snacks.picker({
+            items = items,
+            format = "file",
+            title = "Todo/Fix/Fixme",
+          })
+        end
+        require("todo-comments.search").search(open_todos, { keywords = "TODO,FIX,FIXME" })
+      end, desc = "Todo/Fix/Fixme" },
     },
   },
 }

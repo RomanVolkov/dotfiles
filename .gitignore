@@ -7,3 +7,6 @@
 # Yazi packages installed by `ya pkg install` — reproduced from
 # package.toml on each machine, no need to track upstream content.
 yazi/flavors/
+
+# opencode skills — installed from a separate ai-skills repo, not tracked here
+opencode/skills/
