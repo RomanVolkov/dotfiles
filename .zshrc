@@ -192,8 +192,8 @@ y() {
 
 # Auto-commit & push with AI-generated message.
 # Usage: gcp [optional-context]
-# Stages all changes, generates a conventional commit message via opencode,
-# commits, and pushes to the current branch.
+# Stages all changes, generates a conventional commit message via opencode
+# (preferred) or claude (fallback), commits, and pushes to the current branch.
 gcp() {
   local context="${1:-}"
   local diff
@@ -209,16 +209,23 @@ gcp() {
     return 1
   fi
 
-  # Build prompt for opencode
+  # Build prompt for the AI tool
   local prompt="Generate a concise conventional commit message for the following git diff.\n"
   if [[ -n "$context" ]]; then
     prompt="Generate a concise conventional commit message for the following git diff. Context: $context\n"
   fi
-  prompt="${prompt}Do NOT include markdown formatting, code blocks, or explanations. Output ONLY the commit message.\n\n${diff}"
+  prompt="${prompt}Do NOT include markdown formatting, code blocks, or explanations. Do NOT add any co-author or 'Co-Authored-By' trailer. Output ONLY the commit message.\n\n${diff}"
 
-  # Call opencode to generate the message (JSON mode for clean extraction)
+  # Generate the message: prefer opencode, fall back to claude.
   local msg
-  msg=$(opencode run --format json -m "opencode-go/deepseek-v4-flash" "$prompt" 2>/dev/null | jq -r 'select(.type == "text") | .part.text')
+  if command -v opencode >/dev/null 2>&1; then
+    msg=$(opencode run --format json -m "opencode-go/deepseek-v4-flash" "$prompt" 2>/dev/null | jq -r 'select(.type == "text") | .part.text')
+  elif command -v claude >/dev/null 2>&1; then
+    msg=$(claude -p "$prompt" 2>/dev/null)
+  else
+    echo "gcp: neither opencode nor claude is installed" >&2
+    return 1
+  fi
 
   if [[ -z "$msg" ]]; then
     echo "gcp: failed to generate commit message" >&2
