@@ -210,11 +210,16 @@ gcp() {
   fi
 
   # Build prompt for the AI tool
-  local prompt="Generate a concise conventional commit message for the following git diff.\n"
+  local prompt="Generate a concise conventional commit message for the following git diff."
   if [[ -n "$context" ]]; then
-    prompt="Generate a concise conventional commit message for the following git diff. Context: $context\n"
+    prompt="${prompt} Context: $context"
   fi
-  prompt="${prompt}Do NOT include markdown formatting, code blocks, or explanations. Do NOT add any co-author or 'Co-Authored-By' trailer. Output ONLY the commit message.\n\n${diff}"
+  prompt="${prompt}
+Wrap ONLY the commit message between <commit> and </commit> tags, with nothing else inside the tags.
+Do NOT include markdown formatting, code blocks, explanations, or any prose outside the tags.
+Do NOT add any co-author or 'Co-Authored-By' trailer.
+
+${diff}"
 
   # Generate the message: prefer opencode, fall back to claude.
   local msg
@@ -232,8 +237,25 @@ gcp() {
     return 1
   fi
 
-  # Clean up the message (trim whitespace, collapse newlines)
-  msg=$(echo "$msg" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | tr '\n' ' ' | sed 's/  */ /g')
+  # Extract only the text between the <commit></commit> tags, discarding any
+  # surrounding prose ("Here's the message:") or code fences the model added.
+  local extracted
+  extracted=$(printf '%s\n' "$msg" | awk '
+    /<commit>/ { inblk=1; sub(/.*<commit>/, "") }
+    inblk {
+      if ($0 ~ /<\/commit>/) { sub(/<\/commit>.*/, ""); print; exit }
+      print
+    }
+  ')
+  if [[ -n "$extracted" ]]; then
+    msg="$extracted"
+  else
+    # Fallback (model ignored the tags): strip markdown code fences.
+    msg=$(printf '%s\n' "$msg" | sed '/^[[:space:]]*```/d')
+  fi
+
+  # Clean up the message: collapse newlines, squeeze spaces, then trim ends.
+  msg=$(echo "$msg" | tr '\n' ' ' | sed 's/  */ /g; s/^[[:space:]]*//; s/[[:space:]]*$//')
 
   echo "Commit message: $msg"
   echo ""
