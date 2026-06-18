@@ -11,20 +11,30 @@
       "complex_modifications": {
         "parameters": {
           "basic.to_if_alone_timeout_milliseconds": 500,
-          "basic.to_if_held_down_threshold_milliseconds": 500
+          "basic.to_delayed_action_delay_milliseconds": 300
         },
         "rules": [
           {
-            "description": "Caps Lock -> Left Control",
+            "description": "Caps Lock: hold = Ctrl, tap = Esc",
             "manipulators": [
               {
                 "type": "basic",
                 "from": {
                   "key_code": "caps_lock",
-                  "modifiers": { "optional": ["any"] }
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
                 },
                 "to": [
-                  { "key_code": "left_control" }
+                  {
+                    "key_code": "left_control",
+                    "lazy": true
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "escape"
+                  }
                 ]
               }
             ]
@@ -34,13 +44,31 @@
             "manipulators": [
               {
                 "type": "basic",
-                "from": { "key_code": "h", "modifiers": { "mandatory": ["left_command"] } },
-                "to": [{ "key_code": "vk_none" }]
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["left_command"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "vk_none"
+                  }
+                ]
               },
               {
                 "type": "basic",
-                "from": { "key_code": "m", "modifiers": { "mandatory": ["left_command"] } },
-                "to": [{ "key_code": "vk_none" }]
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "mandatory": ["left_command"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "vk_none"
+                  }
+                ]
               }
             ]
           },
@@ -49,10 +77,33 @@
             "manipulators": [
               {
                 "type": "basic",
-                "from": { "key_code": "right_command", "modifiers": { "optional": ["any"] } },
-                "to": [{ "set_variable": { "name": "meta", "value": 1 } }],
-                "to_after_key_up": [{ "set_variable": { "name": "meta", "value": 0 } }],
-                "to_if_alone": [{ "key_code": "right_command" }]
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "meta",
+                      "value": 1
+                    }
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "meta",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "right_command"
+                  }
+                ]
               }
             ]
           },
@@ -61,13 +112,39 @@
             "manipulators": [
               {
                 "type": "basic",
-                "from": { "key_code": "right_control", "modifiers": { "optional": ["any"] } },
-                "to": [{ "set_variable": { "name": "meta", "value": 1 } }],
-                "to_after_key_up": [{ "set_variable": { "name": "meta", "value": 0 } }],
-                "conditions": [{
-                  "type": "device_if",
-                  "identifiers": [{ "product_id": 33398, "vendor_id": 9306 }]
-                }]
+                "from": {
+                  "key_code": "right_control",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "meta",
+                      "value": 1
+                    }
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "meta",
+                      "value": 0
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "device_if",
+                    "identifiers": [
+                      {
+                        "product_id": 33398,
+                        "vendor_id": 9306
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -76,9 +153,21 @@
             "manipulators": [
               {
                 "type": "basic",
-                "from": { "key_code": "return_or_enter" },
-                "to": [{ "shell_command": "open -a 'kitty'" }],
-                "conditions": [{ "type": "variable_if", "name": "meta", "value": 1 }]
+                "from": {
+                  "key_code": "return_or_enter"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'kitty'"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "meta",
+                    "value": 1
+                  }
+                ]
               }
             ]
           },
@@ -87,33 +176,108 @@
             "manipulators": [
               {
                 "type": "basic",
-                "from": { "key_code": "h", "modifiers": { "optional": ["any"] } },
-                "to": [{ "key_code": "left_arrow" }],
-                "conditions": [{ "type": "variable_if", "name": "meta", "value": 1 }]
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_arrow"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "meta",
+                    "value": 1
+                  }
+                ]
               },
               {
                 "type": "basic",
-                "from": { "key_code": "j", "modifiers": { "optional": ["any"] } },
-                "to": [{ "key_code": "down_arrow" }],
-                "conditions": [{ "type": "variable_if", "name": "meta", "value": 1 }]
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "down_arrow"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "meta",
+                    "value": 1
+                  }
+                ]
               },
               {
                 "type": "basic",
-                "from": { "key_code": "k", "modifiers": { "optional": ["any"] } },
-                "to": [{ "key_code": "up_arrow" }],
-                "conditions": [{ "type": "variable_if", "name": "meta", "value": 1 }]
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "up_arrow"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "meta",
+                    "value": 1
+                  }
+                ]
               },
               {
                 "type": "basic",
-                "from": { "key_code": "l", "modifiers": { "optional": ["any"] } },
-                "to": [{ "key_code": "right_arrow" }],
-                "conditions": [{ "type": "variable_if", "name": "meta", "value": 1 }]
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "right_arrow"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "meta",
+                    "value": 1
+                  }
+                ]
               },
               {
                 "type": "basic",
-                "from": { "key_code": "period", "modifiers": { "optional": ["any"] } },
-                "to": [{ "key_code": "delete_forward" }],
-                "conditions": [{ "type": "variable_if", "name": "meta", "value": 1 }]
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "delete_forward"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "meta",
+                    "value": 1
+                  }
+                ]
               }
             ]
           }

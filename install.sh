@@ -2,6 +2,10 @@
 # Idempotent dotfiles bootstrap. Safe to run repeatedly — each step
 # checks first or uses overwrite-safe flags, so a re-run is a no-op
 # when everything is already set up.
+#
+# Usage:
+#   ./install.sh           # full install (brew, symlinks, everything)
+#   ./install.sh --karabiner  # copy only karabiner config
 
 set -u  # error on unset vars; don't `set -e` — one missing tool
         # shouldn't abort the whole script.
@@ -18,6 +22,28 @@ link() {
   mkdir -p "$(dirname "$dst")"
   ln -sfn "$src" "$dst"
 }
+
+# Copy karabiner config from repo to live location. Karabiner atomically
+# replaces the file (destroying any symlink) whenever it saves, so we
+# copy rather than symlink. Backs up the previous live config first.
+copy_karabiner() {
+  mkdir -p "$HOME/.config/karabiner"
+  local kb_live="$HOME/.config/karabiner/karabiner.json"
+  if [ -f "$kb_live" ] && ! cmp -s "$DOTFILES/karabiner/karabiner.json" "$kb_live"; then
+    cp "$kb_live" "$kb_live.bak"
+    echo "  backed up previous karabiner.json -> karabiner.json.bak"
+  fi
+  cp -f "$DOTFILES/karabiner/karabiner.json" "$kb_live"
+  echo "  karabiner.json copied"
+}
+
+# ----- one-shot karabiner mode -----
+if [ "${1:-}" = "--karabiner" ]; then
+  echo "→ Copying karabiner config only..."
+  copy_karabiner
+  echo "✓ Karabiner config updated."
+  exit 0
+fi
 
 # Remove nerd-font files in ~/Library/Fonts that brew doesn't own. These
 # come from manually downloading fonts from nerdfonts.com and cause brew
@@ -95,19 +121,8 @@ link "$DOTFILES/kitty.conf"          "$HOME/.config/kitty/kitty.conf"
 link "$DOTFILES/current-theme.conf"  "$HOME/.config/kitty/current-theme.conf"
 link "$DOTFILES/current-font.conf"   "$HOME/.config/kitty/current-font.conf"
 
-# Karabiner-Elements: must COPY, not symlink. Karabiner atomically
-# replaces the file (destroying any symlink) whenever it saves — e.g. a
-# UI change (Devices tab "Modify events" toggle) or config-format
-# migration on update. $DOTFILES/karabiner/karabiner.json is the single
-# source of truth, so we overwrite the live config on every run, backing
-# up the previous one first in case it held unsynced UI tweaks. Edit the
-# config in the repo (not the Karabiner UI), then re-run this script.
-mkdir -p "$HOME/.config/karabiner"
-kb_live="$HOME/.config/karabiner/karabiner.json"
-if [ -f "$kb_live" ] && ! cmp -s "$DOTFILES/karabiner/karabiner.json" "$kb_live"; then
-  cp "$kb_live" "$kb_live.bak"
-fi
-cp -f "$DOTFILES/karabiner/karabiner.json" "$kb_live"
+# Karabiner-Elements: must COPY, not symlink.
+copy_karabiner
 
 # ~/.config directory configs
 link "$DOTFILES/nvim"     "$HOME/.config/nvim"
