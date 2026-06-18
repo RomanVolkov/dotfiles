@@ -16,14 +16,4 @@ return {
       delete_check_events = "TextChanged",
     },
   },
-
-  {
-    "saghen/blink.cmp",
-    optional = true,
-    opts = {
-      snippets = {
-        preset = "luasnip",
-      },
-    },
-  },
 }

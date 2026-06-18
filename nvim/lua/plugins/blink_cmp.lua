@@ -2,32 +2,36 @@ return {
   "saghen/blink.cmp",
   version = "*",
   dependencies = {
-    "moyiz/blink-emoji.nvim",
-    "Kaiser-Yang/blink-cmp-dictionary",
     "L3MON4D3/LuaSnip",
   },
 
   config = function()
-    local ls = require("luasnip")
-
     require("blink-cmp").setup({
+      -- Disable signature help: Noice already handles LSP signatures.
+      -- Letting both run causes fights and lockups.
+      signature = { enabled = false },
+
+      -- Disable cmdline completion entirely.
+      -- Cmdline mode in Neovim is synchronous; a slow LSP or path query
+      -- here hard-locks the editor. Native cmdline completion is safer.
+      cmdline = { enabled = false },
+
       snippets = { preset = "luasnip" },
+
       keymap = {
+        -- Accept selected completion or advance active snippet.
+        -- Falls back to a plain <CR> when nothing is active.
         ["<CR>"] = {
           function(cmp)
-            if cmp.snippet_active() then
+            if cmp.snippet_active() or cmp.is_visible() then
               return cmp.accept()
-            elseif cmp.is_visible() then
-              return cmp.accept()
-            else
-              if ls.session.current_nodes[vim.api.nvim_get_current_buf()] then
-                ls.unlink_current()
-              end
-              return false
             end
           end,
           "fallback",
         },
+        ["<C-y>"] = { "accept", "fallback" },
+        ["<C-e>"] = { "cancel", "fallback" },
+        -- Snippet navigation / menu selection
         ["<Tab>"] = {
           function(cmp)
             if cmp.snippet_active() then
@@ -35,7 +39,6 @@ return {
             elseif cmp.is_visible() then
               return cmp.select_next()
             end
-            return false
           end,
           "fallback",
         },
@@ -46,32 +49,61 @@ return {
             elseif cmp.is_visible() then
               return cmp.select_prev()
             end
-            return false
           end,
           "fallback",
         },
       },
+
       sources = {
-        -- Drop the buffer (plain-text) source whenever an LSP client is
-        -- attached, so suggestions come from the language server only.
-        default = function()
-          if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
-            return { "lsp", "path", "snippets" }
-          end
-          return { "path", "buffer", "snippets" }
-        end,
-      },
-      completion = {
-        list = {
-          selection = {
-            preselect = true,
-            auto_insert = true,
+        default = { "lsp", "path", "snippets", "buffer" },
+        providers = {
+          lsp = {
+            -- Fail fast if the LSP is slow. A hanging LSP request inside
+            -- the completion path is a common cause of insert-mode lockups.
+            timeout_ms = 200,
+          },
+          buffer = {
+            -- Don't index huge files or buffers. The buffer source walks
+            -- all words in all listed buffers; on large files this blocks.
+            opts = {
+              max_size = 1024 * 1024, -- 1 MB
+              get_bufnrs = function()
+                return vim.tbl_filter(function(buf)
+                  local ok, byte_size = pcall(function()
+                    return vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+                  end)
+                  return ok and byte_size and byte_size < 1024 * 1024
+                end, vim.api.nvim_list_bufs())
+              end,
+            },
           },
         },
-        trigger = { prefetch_on_insert = false },
+      },
+
+      completion = {
+        list = {
+          -- Cap the menu size so a chatty LSP or huge buffer can't
+          -- flood the UI and cause redraw stalls.
+          max_items = 200,
+          selection = {
+            preselect = true,
+            auto_insert = false,
+          },
+        },
+        trigger = {
+          prefetch_on_insert = false,
+          -- Don't re-trigger the menu when backspacing. This avoids
+          -- rapid query/response loops that can destabilise the UI.
+          show_on_backspace = false,
+        },
         accept = {
           create_undo_point = true,
           auto_brackets = { enabled = true },
+        },
+        ghost_text = {
+          -- Explicitly disabled. Ghost text competes with LSP inlay
+          -- hints and can leave orphaned virtual text on mode changes.
+          enabled = false,
         },
         menu = {
           draw = {
@@ -95,7 +127,12 @@ return {
             },
           },
         },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 50,
+        },
       },
+
       fuzzy = {
         sorts = {
           "exact",
