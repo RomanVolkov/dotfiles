@@ -2,7 +2,7 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
-    delay = 300,
+    delay = 50,
     spec = {
       { "<leader>s", group = "search/symbols" },
       { "<leader>b", group = "buffers" },

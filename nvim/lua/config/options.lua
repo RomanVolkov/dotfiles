@@ -91,7 +91,7 @@ vim.o.shell = "zsh"
 
 -- Miscellaneous options
 vim.o.showmode = false
-vim.o.showcmd = false
+vim.o.showcmd = true
 vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.scrolloff = 10
 vim.o.sidescrolloff = 5
@@ -100,7 +100,7 @@ vim.cmd("syntax on")
 -- Enable true color in the terminal
 vim.o.termguicolors = true
 
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 2000
 vim.o.ttimeoutlen = 50
 
 vim.g.snacks_animate = false
