@@ -12,6 +12,7 @@ return {
       end,
       diagnostics = "nvim_lsp",
       always_show_bufferline = true,
+      show_tab_indicators = false,
       diagnostics_indicator = function(_, _, diag)
         local icons = {
           Error = " ",
