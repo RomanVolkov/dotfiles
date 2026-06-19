@@ -31,6 +31,8 @@ return {
         },
         ["<C-y>"] = { "accept", "fallback" },
         ["<C-e>"] = { "cancel", "fallback" },
+        -- Focus the documentation popup so you can scroll it with j/k.
+        ["<C-k>"] = { "show_documentation", "fallback" },
         -- Snippet navigation / menu selection
         ["<Tab>"] = {
           function(cmp)
@@ -63,6 +65,11 @@ return {
             timeout_ms = 200,
           },
           buffer = {
+            -- When an LSP client is attached, don't clutter the menu with
+            -- buffer word completions — LSP suggestions are far more relevant.
+            enabled = function()
+              return #vim.lsp.get_clients({ bufnr = 0 }) == 0
+            end,
             -- Don't index huge files or buffers. The buffer source walks
             -- all words in all listed buffers; on large files this blocks.
             opts = {
