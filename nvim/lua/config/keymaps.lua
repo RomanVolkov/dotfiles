@@ -112,6 +112,9 @@ map("n", "<leader>fs", "<cmd>w<cr>", { desc = "File Save" })
 -- Word-delete backward (macOS‑style Alt+Backspace)
 map("i", "<A-BS>", "<C-w>", { desc = "Delete word backward" })
 
+-- Delete to start of line ("kill")
+map("i", "<A-k>", "<C-u>", { desc = "Delete to start of line" })
+
 -- Insert mode quick-escape (alternative to CapsLock tap)
 map("i", "jj", "<esc>", { desc = "Escape (jj)" })
 map("i", "jk", "<esc>", { desc = "Escape (jk)" })
