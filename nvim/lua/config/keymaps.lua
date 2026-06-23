@@ -109,6 +109,9 @@ map("i", ";", ";<c-g>u")
 -- Save (Ctrl+S is tmux prefix — neovim must not capture it)
 map("n", "<leader>fs", "<cmd>w<cr>", { desc = "File Save" })
 
+-- Word-delete backward (macOS‑style Alt+Backspace)
+map("i", "<A-BS>", "<C-w>", { desc = "Delete word backward" })
+
 -- Insert mode quick-escape (alternative to CapsLock tap)
 map("i", "jj", "<esc>", { desc = "Escape (jj)" })
 map("i", "jk", "<esc>", { desc = "Escape (jk)" })
