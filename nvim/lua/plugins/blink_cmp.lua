@@ -19,41 +19,19 @@ return {
       snippets = { preset = "luasnip" },
 
       keymap = {
-        -- Accept selected completion or advance active snippet.
-        -- Falls back to a plain <CR> when nothing is active.
-        ["<CR>"] = {
-          function(cmp)
-            if cmp.snippet_active() or cmp.is_visible() then
-              return cmp.accept()
-            end
-          end,
-          "fallback",
-        },
+        -- Close popup on Enter, then fallback to normal <CR> behavior.
+        ["<CR>"] = { "cancel", "fallback" },
+        -- Accept selected completion.
         ["<C-y>"] = { "accept", "fallback" },
+        -- Cancel / close popup.
         ["<C-e>"] = { "cancel", "fallback" },
+        -- Trigger completion list.
+        ["<C-Space>"] = { "show", "fallback" },
+        -- Navigate list.
+        ["<C-n>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback" },
         -- Focus the documentation popup so you can scroll it with j/k.
         ["<C-k>"] = { "show_documentation", "fallback" },
-        -- Snippet navigation / menu selection
-        ["<Tab>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.snippet_forward()
-            elseif cmp.is_visible() then
-              return cmp.select_next()
-            end
-          end,
-          "fallback",
-        },
-        ["<S-Tab>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.snippet_backward()
-            elseif cmp.is_visible() then
-              return cmp.select_prev()
-            end
-          end,
-          "fallback",
-        },
       },
 
       sources = {
