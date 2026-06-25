@@ -125,6 +125,9 @@ zvm_after_init_commands+=(
 # falls through to the builtin when the argument doesn't match its
 # frecency database.
 # ============================================================================
+# Suppress zoxide's "doctor" config-issue banner (it leaks into command output
+# and breaks scripts that parse stdout). Must be set before zoxide init runs.
+export _ZO_DOCTOR=0
 eval "$(zoxide init zsh --cmd cd)"
 
 # ============================================================================
