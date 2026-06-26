@@ -20,7 +20,7 @@ return {
 
       keymap = {
         -- Close popup on Enter, then fallback to normal <CR> behavior.
-        ["<CR>"] = { "cancel", "fallback" },
+        ["<CR>"] = { "accept", "cancel", "fallback" },
         -- Accept selected completion.
         ["<C-y>"] = { "accept", "fallback" },
         -- Cancel / close popup.
@@ -80,6 +80,10 @@ return {
           -- Don't re-trigger the menu when backspacing. This avoids
           -- rapid query/response loops that can destabilise the UI.
           show_on_backspace = false,
+          -- In markdown, only trigger manually via Ctrl-Space
+          enabled = function()
+            return vim.bo.filetype ~= "markdown"
+          end,
         },
         accept = {
           create_undo_point = true,
