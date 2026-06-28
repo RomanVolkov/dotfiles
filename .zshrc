@@ -154,13 +154,6 @@ if command -v eza >/dev/null 2>&1; then
 fi
 alias du=dust  # dust output IS du-shaped; drop this alias if it ever surprises.
 
-# Inside kitty, `kitten ssh` propagates kitty terminfo to the remote
-# so cursor styling, hyperlinks, and graphics work without xterm-kitty
-# terminfo on the far side. Outside kitty, fall through to plain ssh.
-if [ -n "$KITTY_WINDOW_ID" ] && command -v kitten >/dev/null 2>&1; then
-  alias ssh='kitten ssh'
-fi
-
 # ============================================================================
 # Functions
 # ============================================================================
@@ -169,7 +162,7 @@ fi
 # allow-passthrough) uses kitten icat for the native graphics protocol;
 # otherwise falls back to chafa's ANSI approximation.
 preview_image() {
-  if [ -n "$KITTY_WINDOW_ID" ] && command -v kitten >/dev/null 2>&1; then
+if [ -n "$KITTY_WINDOW_ID" ] && [ -z "$TMUX" ] && command -v kitten >/dev/null 2>&1; then
     kitten icat --align=left "$@"
   else
     chafa "$@"
